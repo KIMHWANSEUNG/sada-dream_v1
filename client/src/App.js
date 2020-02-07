@@ -1,0 +1,23 @@
+import React from 'react';
+import './App.css';
+import CustomerAdd from './Components/ProductAdd';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import './index.css';
+
+
+function App() {
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: 'Jalnan',
+      fontSize: 20
+    },
+  });
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CustomerAdd/>
+    </MuiThemeProvider>
+  );
+}
+
+export default App;
