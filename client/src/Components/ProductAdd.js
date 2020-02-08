@@ -80,6 +80,7 @@ class CustomerAdd extends React.Component {
         product_outdate: Date.now(),
         product_price: '',
         product_request: '',
+        flag: 0,
         };
     }
 
@@ -106,19 +107,19 @@ class CustomerAdd extends React.Component {
     }
     // 대분류
     handleCategoryChange = (e) =>{
-        let Category = {};
-        Category[e.target.name] = e.target.value;
-        // ?
-        this.setState(Category );
+        
+        if(e.target.value === "뷰티/미용") {
+            this.setState({flag: 0});
+        } else if(e.target.value === "식료품") {
+            this.setState({flag: 1});
+        } else if(e.target.value === "패션잡화") {
+            this.setState({flag: 2});
+        }
+        
         this.setState({product_category: e.target.value});
-        console.log(this.state.product_category)
     }
       // 소분류
     handleCategoryDetailChange = (e) => {
-        let Category_detail = {};
-        Category_detail[e.target.name] = e.target.value;
-        // ?
-        this.setState(Category_detail);
         this.setState({product_category_detail: e.target.value});
     }
     
@@ -175,7 +176,22 @@ class CustomerAdd extends React.Component {
 
     render() {
         // css
+        // REACTOR! : DB화 시켜야함 => 그래야 관리자 페이지에서 카테고리 관리 가능!!!
         const {classes} = this.props;
+        const category = [
+            "뷰티/미용", "식료품", "패션 잡화", "생필품", "헬스/건강제품", "주방용품", "디지털/가전",
+            "취미/수집품", "스포츠/레저", "유아용품", "반려동물", "연예인/굿즈", "도서/티켓", "자동차", "플리마켓"
+        ];
+        const category_detail = [
+            ["스킨케어","썬케어","베이스메이크업", "색조메이크업", "향수/아로마", "네일아트/케어", "뷰티소품/미용기기"],
+            ["스낵류/가공식품", "차/음료", "향신료/오일", "건강식품/다이어트", "쌀/과일/농수축산물", "기타"],
+        ];
+        
+
+        const category_detail_list = category_detail[this.state.flag].map((detail, index) => (
+            <MenuItem key={index} value={detail}>{detail}</MenuItem>
+        ));
+
         return (
             <div>
                 <CssBaseline/>
@@ -215,15 +231,21 @@ class CustomerAdd extends React.Component {
                                 justify="space-around"
                                 alignItems="center">
                                 
-                                <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category} onChange={this.handleCategoryChange} >
-                                    <MenuItem value={"aa"}>뷰티/미용</MenuItem>
-                                    <MenuItem value={"식료품"}>식료품</MenuItem>
-                                    <MenuItem value={"패션잡화"}>패션잡화</MenuItem>
+                                <Select className={classes.Select}
+                                        label="상품 카테고리"
+                                        labelId="CategoryLabel"
+                                        name="CategoryName"
+                                        id="CategoryName"
+                                        value={this.state.product_category}
+                                        onChange={this.handleCategoryChange} >
+                                        {/* 대분류 렌더링 */}
+                                        <MenuItem value="뷰티/미용">뷰티/미용</MenuItem>
+                                        <MenuItem value="식료품">식료품</MenuItem>
+                                        <MenuItem value={3}>Thirty</MenuItem>
                                 </Select>
                                 <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category_detail} onChange={this.handleCategoryDetailChange} >
-                                    <MenuItem value={"detail1"}>detail1</MenuItem>
-                                    <MenuItem value={"detail2"}>detail2</MenuItem>
-                                    <MenuItem value={"detail3"}>detail3</MenuItem>
+                                    {/* 소분류 렌더링 */}
+                                    { category_detail_list }
                                 </Select>              
 
                             </Grid>
