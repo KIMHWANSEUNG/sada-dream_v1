@@ -1,16 +1,9 @@
 import React from 'react'
 import { post } from 'axios';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography,  Grid} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+
 
 
 const styles = theme => ({
@@ -63,7 +56,7 @@ const styles = theme => ({
         width: 300
     },Select:{
         width:200
-      }
+    }
 
 })
 
@@ -89,25 +82,24 @@ class CustomerAdd extends React.Component {
 
     // 
     handleFormSubmit = (e) => { 
-      e.preventDefault();
-      this.addCustomer()
-        .then((response) => {
-          console.log(response.data);
+    e.preventDefault();
+    this.addCustomer()
+            .then((response) => {
+            console.log(response.data);
         })
     }
     // input file event
     handleFileChange = (e) => {
-      this.setState({
+        this.setState({
         file: e.target.files[0],
         fileName: e.target.value
-      });
+    });
     }
     // input value event
     handleValueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState );
-        
     }
     // 대분류
     handleCategoryChange = (e) =>{
@@ -211,8 +203,8 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                                 
-                                 <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category} onChange={this.handleCategoryChange} >
+                                
+                                <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category} onChange={this.handleCategoryChange} >
                                     <MenuItem value={"aa"}>뷰티/미용</MenuItem>
                                     <MenuItem value={"식료품"}>식료품</MenuItem>
                                     <MenuItem value={"패션잡화"}>패션잡화</MenuItem>
