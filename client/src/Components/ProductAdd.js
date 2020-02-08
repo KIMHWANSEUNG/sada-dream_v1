@@ -9,6 +9,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
 
 const styles = theme => ({
     hidden: {
@@ -58,7 +61,9 @@ const styles = theme => ({
     },
     TextField: {
         width: 300
-    }
+    },Select:{
+        width:200
+      }
 
 })
 
@@ -79,10 +84,7 @@ class CustomerAdd extends React.Component {
         product_price: '',
         product_request: '',
         };
-        // this.handleFormSubmit = this.handleFormSubmit.bind(this)
-        // this.handleFileChange = this.handleFileChange.bind(this)
-        // this.handleValueChange = this.handleValueChange.bind(this)
-        // this.addCustomer = this.addCustomer.bind(this)
+
     }
 
     // 
@@ -104,8 +106,26 @@ class CustomerAdd extends React.Component {
     handleValueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
-        this.setState(nextState);
+        this.setState(nextState );
+        
     }
+    // 대분류
+    handle_category_Change = (e) =>{
+        let Category = {};
+        Category[e.target.name] = e.target.value;
+        this.setState(Category );
+        this.setState({product_category: e.target.value});
+        console.log(this.state.product_category)
+      }
+      // 소분류
+      handleCategory_detail_Change = (e) => {
+        let Category_detail = {};
+        Category_detail[e.target.name] = e.target.value;
+        this.setState(Category_detail );
+        this.setState({product_category_detail: e.target.value});
+      }
+
+
 
     // api event
     addCustomer() {
@@ -148,6 +168,8 @@ class CustomerAdd extends React.Component {
         })
     }
 
+
+
     render() {
         // css
         const {classes} = this.props;
@@ -189,21 +211,20 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                                <TextField
-                                    className={classes.TextField}
-                                    label="상품 카테고리"
-                                    type="text"
-                                    name="product_category"
-                                    value={this.state.product_category}
-                                    onChange={this.handleValueChange}/>
-                                <TextField
-                                    className={classes.TextField}
-                                    label="세부 카테고리"
-                                    type="text"
-                                    name="product_category_detail"
-                                    value={this.state.product_category_detail}
-                                    onChange={this.handleValueChange}/>
+                                 
+                                 <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category} onChange={this.handle_Category_Change} >
+                                    <MenuItem value={"aa"}>뷰티/미용</MenuItem>
+                                    <MenuItem value={"식료품"}>식료품</MenuItem>
+                                    <MenuItem value={"패션잡화"}>패션잡화</MenuItem>
+                                </Select>
+                                <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category_detail} onChange={this.handleCategory_detail_Change} >
+                                    <MenuItem value={"detail1"}>detail1</MenuItem>
+                                    <MenuItem value={"detail2"}>detail2</MenuItem>
+                                    <MenuItem value={"detail3"}>detail3</MenuItem>
+                                </Select>              
+
                             </Grid>
+
                             <Grid
                                 container="container"
                                 direction="row"
@@ -250,13 +271,13 @@ class CustomerAdd extends React.Component {
                                     type="text"
                                     name="product_explain"
                                     value={this.state.product_explain}
-                                    onChange={this.handleValueChange}/><br/>
+                                    onChange={this.handleValueChange}/>
                                 <TextField
                                     label="마감 기한"
                                     type="text"
                                     name="product_outdate"
                                     value={this.state.product_outdate}
-                                    onChange={this.handleValueChange}/><br/>
+                                    onChange={this.handleValueChange}/>
                             </Grid>
                             <Grid
                                 container="container"
@@ -268,13 +289,13 @@ class CustomerAdd extends React.Component {
                                     type="text"
                                     name="product_price"
                                     value={this.state.product_price}
-                                    onChange={this.handleValueChange}/><br/>
+                                    onChange={this.handleValueChange}/>
                                 <TextField
                                     label="요청 사항(선택)"
                                     type="text"
                                     name="product_request"
                                     value={this.state.product_request}
-                                    onChange={this.handleValueChange}/><br/>
+                                    onChange={this.handleValueChange}/>
                             </Grid>
                             <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
                             <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
