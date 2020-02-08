@@ -59,3 +59,4 @@ app.post('/api/product/add', upload.single('image'), (req, res) => {
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // 안녕하세요
+// 버튼추가
