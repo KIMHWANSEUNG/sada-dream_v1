@@ -3,8 +3,12 @@ import { post } from 'axios';
 import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography,  Grid} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
-
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const styles = theme => ({
     hidden: {
@@ -73,11 +77,10 @@ class CustomerAdd extends React.Component {
         product_name: '',
         product_count: '',
         product_explain: '',
-        product_outdate: '',
+        product_outdate: Date.now(),
         product_price: '',
         product_request: '',
         };
-
     }
 
     // 
@@ -90,32 +93,40 @@ class CustomerAdd extends React.Component {
     }
     // input file event
     handleFileChange = (e) => {
-        this.setState({
-        file: e.target.files[0],
-        fileName: e.target.value
-    });
+            this.setState({
+            file: e.target.files[0],
+            fileName: e.target.value
+        });
     }
     // input value event
     handleValueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
-        this.setState(nextState );
+        this.setState(nextState);
     }
     // 대분류
     handleCategoryChange = (e) =>{
         let Category = {};
         Category[e.target.name] = e.target.value;
+        // ?
         this.setState(Category );
         this.setState({product_category: e.target.value});
         console.log(this.state.product_category)
-      }
+    }
       // 소분류
-      handleCategoryDetailChange = (e) => {
+    handleCategoryDetailChange = (e) => {
         let Category_detail = {};
         Category_detail[e.target.name] = e.target.value;
-        this.setState(Category_detail );
+        // ?
+        this.setState(Category_detail);
         this.setState({product_category_detail: e.target.value});
-      }
+    }
+    
+    // 마감기한 EVENT
+    handleOutDateChange = (date) => {
+        this.setState({product_outdate: new Date(date)});
+        console.log(this.state.product_outdate);
+    }
 
 
 
@@ -264,13 +275,23 @@ class CustomerAdd extends React.Component {
                                     name="product_explain"
                                     value={this.state.product_explain}
                                     onChange={this.handleValueChange}/>
-                                {/* 동욱이 작업 TextField => DateTime */}
-                                <TextField
-                                    label="마감 기한"
-                                    type="text"
-                                    name="product_outdate"
-                                    value={this.state.product_outdate}
-                                    onChange={this.handleValueChange}/>
+                                {/* 마감기한 버튼 */}
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <KeyboardDatePicker
+                                        disableToolbar
+                                        variant="inline"
+                                        format="yyyy/MM/dd"
+                                        margin="normal"
+                                        id="product_outdate"
+                                        label="마감기한"
+                                        value={this.state.product_outdate}
+                                        
+                                        onChange={this.handleOutDateChange}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                        }}
+                                    /> 
+                                </MuiPickersUtilsProvider>
                             </Grid>
                             <Grid
                                 container="container"
