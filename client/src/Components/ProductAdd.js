@@ -186,7 +186,9 @@ class CustomerAdd extends React.Component {
             ["스킨케어","썬케어","베이스메이크업", "색조메이크업", "향수/아로마", "네일아트/케어", "뷰티소품/미용기기"],
             ["스낵류/가공식품", "차/음료", "향신료/오일", "건강식품/다이어트", "쌀/과일/농수축산물", "기타"],
         ];
-        
+        const category_list = category.map((category, index) => (
+            <MenuItem key={index} value={category}>{category}</MenuItem>
+        ))
 
         const category_detail_list = category_detail[this.state.flag].map((detail, index) => (
             <MenuItem key={index} value={detail}>{detail}</MenuItem>
@@ -239,9 +241,7 @@ class CustomerAdd extends React.Component {
                                         value={this.state.product_category}
                                         onChange={this.handleCategoryChange} >
                                         {/* 대분류 렌더링 */}
-                                        <MenuItem value="뷰티/미용">뷰티/미용</MenuItem>
-                                        <MenuItem value="식료품">식료품</MenuItem>
-                                        <MenuItem value={3}>Thirty</MenuItem>
+                                        { category_list }
                                 </Select>
                                 <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category_detail} onChange={this.handleCategoryDetailChange} >
                                     {/* 소분류 렌더링 */}
