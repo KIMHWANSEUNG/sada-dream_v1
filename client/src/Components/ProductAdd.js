@@ -110,7 +110,7 @@ class CustomerAdd extends React.Component {
         
     }
     // 대분류
-    handle_category_Change = (e) =>{
+    handleCategoryChange = (e) =>{
         let Category = {};
         Category[e.target.name] = e.target.value;
         this.setState(Category );
@@ -118,7 +118,7 @@ class CustomerAdd extends React.Component {
         console.log(this.state.product_category)
       }
       // 소분류
-      handleCategory_detail_Change = (e) => {
+      handleCategoryDetailChange = (e) => {
         let Category_detail = {};
         Category_detail[e.target.name] = e.target.value;
         this.setState(Category_detail );
@@ -212,12 +212,12 @@ class CustomerAdd extends React.Component {
                                 justify="space-around"
                                 alignItems="center">
                                  
-                                 <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category} onChange={this.handle_Category_Change} >
+                                 <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category} onChange={this.handleCategoryChange} >
                                     <MenuItem value={"aa"}>뷰티/미용</MenuItem>
                                     <MenuItem value={"식료품"}>식료품</MenuItem>
                                     <MenuItem value={"패션잡화"}>패션잡화</MenuItem>
                                 </Select>
-                                <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category_detail} onChange={this.handleCategory_detail_Change} >
+                                <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category_detail} onChange={this.handleCategoryDetailChange} >
                                     <MenuItem value={"detail1"}>detail1</MenuItem>
                                     <MenuItem value={"detail2"}>detail2</MenuItem>
                                     <MenuItem value={"detail3"}>detail3</MenuItem>
@@ -272,6 +272,7 @@ class CustomerAdd extends React.Component {
                                     name="product_explain"
                                     value={this.state.product_explain}
                                     onChange={this.handleValueChange}/>
+                                {/* 동욱이 작업 TextField => DateTime */}
                                 <TextField
                                     label="마감 기한"
                                     type="text"
