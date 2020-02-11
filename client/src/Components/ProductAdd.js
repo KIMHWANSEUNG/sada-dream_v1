@@ -1,9 +1,15 @@
 import React from 'react'
 import { post } from 'axios';
-import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography,  Grid} from '@material-ui/core';
-import {withStyles} from '@material-ui/core/styles';
+import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography,  Grid, Divider } from '@material-ui/core';
+import {withStyles, ThemeProvider, StylesProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import DateFnsUtils from '@date-io/date-fns';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputAdornment from '@material-ui/core/InputAdornment';
+
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -56,10 +62,42 @@ const styles = theme => ({
     Grid_margin: {
         marginLeft: 30
     },
-    TextField: {
-        width: 300
-    },Select:{
-        width:200
+    TextField_name: {
+        marginLeft:20,
+        width: 230,
+    },
+    TextField_count:{
+        width:80,
+        marginTop:30,
+        marginBottom:30,
+        marginRight:130
+    },
+    TextField_explain:{
+        marginBottom:50,
+        marginTop:30
+    },
+    TextField_price:{
+        width:330,
+        textAlign:"center"
+    },
+    Select:{
+        width:220,
+       marginBottom:30
+    },
+    KeyboardDatePicker:{
+        width:240,
+        marginRight:100
+    },
+    Select_Formcontrol:{
+        minWidth :220
+    },
+    Divider:{
+        marginTop: theme.spacing(10),
+        marginBottom: theme.spacing(10),
+        border: "1px solid",
+       
+
+
     }
 
 })
@@ -80,7 +118,8 @@ class CustomerAdd extends React.Component {
         product_outdate: Date.now(),
         product_price: '',
         product_request: '',
-        flag: 0,
+        CategoryFlag: 0,
+        CountryFlag:0
         };
     }
 
@@ -105,29 +144,54 @@ class CustomerAdd extends React.Component {
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }
-    // 대분류
+    // 상품 대분류
     handleCategoryChange = (e) =>{
         
         if(e.target.value === "뷰티/미용") {
-            this.setState({flag: 0});
+            this.setState({CategoryFlag: 0});
         } else if(e.target.value === "식료품") {
-            this.setState({flag: 1});
+            this.setState({CategoryFlag: 1});
         } else if(e.target.value === "패션잡화") {
-            this.setState({flag: 2});
+            this.setState({CategoryFlag: 2});
         }
         
         this.setState({product_category: e.target.value});
     }
-      // 소분류
+      // 상품 소분류
     handleCategoryDetailChange = (e) => {
         this.setState({product_category_detail: e.target.value});
     }
+
+
+     //나라별 분류
+     handleCountryChange=(e) =>{
+         if(e.target.value === "미국"){
+            this.setState({CountryFlag:0});
+         } else if(e.target.value === "일본"){
+             this.setState({CountryFlag:1});
+         } else if(e.target.value === "영국"){
+             this.setState({CountryFlag:2});
+         }
+
+         this.setState({product_country: e.target.value});
+     }
+
+     //도시별 분류
+     handleCityChange=(e) =>{
+         this.setState({product_city:e.target.value});
+     }
+
     
     // 마감기한 EVENT
     handleOutDateChange = (date) => {
         this.setState({product_outdate: new Date(date)});
         console.log(this.state.product_outdate);
     }
+
+    // 상품 가격 EVENT
+     handlePriceChange =(e) => {
+        this.setState({product_price:e.target.value})
+    };
 
 
 
@@ -190,8 +254,25 @@ class CustomerAdd extends React.Component {
             <MenuItem key={index} value={category}>{category}</MenuItem>
         ))
 
-        const category_detail_list = category_detail[this.state.flag].map((detail, index) => (
+        const category_detail_list = category_detail[this.state.CategoryFlag].map((detail, index) => (
             <MenuItem key={index} value={detail}>{detail}</MenuItem>
+        ));
+
+        const country = [
+            "미국", "일본", "영국", "프랑스", "독일", "러시아", "캐나다",
+            "필리핀", "태국", "베트남", "코타키나발루", "홍콩", "대만", "인도네시아", "말레이시아"
+        ];
+        const city = [
+            ["뉴욕", "LA", "켈리포니아", "텍사스", "시카고", "워싱턴D.C", "뉴올리언즈",],
+            ["도쿄", "오사카", "나고야", "후쿠오카", "교토", "삿포로", "나가사키", "요코하마"]
+        ];
+
+        const country_list = country.map((country, index) => (
+            <MenuItem key={index} value={country}>{country}</MenuItem>
+        ))
+
+        const city_list = city[this.state.CountryFlag].map((city, index) => (
+            <MenuItem key={index} value={city}>{city}</MenuItem>
         ));
 
         return (
@@ -208,6 +289,9 @@ class CustomerAdd extends React.Component {
                 <main className={classes.layout}>
                     <Grid container="container" spacing={3} className={classes.root}>
                         <Paper className={classes.paper}>
+                        <Typography variant="h4" gutterBottom align="center">
+                            상품 정보
+                        </Typography>
                             <Grid item="item" xd={12} sm={6}>
                                 <input
                                     className={classes.hidden}
@@ -232,7 +316,8 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                                
+                             <FormControl className={classes.Select_Formcontrol} >
+                                <InputLabel id="demo-simple-select-helper-label">상품 카테고리</InputLabel>
                                 <Select className={classes.Select}
                                         label="상품 카테고리"
                                         labelId="CategoryLabel"
@@ -243,11 +328,18 @@ class CustomerAdd extends React.Component {
                                         {/* 대분류 렌더링 */}
                                         { category_list }
                                 </Select>
-                                <Select className={classes.Select} label="상품 카테고리" labelId="CategoryLabel" name="CategoryName" id="CategoryName" value={this.state.product_category_detail} onChange={this.handleCategoryDetailChange} >
+                             </FormControl>
+                             <FormControl className={classes.Select_Formcontrol} >
+                                <InputLabel id="demo-simple-select-helper-label">세부 카테고리</InputLabel>
+                                <Select className={classes.Select} label="상품 카테고리"
+                                 labelId="CategoryLabel"
+                                 name="CategoryName" id="CategoryName" 
+                                 value={this.state.product_category_detail} 
+                                 onChange={this.handleCategoryDetailChange} >
                                     {/* 소분류 렌더링 */}
                                     { category_detail_list }
                                 </Select>              
-
+                             </FormControl>
                             </Grid>
 
                             <Grid
@@ -255,18 +347,29 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                                <TextField
-                                    label="나라 선택"
-                                    type="text"
-                                    name="product_country"
-                                    value={this.state.product_country}
-                                    onChange={this.handleValueChange}/>
-                                <TextField
-                                    label="도시 선택"
-                                    type="text"
-                                    name="product_city"
-                                    value={this.state.product_city}
-                                    onChange={this.handleValueChange}/>
+
+                                <Select className={classes.Select}
+                                        label="나라별 카테고리"
+                                        labelId="CategoryLabel"
+                                        name="CountryName"
+                                        id="CountryName"
+                                        value={this.state.product_country}
+                                        onChange={this.handleCountryChange} >
+                                        {/* 나라별 렌더링 */}
+                                        { country_list }
+                                </Select> 
+
+                                <Select className={classes.Select}
+                                        label="도시별 카테고리"
+                                        labelId="CategoryLabel"
+                                        name="CityName"
+                                        id="CityName"
+                                        value={this.state.product_city}
+                                        onChange={this.handleCityChange} >
+                                        {/* 도시별 렌더링 */}
+                                        { city_list }
+                                </Select>          
+
                             </Grid>
                             <Grid
                                 container="container"
@@ -274,17 +377,42 @@ class CustomerAdd extends React.Component {
                                 justify="space-around"
                                 alignItems="center">
                                 <TextField
+                                    className={classes.TextField_name}
                                     label="상품 이름"
                                     type="text"
                                     name="product_name"
+                                    multiline
                                     value={this.state.product_name}
                                     onChange={this.handleValueChange}/>
                                 <TextField
-                                    label="상품 수량"
+                                    className={classes.TextField_count}                                   
+                                    label="수량"
                                     type="text"
                                     name="product_count"
                                     value={this.state.product_count}
-                                    onChange={this.handleValueChange}/>
+                                    onChange={this.handleValueChange}
+                                    type="number"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                      }}
+                                    />
+                                {/* 마감기한 버튼 */}
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <KeyboardDatePicker
+                                        className={classes.KeyboardDatePicker}
+                                        disableToolbar
+                                        variant="inline"
+                                        format="yyyy/MM/dd"
+                                        margin="normal"
+                                        id="product_outdate"
+                                        label="마감기한"
+                                        value={this.state.product_outdate}
+                                        onChange={this.handleOutDateChange}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                        }}
+                                    /> 
+                                </MuiPickersUtilsProvider>                                    
                             </Grid>
                             <Grid
                                 container="container"
@@ -292,11 +420,16 @@ class CustomerAdd extends React.Component {
                                 justify="space-around"
                                 alignItems="center">
                                 <TextField
+                                    className={classes.TextField_explain}
                                     label="상품 설명"
                                     type="text"
                                     name="product_explain"
+                                    multiline
+                                    rows="4"
+                                    variant="outlined"
                                     value={this.state.product_explain}
                                     onChange={this.handleValueChange}/>
+
                                 {/* 마감기한 버튼 */}
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <KeyboardDatePicker
@@ -320,12 +453,21 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                                <TextField
-                                    label="상품 가격"
-                                    type="text"
-                                    name="product_price"
-                                    value={this.state.product_price}
-                                    onChange={this.handleValueChange}/>
+
+                                <FormControl className={classes.TextField_price} variant="outlined">
+                                    <OutlinedInput
+                                        id="product_cost"
+                                        value={this.state.product_price}
+                                        onChange={this.handlePriceChange}
+                                        endAdornment={<InputAdornment position="end">원</InputAdornment>}
+                                        aria-describedby="outlined-weight-helper-text"
+                                        inputProps={{
+                                        'aria-label': 'weight',
+                                        }}
+                                        labelWidth={0} />
+                                 <FormHelperText id="outlined-weight-helper-text">(상품가격, 세금, 수고비)최종금액</FormHelperText>
+                                </FormControl>
+
                                 <TextField
                                     label="요청 사항(선택)"
                                     type="text"
@@ -333,6 +475,8 @@ class CustomerAdd extends React.Component {
                                     value={this.state.product_request}
                                     onChange={this.handleValueChange}/>
                             </Grid>
+
+                            <Divider className={classes.Divider} orientation="horizontal" variant="middle" flexItem />
                             <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
                             <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
                         </Paper>

@@ -10,7 +10,7 @@ function App() {
   const theme = createMuiTheme({
     typography: {
       fontFamily: 'Jalnan',
-      fontSize: 20
+      fontSize: 22
     },
   });
   return (
