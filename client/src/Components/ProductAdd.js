@@ -1,6 +1,7 @@
 import React from 'react'
 import { post } from 'axios';
-import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography, Grid, GridList, Divider } from '@material-ui/core';
+import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography,
+Grid, GridList, GridListTile, GridListTileBar, Divider, IconButton } from '@material-ui/core';
 import {withStyles, ThemeProvider, StylesProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import DateFnsUtils from '@date-io/date-fns';
@@ -9,6 +10,9 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Logo from './photo-icon.png'
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 import {
     MuiPickersUtilsProvider,
@@ -95,9 +99,65 @@ const styles = theme => ({
         marginTop: theme.spacing(10),
         marginBottom: theme.spacing(10),
         border: "1px solid",
+    },
+
+    // 상품 이미지 속성
+    input: {
+        display: "none",
+    },
+    image_root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+        width: "100%",
+        height: "100%",
+        flexWrap: 'nowrap',
+        transform: 'translateZ(0)',
+    },
+    icon_button: {
+        width: "100%",
+        height: "80%",
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+        marginTop: theme.spacing(4),
+        marginButtom: theme.spacing(4),
+        border: "1px solid"
     }
 
 })
+// fooooooooo
+const tileData = [
+    {
+        img: Logo,
+        title: '1',
+        author: 'author',
+    },
+    {
+        img: Logo,
+        title: '2',
+        author: 'author',
+    },
+    {
+        img: Logo,
+        title: '3',
+        author: 'author',
+    },
+    {
+        img: Logo,
+        title: '3',
+        author: 'author',
+    },
+    {
+        img: Logo,
+        title: '3',
+        author: 'author',
+    },
+    
+];
 
 class CustomerAdd extends React.Component {
     constructor(props) {
@@ -289,12 +349,19 @@ class CustomerAdd extends React.Component {
                             <Typography variant="h4" gutterBottom align="center">
                                 상품 정보
                             </Typography>
-                            
-                            <Grid item="item" xd={12} sm={6}>
-                                <GridList>
-                                    
+                            <div className={classes.image_root}>
+                                <GridList className={classes.gridList} cols={2.5}>
+                                    {tileData.map(tile => (
+                                        <label htmlFor="icon-button-file">
+                                            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+                                            <IconButton  className={classes.icon_button} color="primary" aria-label="upload picture" component="span">
+                                                <PhotoCamera />
+                                            </IconButton>
+                                        </label>
+                                    ))}
                                 </GridList>
-                            </Grid>
+                            </div>
+                            {/* fooooo */}
                             {/* 상품이미지 선택 */}
                             <Grid
                                 container="container"
