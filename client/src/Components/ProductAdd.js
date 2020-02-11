@@ -11,6 +11,8 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import photoIcon from './photo-icon.png';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -353,6 +355,7 @@ class CustomerAdd extends React.Component {
                                                 className={classes.input}
                                                 id="contained-button-file"
                                                 type="file"
+                                                multiple
                                                 file={this.state.file}
                                                 value={this.state.fileName}
                                                 onChnage={this.handleFileChange}
@@ -363,8 +366,8 @@ class CustomerAdd extends React.Component {
                                                         component="span"
                                                         name="file"
                                                         onChnage={this.handleFileChange}
-                                                        >
-                                                    <img src={photoIcon}></img>
+                                                >
+                                                <img src={photoIcon} alt="Image"></img>                                     
                                                 </Button>
                                             </label>
                                         </div>  
