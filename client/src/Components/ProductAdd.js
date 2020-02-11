@@ -132,23 +132,23 @@ const styles = theme => ({
 // fooooooooo
 const tileData = [
     {
-        title: '1',
+        id: '1',
         author: 'author',
     },
     { 
-        title: '2',
+        id: '2',
         author: 'author',
     },
     {
-        title: '3',
+        id: '3',
         author: 'author',
     },
     {
-        title: '3',
+        id: '4',
         author: 'author',
     },
     {
-        title: '3',
+        id: '5',
         author: 'author',
     },
     
@@ -353,14 +353,14 @@ class CustomerAdd extends React.Component {
                                             <input
                                                 accept="image/*"
                                                 className={classes.input}
-                                                id="contained-button-file"
+                                                id={tile.id}
                                                 type="file"
                                                 multiple
                                                 file={this.state.file}
                                                 value={this.state.fileName}
                                                 onChnage={this.handleFileChange}
                                             />
-                                            <label htmlFor="contained-button-file">
+                                            <label htmlFor={tile.id}>
                                                 <Button className={classes.icon_button}
                                                         variant="contained"
                                                         component="span"
