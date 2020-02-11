@@ -10,10 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Logo from './photo-icon.png'
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-
+import photoIcon from './photo-icon.png';
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -121,38 +118,34 @@ const styles = theme => ({
     icon_button: {
         width: "100%",
         height: "80%",
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(4),
+        marginRight: theme.spacing(4),
         marginTop: theme.spacing(4),
         marginButtom: theme.spacing(4),
-        border: "1px solid"
+        border: "1px solid",
+        backgroundColor: "white",
     }
 
 })
 // fooooooooo
 const tileData = [
     {
-        img: Logo,
         title: '1',
         author: 'author',
     },
-    {
-        img: Logo,
+    { 
         title: '2',
         author: 'author',
     },
     {
-        img: Logo,
         title: '3',
         author: 'author',
     },
     {
-        img: Logo,
         title: '3',
         author: 'author',
     },
     {
-        img: Logo,
         title: '3',
         author: 'author',
     },
@@ -190,11 +183,13 @@ class CustomerAdd extends React.Component {
     }
     // input file event
     handleFileChange = (e) => {
+        console.log("Ya");
             this.setState({
             file: e.target.files[0],
-            fileName: e.target.value
+            fileName: e.target.value 
         });
     }
+    
     // input value event
     handleValueChange = (e) => {
         let nextState = {};
@@ -203,7 +198,6 @@ class CustomerAdd extends React.Component {
     }
     // 상품 대분류
     handleCategoryChange = (e) =>{
-        
         if(e.target.value === "뷰티/미용") {
             this.setState({CategoryFlag: 0});
         } else if(e.target.value === "식료품") {
@@ -246,10 +240,11 @@ class CustomerAdd extends React.Component {
     }
 
     // 상품 가격 EVENT
-     handlePriceChange =(e) => {
+    handlePriceChange =(e) => {
         this.setState({product_price:e.target.value})
     };
 
+    
 
 
     // api event
@@ -352,12 +347,27 @@ class CustomerAdd extends React.Component {
                             <div className={classes.image_root}>
                                 <GridList className={classes.gridList} cols={2.5}>
                                     {tileData.map(tile => (
-                                        <label htmlFor="icon-button-file">
-                                            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
-                                            <IconButton  className={classes.icon_button} color="primary" aria-label="upload picture" component="span">
-                                                <PhotoCamera />
-                                            </IconButton>
-                                        </label>
+                                        <div>
+                                            <input
+                                                accept="image/*"
+                                                className={classes.input}
+                                                id="contained-button-file"
+                                                type="file"
+                                                file={this.state.file}
+                                                value={this.state.fileName}
+                                                onChnage={this.handleFileChange}
+                                            />
+                                            <label htmlFor="contained-button-file">
+                                                <Button className={classes.icon_button}
+                                                        variant="contained"
+                                                        component="span"
+                                                        name="file"
+                                                        onChnage={this.handleFileChange}
+                                                        >
+                                                    <img src={photoIcon}></img>
+                                                </Button>
+                                            </label>
+                                        </div>  
                                     ))}
                                 </GridList>
                             </div>
