@@ -81,8 +81,8 @@ const styles = theme => ({
         textAlign:"center"
     },
     Select:{
-        width:220,
-       marginBottom:30
+      width:220,
+      marginBottom:30,
     },
     KeyboardDatePicker:{
         width:240,
@@ -95,9 +95,6 @@ const styles = theme => ({
         marginTop: theme.spacing(10),
         marginBottom: theme.spacing(10),
         border: "1px solid",
-       
-
-
     }
 
 })
@@ -165,7 +162,7 @@ class CustomerAdd extends React.Component {
 
      //나라별 분류
      handleCountryChange=(e) =>{
-         if(e.target.value === "미국"){
+        if(e.target.value === "미국"){
             this.setState({CountryFlag:0});
          } else if(e.target.value === "일본"){
              this.setState({CountryFlag:1});
@@ -316,7 +313,7 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                             <FormControl className={classes.Select_Formcontrol} >
+                            <FormControl className={classes.Select_Formcontrol} >
                                 <InputLabel id="demo-simple-select-helper-label">상품 카테고리</InputLabel>
                                 <Select className={classes.Select}
                                         label="상품 카테고리"
@@ -328,18 +325,18 @@ class CustomerAdd extends React.Component {
                                         {/* 대분류 렌더링 */}
                                         { category_list }
                                 </Select>
-                             </FormControl>
-                             <FormControl className={classes.Select_Formcontrol} >
+                            </FormControl>
+                            <FormControl className={classes.Select_Formcontrol} >
                                 <InputLabel id="demo-simple-select-helper-label">세부 카테고리</InputLabel>
                                 <Select className={classes.Select} label="상품 카테고리"
-                                 labelId="CategoryLabel"
-                                 name="CategoryName" id="CategoryName" 
-                                 value={this.state.product_category_detail} 
-                                 onChange={this.handleCategoryDetailChange} >
-                                    {/* 소분류 렌더링 */}
-                                    { category_detail_list }
+                                    labelId="CategoryLabel"
+                                    name="CategoryName" id="CategoryName" 
+                                    value={this.state.product_category_detail} 
+                                    onChange={this.handleCategoryDetailChange} >
+                                        {/* 소분류 렌더링 */}
+                                        { category_detail_list }
                                 </Select>              
-                             </FormControl>
+                            </FormControl>
                             </Grid>
 
                             <Grid
@@ -394,7 +391,7 @@ class CustomerAdd extends React.Component {
                                     type="number"
                                     InputLabelProps={{
                                         shrink: true,
-                                      }}
+                                    }}
                                     />
                                 {/* 마감기한 버튼 */}
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -465,7 +462,7 @@ class CustomerAdd extends React.Component {
                                         'aria-label': 'weight',
                                         }}
                                         labelWidth={0} />
-                                 <FormHelperText id="outlined-weight-helper-text">(상품가격, 세금, 수고비)최종금액</FormHelperText>
+                                <FormHelperText id="outlined-weight-helper-text">(상품가격, 세금, 수고비)최종금액</FormHelperText>
                                 </FormControl>
 
                                 <TextField
