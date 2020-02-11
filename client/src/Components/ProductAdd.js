@@ -1,6 +1,6 @@
 import React from 'react'
 import { post } from 'axios';
-import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography,  Grid, Divider } from '@material-ui/core';
+import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography, Grid, GridList, Divider } from '@material-ui/core';
 import {withStyles, ThemeProvider, StylesProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import DateFnsUtils from '@date-io/date-fns';
@@ -286,28 +286,16 @@ class CustomerAdd extends React.Component {
                 <main className={classes.layout}>
                     <Grid container="container" spacing={3} className={classes.root}>
                         <Paper className={classes.paper}>
-                        <Typography variant="h4" gutterBottom align="center">
-                            상품 정보
-                        </Typography>
+                            <Typography variant="h4" gutterBottom align="center">
+                                상품 정보
+                            </Typography>
+                            
                             <Grid item="item" xd={12} sm={6}>
-                                <input
-                                    className={classes.hidden}
-                                    accept="image/*"
-                                    id="raised-button-file"
-                                    type="file"
-                                    file={this.state.file}
-                                    value={this.state.fileName}
-                                    onChange={this.handleFileChange}/>
-                                <label htmlFor="raised-button-file">
-                                    <Button variant="contained" color="primary" component="span" name="file">
-                                        {
-                                            this.state.fileName === ""
-                                                ? "상품 이미지 선택"
-                                                : this.state.fileName
-                                        }
-                                    </Button>
-                                </label>
+                                <GridList>
+                                    
+                                </GridList>
                             </Grid>
+                            {/* 상품이미지 선택 */}
                             <Grid
                                 container="container"
                                 direction="row"
