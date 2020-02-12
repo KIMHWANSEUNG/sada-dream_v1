@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Delivery from'C:/VS_CODE/React_JS/add_page_git/client/src/Components/ProductAdd.js';
 
 import {
     MuiPickersUtilsProvider,
@@ -92,12 +93,14 @@ const styles = theme => ({
         minWidth :220
     },
     Divider:{
-        marginTop: theme.spacing(10),
+        marginTop: theme.spacing(20),
         marginBottom: theme.spacing(10),
         border: "1px solid",
-       
-
-
+    },
+    Button_next:{
+        width:120,
+        height:60,
+        margin:30
     }
 
 })
@@ -119,7 +122,11 @@ class CustomerAdd extends React.Component {
         product_price: '',
         product_request: '',
         CategoryFlag: 0,
-        CountryFlag:0
+        CountryFlag:0,
+        PostNumber:0,
+        gg:''
+        
+        
         };
     }
 
@@ -189,9 +196,38 @@ class CustomerAdd extends React.Component {
     }
 
     // 상품 가격 EVENT
-     handlePriceChange =(e) => {
+     handlePriceChange = (e) => {
         this.setState({product_price:e.target.value})
     };
+
+    // 수령방법 UI 클릭 EVENT
+    /*getStepContent = (e) => {
+        switch (this.PostNumber) {
+          case 0:
+            return <Delivery />;
+          default:
+            throw new Error('Unknown step');
+        }
+      }
+      */
+
+      // 수령방법 UI 클릭 EVENT
+      Delivery = (e) => {
+          alert("확인")
+        if(this.PostNumber===1)
+        {
+          this.setState({PostNumber : 0});
+          return <Delivery/>;
+        }
+      };
+
+      // 수령방법 UI 클릭 EVENT
+      Directdeal = () => {
+        if(this.PostNumber===0)
+        {
+            this.setState({PostNumber : 1});
+        }
+      };
 
 
 
@@ -239,6 +275,8 @@ class CustomerAdd extends React.Component {
 
 
     render() {
+
+        
         // css
         // REACTOR! : DB화 시켜야함 => 그래야 관리자 페이지에서 카테고리 관리 가능!!!
         const {classes} = this.props;
@@ -347,7 +385,8 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-
+                            <FormControl className={classes.Select_Formcontrol} >
+                                <InputLabel id="demo-simple-select-helper-label">나라 선택</InputLabel>          
                                 <Select className={classes.Select}
                                         label="나라별 카테고리"
                                         labelId="CategoryLabel"
@@ -358,7 +397,9 @@ class CustomerAdd extends React.Component {
                                         {/* 나라별 렌더링 */}
                                         { country_list }
                                 </Select> 
-
+                            </FormControl>
+                            <FormControl className={classes.Select_Formcontrol} >
+                                <InputLabel id="demo-simple-select-helper-label">도시 선택</InputLabel>
                                 <Select className={classes.Select}
                                         label="도시별 카테고리"
                                         labelId="CategoryLabel"
@@ -369,7 +410,7 @@ class CustomerAdd extends React.Component {
                                         {/* 도시별 렌더링 */}
                                         { city_list }
                                 </Select>          
-
+                             </FormControl>
                             </Grid>
                             <Grid
                                 container="container"
@@ -477,8 +518,17 @@ class CustomerAdd extends React.Component {
                             </Grid>
 
                             <Divider className={classes.Divider} orientation="horizontal" variant="middle" flexItem />
-                            <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
-                            <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
+
+                            <Grid container   direction="row" justify="flex-start" alignItems="center">
+                            <Button className={classes.btn_post_way}  onClick={this.Delivery} variant="outlined" color="primary">택배</Button>
+                            <Button className={classes.btn_post_way}  variant="outlined" color="primary">직거래</Button>
+                            </Grid>                  
+                         
+                        
+
+                            <Grid spacing={5} container  direction="row" justify="flex-end" alignItems="center">
+                            <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.handleFormSubmit}>다음</Button>
+                            </Grid>
                         </Paper>
                     </Grid>
                 </main>
