@@ -1,6 +1,6 @@
 import React from 'react'
 import { post } from 'axios';
-import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography,
+import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography, Input,
 Grid, GridList, GridListTile, GridListTileBar, Divider, IconButton } from '@material-ui/core';
 import {withStyles, ThemeProvider, StylesProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -118,8 +118,8 @@ const styles = theme => ({
         transform: 'translateZ(0)',
     },
     icon_button: {
-        width: "100%",
-        height: "80%",
+        width: "150px",
+        height: "150px",
         marginLeft: theme.spacing(4),
         marginRight: theme.spacing(4),
         marginTop: theme.spacing(4),
@@ -132,24 +132,24 @@ const styles = theme => ({
 // fooooooooo
 const tileData = [
     {
-        id: '1',
-        author: 'author',
+        id: 'upload1',
+        preview: 'preview-image1'
     },
     { 
-        id: '2',
-        author: 'author',
+        id: 'upload2',
+        preview: 'preview-image2'
     },
     {
-        id: '3',
-        author: 'author',
+        id: 'upload3',
+        preview: 'preview-image3'
     },
     {
-        id: '4',
-        author: 'author',
+        id: 'upload4',
+        preview: 'preview-image4'
     },
     {
-        id: '5',
-        author: 'author',
+        id: 'upload5',
+        preview: 'preview-image5'
     },
     
 ];
@@ -185,11 +185,30 @@ class CustomerAdd extends React.Component {
     }
     // input file event
     handleFileChange = (e) => {
-        console.log("Ya");
-            this.setState({
+        console.log(e);
+        var upload = document.querySelector('#upload1');
+        var preview = document.querySelector('#preview-image1');
+        var get_file = e.target.files;
+        var reader = new FileReader();
+
+        reader.onload = (function (img) {
+            return function(e) {
+                img.style.cssText = 'width 100%';
+                img.src = e.target.result
+                
+            }
+        })(preview)
+
+        if(get_file) {
+            reader.readAsDataURL(get_file[0]);
+            console.log(reader);
+        }
+        
+
+        this.setState({
             file: e.target.files[0],
-            fileName: e.target.value 
-        });
+            
+        })
     }
     
     // input value event
@@ -199,6 +218,7 @@ class CustomerAdd extends React.Component {
         this.setState(nextState);
     }
     // 상품 대분류
+
     handleCategoryChange = (e) =>{
         if(e.target.value === "뷰티/미용") {
             this.setState({CategoryFlag: 0});
@@ -350,24 +370,24 @@ class CustomerAdd extends React.Component {
                                 <GridList className={classes.gridList} cols={2.5}>
                                     {tileData.map(tile => (
                                         <div>
-                                            <input
+                                            <Input
                                                 accept="image/*"
                                                 className={classes.input}
                                                 id={tile.id}
                                                 type="file"
-                                                multiple
                                                 file={this.state.file}
                                                 value={this.state.fileName}
-                                                onChnage={this.handleFileChange}
+                                                onChange={this.handleFileChange}
+                                                multiple
                                             />
                                             <label htmlFor={tile.id}>
                                                 <Button className={classes.icon_button}
                                                         variant="contained"
                                                         component="span"
                                                         name="file"
-                                                        onChnage={this.handleFileChange}
+                                                        
                                                 >
-                                                <img src={photoIcon} alt="Image"></img>                                     
+                                                <img id={tile.preview} src={photoIcon}></img>                                     
                                                 </Button>
                                             </label>
                                         </div>  
