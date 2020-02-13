@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Delivery from'C:/VS_CODE/React_JS/add_page_git/client/src/Components/ProductAdd.js';
+import Delivery from'../Components/post_way/Delivery';
 
 import {
     MuiPickersUtilsProvider,
@@ -101,6 +101,9 @@ const styles = theme => ({
         width:120,
         height:60,
         margin:30
+    },
+    Button_directdeal:{
+        marginLeft:10
     }
 
 })
@@ -201,7 +204,7 @@ class CustomerAdd extends React.Component {
     };
 
     // 수령방법 UI 클릭 EVENT
-    /*getStepContent = (e) => {
+    getStepContent = (e) => {
         switch (this.PostNumber) {
           case 0:
             return <Delivery />;
@@ -209,7 +212,7 @@ class CustomerAdd extends React.Component {
             throw new Error('Unknown step');
         }
       }
-      */
+  
 
       // 수령방법 UI 클릭 EVENT
       Delivery = (e) => {
@@ -228,7 +231,6 @@ class CustomerAdd extends React.Component {
             this.setState({PostNumber : 1});
         }
       };
-
 
 
     // api event
@@ -276,7 +278,6 @@ class CustomerAdd extends React.Component {
 
     render() {
 
-        
         // css
         // REACTOR! : DB화 시켜야함 => 그래야 관리자 페이지에서 카테고리 관리 가능!!!
         const {classes} = this.props;
@@ -315,6 +316,7 @@ class CustomerAdd extends React.Component {
 
         return (
             <div>
+                <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
                 <CssBaseline/>
                 <AppBar position="absolute" color="default" className={classes.appBar}>
                     <Toolbar>
@@ -520,15 +522,21 @@ class CustomerAdd extends React.Component {
                             <Divider className={classes.Divider} orientation="horizontal" variant="middle" flexItem />
 
                             <Grid container   direction="row" justify="flex-start" alignItems="center">
-                            <Button className={classes.btn_post_way}  onClick={this.Delivery} variant="outlined" color="primary">택배</Button>
-                            <Button className={classes.btn_post_way}  variant="outlined" color="primary">직거래</Button>
-                            </Grid>                  
-                         
+                                <Button   onClick={this.Delivery} variant="outlined" color="primary">택배</Button>
+                                <Button className={classes.Button_directdeal}  variant="outlined" color="primary">직거래</Button>
+                            </Grid>    
+                            
+                             {/*수령 방법*/}
+                            <Delivery/>   
+
+                          
+
                         
 
                             <Grid spacing={5} container  direction="row" justify="flex-end" alignItems="center">
                             <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.handleFormSubmit}>다음</Button>
                             </Grid>
+                            
                         </Paper>
                     </Grid>
                 </main>
