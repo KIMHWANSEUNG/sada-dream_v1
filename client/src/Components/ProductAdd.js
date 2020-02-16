@@ -1,6 +1,7 @@
 import React from 'react'
 import { post } from 'axios';
-import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography,  Grid, Divider } from '@material-ui/core';
+import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography, Input,
+Grid, GridList, GridListTile, GridListTileBar, Divider, IconButton,  } from '@material-ui/core';
 import {withStyles, ThemeProvider, StylesProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import DateFnsUtils from '@date-io/date-fns';
@@ -11,7 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Delivery from'../Components/post_way/Delivery';
 import Directdeal from '../Components/post_way/Directdeal';
-
+import photoIcon from './photo-icon.png';
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -83,8 +84,8 @@ const styles = theme => ({
         textAlign:"center"
     },
     Select:{
-        width:220,
-       marginBottom:30
+      width:220,
+      marginBottom:30,
     },
     KeyboardDatePicker:{
         width:240,
@@ -105,9 +106,61 @@ const styles = theme => ({
     },
     Button_directdeal:{
         marginLeft:10
-    }
+    },
+    
+        // 상품 이미지 속성
+        input: {
+            display: "none",
+        },
+        image_root: {
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+            overflow: 'hidden',
+            backgroundColor: theme.palette.background.paper,
+        },
+        gridList: {
+            width: "100%",
+            height: "100%",
+            flexWrap: 'nowrap',
+            transform: 'translateZ(0)',
+        },
+        icon_button: {
+            width: "150px",
+            height: "150px",
+            marginLeft: theme.spacing(4),
+            marginRight: theme.spacing(4),
+            marginTop: theme.spacing(4),
+            marginButtom: theme.spacing(4),
+            border: "1px solid",
+            backgroundColor: "white",
+        }
 
 })
+// fooooooooo
+const tileData = [
+    {
+        id: 'upload1',
+        preview: 'preview-image1'
+    },
+    { 
+        id: 'upload2',
+        preview: 'preview-image2'
+    },
+    {
+        id: 'upload3',
+        preview: 'preview-image3'
+    },
+    {
+        id: 'upload4',
+        preview: 'preview-image4'
+    },
+    {
+        id: 'upload5',
+        preview: 'preview-image5'
+    },
+    
+];
 
 class CustomerAdd extends React.Component {
     constructor(props) {
@@ -150,11 +203,32 @@ class CustomerAdd extends React.Component {
     }
     // input file event
     handleFileChange = (e) => {
-            this.setState({
+        console.log(e);
+        var upload = document.querySelector('#upload1');
+        var preview = document.querySelector('#preview-image1');
+        var get_file = e.target.files;
+        var reader = new FileReader();
+
+        reader.onload = (function (img) {
+            return function(e) {
+                img.style.cssText = 'width 100%';
+                img.src = e.target.result
+                
+            }
+        })(preview)
+
+        if(get_file) {
+            reader.readAsDataURL(get_file[0]);
+            console.log(reader);
+        }
+        
+
+        this.setState({
             file: e.target.files[0],
-            fileName: e.target.value
-        });
+            
+        })
     }
+    
     // input value event
     handleValueChange = (e) => {
         let nextState = {};
@@ -162,8 +236,8 @@ class CustomerAdd extends React.Component {
         this.setState(nextState);
     }
     // 상품 대분류
+
     handleCategoryChange = (e) =>{
-        
         if(e.target.value === "뷰티/미용") {
             this.setState({CategoryFlag: 0});
         } else if(e.target.value === "식료품") {
@@ -182,7 +256,7 @@ class CustomerAdd extends React.Component {
 
      //나라별 분류
      handleCountryChange=(e) =>{
-         if(e.target.value === "미국"){
+        if(e.target.value === "미국"){
             this.setState({CountryFlag:0});
          } else if(e.target.value === "일본"){
              this.setState({CountryFlag:1});
@@ -336,34 +410,45 @@ class CustomerAdd extends React.Component {
                 <main className={classes.layout}>
                     <Grid container="container" spacing={3} className={classes.root}>
                         <Paper className={classes.paper}>
-                        <Typography variant="h4" gutterBottom align="center">
-                            상품 정보
-                        </Typography>
-                            <Grid item="item" xd={12} sm={6}>
-                                <input
-                                    className={classes.hidden}
-                                    accept="image/*"
-                                    id="raised-button-file"
-                                    type="file"
-                                    file={this.state.file}
-                                    value={this.state.fileName}
-                                    onChange={this.handleFileChange}/>
-                                <label htmlFor="raised-button-file">
-                                    <Button variant="contained" color="primary" component="span" name="file">
-                                        {
-                                            this.state.fileName === ""
-                                                ? "상품 이미지 선택"
-                                                : this.state.fileName
-                                        }
-                                    </Button>
-                                </label>
-                            </Grid>
+                            <Typography variant="h4" gutterBottom align="center">
+                                상품 정보
+                            </Typography>
+                            <div className={classes.image_root}>
+                                <GridList className={classes.gridList} cols={2.5}>
+                                    {tileData.map(tile => (
+                                        <div>
+                                            <Input
+                                                accept="image/*"
+                                                className={classes.input}
+                                                id={tile.id}
+                                                type="file"
+                                                file={this.state.file}
+                                                value={this.state.fileName}
+                                                onChange={this.handleFileChange}
+                                                multiple
+                                            />
+                                            <label htmlFor={tile.id}>
+                                                <Button className={classes.icon_button}
+                                                        variant="contained"
+                                                        component="span"
+                                                        name="file"
+                                                        
+                                                >
+                                                <img id={tile.preview} src={photoIcon}></img>                                     
+                                                </Button>
+                                            </label>
+                                        </div>  
+                                    ))}
+                                </GridList>
+                            </div>
+                            {/* fooooo */}
+                            {/* 상품이미지 선택 */}
                             <Grid
                                 container="container"
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                             <FormControl className={classes.Select_Formcontrol} >
+                            <FormControl className={classes.Select_Formcontrol} >
                                 <InputLabel id="demo-simple-select-helper-label">상품 카테고리</InputLabel>
                                 <Select className={classes.Select}
                                         label="상품 카테고리"
@@ -375,18 +460,18 @@ class CustomerAdd extends React.Component {
                                         {/* 대분류 렌더링 */}
                                         { category_list }
                                 </Select>
-                             </FormControl>
-                             <FormControl className={classes.Select_Formcontrol} >
+                            </FormControl>
+                            <FormControl className={classes.Select_Formcontrol} >
                                 <InputLabel id="demo-simple-select-helper-label">세부 카테고리</InputLabel>
                                 <Select className={classes.Select} label="상품 카테고리"
-                                 labelId="CategoryLabel"
-                                 name="CategoryName" id="CategoryName" 
-                                 value={this.state.product_category_detail} 
-                                 onChange={this.handleCategoryDetailChange} >
-                                    {/* 소분류 렌더링 */}
-                                    { category_detail_list }
+                                    labelId="CategoryLabel"
+                                    name="CategoryName" id="CategoryName" 
+                                    value={this.state.product_category_detail} 
+                                    onChange={this.handleCategoryDetailChange} >
+                                        {/* 소분류 렌더링 */}
+                                        { category_detail_list }
                                 </Select>              
-                             </FormControl>
+                            </FormControl>
                             </Grid>
 
                             <Grid
@@ -444,7 +529,7 @@ class CustomerAdd extends React.Component {
                                     type="number"
                                     InputLabelProps={{
                                         shrink: true,
-                                      }}
+                                    }}
                                     />
                                 {/* 마감기한 버튼 */}
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -515,7 +600,7 @@ class CustomerAdd extends React.Component {
                                         'aria-label': 'weight',
                                         }}
                                         labelWidth={0} />
-                                 <FormHelperText id="outlined-weight-helper-text">(상품가격, 세금, 수고비)최종금액</FormHelperText>
+                                <FormHelperText id="outlined-weight-helper-text">(상품가격, 세금, 수고비)최종금액</FormHelperText>
                                 </FormControl>
 
                                 <TextField
