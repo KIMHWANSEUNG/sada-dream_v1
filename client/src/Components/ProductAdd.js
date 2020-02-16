@@ -182,7 +182,6 @@ class CustomerAdd extends React.Component {
         CategoryFlag: 0,
         CountryFlag:0,
         PostNumber:0,
-        gg:'g',
 
         //택배
         isDelivery: true,
@@ -192,12 +191,9 @@ class CustomerAdd extends React.Component {
         post_number: '',
         adress: '',
         adress_detail:'',
-       
-        //직거래
-        local_name: '',
-        city_name: '',
-        station_name: '',
-        localFlag:0,
+        
+        
+        
         };
     }
 
@@ -622,7 +618,7 @@ class CustomerAdd extends React.Component {
                             
                             {/*수령 방법*/}
                             {
-                                this.state.isDelivery ? (<Delivery/>) : (<Directdeal value={this.state.gg} />)
+                                this.state.isDelivery ? (<Delivery />) : (<Directdeal />)
                             }
 
                             <Grid spacing={5} container  direction="row" justify="flex-end" alignItems="center">
