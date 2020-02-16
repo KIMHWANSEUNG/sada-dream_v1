@@ -52,7 +52,7 @@ class Directdeal extends React.Component{
 
         return(
             <div>
-
+                <h1>직거래입니다.</h1>
             </div>
            
         )
