@@ -182,7 +182,10 @@ class CustomerAdd extends React.Component {
         CategoryFlag: 0,
         CountryFlag:0,
         PostNumber:0,
-        
+        gg:'g',
+
+        //택배
+        isDelivery: true,
 
         //택배
         receive_person: '',
@@ -300,23 +303,15 @@ class CustomerAdd extends React.Component {
       }
   
 
-      // 수령방법 UI 클릭 EVENT
-      Delivery = (e) => {
-          alert("확인")
-        if(this.PostNumber===1)
-        {
-          this.setState({PostNumber : 0});
-          return <Delivery/>;
-        }
-      };
+    // 수령방법 : 택배 Event
+    handleDelivery = (e) => {
+        this.setState({isDelivery: true});    
+    };
 
-      // 수령방법 UI 클릭 EVENT
-      Directdeal = () => {
-        if(this.PostNumber===0)
-        {
-            this.setState({PostNumber : 1});
-        }
-      };
+    // 수령방법 : 직거래 Event
+    handleDirectExchange = () => {
+        this.setState({isDelivery: false});
+    };
 
 
     // api event
@@ -359,6 +354,8 @@ class CustomerAdd extends React.Component {
             product_request: ''
         })
     }
+
+
 
 
 
@@ -619,18 +616,14 @@ class CustomerAdd extends React.Component {
                             <Divider className={classes.Divider} orientation="horizontal" variant="middle" flexItem />
 
                             <Grid container   direction="row" justify="flex-start" alignItems="center">
-                                <Button   onClick={this.Delivery} variant="outlined" color="primary">택배</Button>
-                                <Button className={classes.Button_directdeal}  variant="outlined" color="primary">직거래</Button>
+                                <Button   onClick={this.handleDelivery} variant="outlined" color="primary">택배</Button>
+                                <Button className={classes.Button_directdeal} onClick={this.handleDirectExchange} variant="outlined" color="primary">직거래</Button>
                             </Grid>    
                             
-                             {/*수령 방법*/}
-                            <Delivery receive_person={this.state.receive_person} post_number={this.state.post_number} adress={ this.state.adress} adress_detail={this.state.adress_detail}/>
-
-                            <Directdeal localFlag={this.state.localFlag} local_name={this.state.local_name} city_name={this.state.city_name} station_name={this.state.station_name}/>   
-
-                          
-
-                        
+                            {/*수령 방법*/}
+                            {
+                                this.state.isDelivery ? (<Delivery/>) : (<Directdeal value={this.state.gg} />)
+                            }
 
                             <Grid spacing={5} container  direction="row" justify="flex-end" alignItems="center">
                             <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.handleFormSubmit}>다음</Button>

@@ -63,13 +63,13 @@ class Directdeal extends React.Component{
             ["안양시", "수원시", "고양시", "일산시", "광명시", "성남시", "평택시", "김해시"],
         ];
 
-        const local_list = local.map((local, index) => (
-            <MenuItem key={index} value={local}>{local}</MenuItem>
-        ))
+        // const local_list = local.map((local, index) => (
+        //     <MenuItem key={index} value={local}>{local}</MenuItem>
+        // ))
 
-        const city_list = local_city[this.props.localFlag].map((city, index) => (
-            <MenuItem key={index} value={city}>{city}</MenuItem>
-        ));
+        // const city_list = local_city[this.props.localFlag].map((city, index) => (
+        //     <MenuItem key={index} value={city}>{city}</MenuItem>
+        // ));
 
         return(
             <div>
@@ -89,7 +89,7 @@ class Directdeal extends React.Component{
                                     value={this.props.local_name}
                                     onChange={this.handleCategoryChange} >
                                     {/* 지역 렌더링 */}
-                                    { local_list }
+                                  
                                 </Select>
                          </FormControl>
 
@@ -104,7 +104,7 @@ class Directdeal extends React.Component{
                                     value={this.props.city_name}
                                     onChange={this.handleCategoryDetailChange} >
                                     {/* 도시 렌더링 */}
-                                    { city_list }
+                                   
                                 </Select>
                          </FormControl>
 
