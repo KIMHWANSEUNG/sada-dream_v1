@@ -107,7 +107,7 @@ const styles = theme => ({
     Button_directdeal:{
         marginLeft:10
     },
-    
+
         // 상품 이미지 속성
         input: {
             display: "none",
@@ -182,14 +182,19 @@ class CustomerAdd extends React.Component {
         CategoryFlag: 0,
         CountryFlag:0,
         PostNumber:0,
-        gg:'g',
+        
 
         //택배
-        
-
+        receive_person: '',
+        post_number: '',
+        adress: '',
+        adress_detail:'',
+       
         //직거래
-        
-        
+        local_name: '',
+        city_name: '',
+        station_name: '',
+        localFlag:0,
         };
     }
 
@@ -619,9 +624,9 @@ class CustomerAdd extends React.Component {
                             </Grid>    
                             
                              {/*수령 방법*/}
-                            <Delivery/>
+                            <Delivery receive_person={this.state.receive_person} post_number={this.state.post_number} adress={ this.state.adress} adress_detail={this.state.adress_detail}/>
 
-                            <Directdeal value={this.state.gg} />   
+                            <Directdeal localFlag={this.state.localFlag} local_name={this.state.local_name} city_name={this.state.city_name} station_name={this.state.station_name}/>   
 
                           
 
