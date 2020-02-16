@@ -10,6 +10,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Delivery from'../Components/post_way/Delivery';
+import Directdeal from '../Components/post_way/Directdeal';
 
 import {
     MuiPickersUtilsProvider,
@@ -112,6 +113,7 @@ class CustomerAdd extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+        //상품 정보
         file: null,
         fileName: '',
         product_category: '',
@@ -127,13 +129,18 @@ class CustomerAdd extends React.Component {
         CategoryFlag: 0,
         CountryFlag:0,
         PostNumber:0,
-        gg:''
+        gg:'g',
+
+        //택배
+        
+
+        //직거래
         
         
         };
     }
 
-    // 
+
     handleFormSubmit = (e) => { 
     e.preventDefault();
     this.addCustomer()
@@ -527,7 +534,9 @@ class CustomerAdd extends React.Component {
                             </Grid>    
                             
                              {/*수령 방법*/}
-                            <Delivery/>   
+                            <Delivery/>
+
+                            <Directdeal value={this.state.gg} />   
 
                           
 
