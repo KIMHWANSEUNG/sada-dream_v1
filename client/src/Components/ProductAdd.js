@@ -185,13 +185,15 @@ class CustomerAdd extends React.Component {
 
         //택배
         isDelivery: true,
-
-        //택배
-        receive_person: '',
+        receive_person: 'gg',
         post_number: '',
         adress: '',
         adress_detail:'',
         
+        //직거래
+        local_name:'',
+        city_name:'',
+        meet_addres:''
         
         
         };
@@ -205,6 +207,11 @@ class CustomerAdd extends React.Component {
             console.log(response.data);
         })
     }
+    handleFormSubmit2 = (e) => { 
+        console.log(this.state.receive_person);
+
+        }
+
     // input file event
     handleFileChange = (e) => {
         console.log(e);
@@ -308,6 +315,8 @@ class CustomerAdd extends React.Component {
     handleDirectExchange = () => {
         this.setState({isDelivery: false});
     };
+
+    
 
 
     // api event
@@ -617,11 +626,27 @@ class CustomerAdd extends React.Component {
                             </Grid>    
                             
                             {/*수령 방법*/}
+
+
                             {
-                                this.state.isDelivery ? (<Delivery />) : (<Directdeal />)
+                                this.state.isDelivery ? 
+                                (<Delivery 
+                                    handleValueChange={this.handleValueChange}
+                                    receive_person={this.state.receive_person}
+                                    post_number={this.state.post_number}
+                                    adress={this.state.adress}
+                                    adress_detail={this.state.adress_detail}
+                                    />)
+                                     : 
+                                (<Directdeal
+                                    local_name={this.state.local_name}
+                                    city_name={this.state.city_name}
+                                    meet_addres={this.state.meet_addres}
+                                        />)
                             }
 
                             <Grid spacing={5} container  direction="row" justify="flex-end" alignItems="center">
+                            <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.handleFormSubmit2}>콘솔</Button>
                             <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.handleFormSubmit}>다음</Button>
                             </Grid>
                             

@@ -18,23 +18,19 @@ class Delivery extends React.Component{
     constructor(props){
         super(props);
         this.setState= {
-            receive_person: this.props.receive_person,
-            post_number: this.props.post_number,
-            adress: this.props.adress,
-            adress_detail:this.props.adress_detail,
-           
+          receive_person: this.props.receive_person
         }
             
 
     }
     handleValueChange = (e) => {
-      let nextState = {};
-      nextState[e.target.name] = e.target.value;
-      this.setState(nextState);
   }
     
     render(){
         const {classes} = this.props;
+        const {handleValueChange} =this.props;
+        const {receive_person}=this.props
+        console.log(receive_person)
         return(
             <div>
         <Typography variant="h6" gutterBottom>
@@ -44,14 +40,13 @@ class Delivery extends React.Component{
           <Grid container spacing={3}>
                 <Grid item xs={2}>
                 <TextField 
-                  required
                   id="receive_person"
                   label="받는 사람" 
                   fullWidth
                   type="text"
                   multiline
                   value={this.props.receive_person}
-                  onChange={this.handleValueChange} />
+                  onChange={handleValueChange} />
                 </Grid>
             </Grid>
            

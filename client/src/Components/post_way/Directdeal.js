@@ -22,7 +22,10 @@ import {MenuItem, Select,Typography, Grid,FormControl,InputLabel,} from '@materi
 class Directdeal extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
+        this.setState = {
+            local_name:this.props.local_name,
+            city_name:this.props.city_name,
+            meet_addres:this.props.meet_addres,
             local_flag: 0,
         };
     }
@@ -46,6 +49,11 @@ class Directdeal extends React.Component{
         console.log("상세주소");
     }
 
+    handleValueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+    }
     
     render(){
 
@@ -122,7 +130,10 @@ class Directdeal extends React.Component{
                                 id="Detailed Address"
                                 label="상세주소"
                                 helperText="예시)서울역"
-                                fullWidth />
+                                fullWidth 
+                                value={this.props.meet_addres}
+                                onChange={this.handleValueChange}
+                                />
                         </Grid>
             
             </div>
