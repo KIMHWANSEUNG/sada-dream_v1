@@ -137,7 +137,7 @@ const styles = theme => ({
         }
 
 })
-// fooooooooo
+
 const tileData = [
     {
         id: 'upload1',
@@ -182,20 +182,20 @@ class CustomerAdd extends React.Component {
         CategoryFlag: 0,
         CountryFlag:0,
         PostNumber:0,
+        gg:'g',
 
         //택배
         isDelivery: true,
-        receive_person: 'gg',
+        receive_person: '',
         post_number: '',
         adress: '',
         adress_detail:'',
-        
+
         //직거래
-        local_name:'',
-        city_name:'',
-        meet_addres:''
-        
-        
+        local_name: '',
+        city_name: '',
+        station_name: '',
+        localFlag:0,
         };
     }
 
@@ -207,10 +207,9 @@ class CustomerAdd extends React.Component {
             console.log(response.data);
         })
     }
-    handleFormSubmit2 = (e) => { 
+    foo = (e) => { 
         console.log(this.state.receive_person);
-
-        }
+    }
 
     // input file event
     handleFileChange = (e) => {
@@ -361,8 +360,11 @@ class CustomerAdd extends React.Component {
     }
 
 
-
-
+    // 자식 -> 부모 (택배) -> 받아오는 콜백 함수
+    // foo
+    deliveryCallbackFunction = (childData) => {
+        this.setState({receive_person: childData});
+    };
 
     render() {
 
@@ -627,26 +629,13 @@ class CustomerAdd extends React.Component {
                             
                             {/*수령 방법*/}
 
-
+                            {/* foo */}
                             {
-                                this.state.isDelivery ? 
-                                (<Delivery 
-                                    handleValueChange={this.handleValueChange}
-                                    receive_person={this.state.receive_person}
-                                    post_number={this.state.post_number}
-                                    adress={this.state.adress}
-                                    adress_detail={this.state.adress_detail}
-                                    />)
-                                     : 
-                                (<Directdeal
-                                    local_name={this.state.local_name}
-                                    city_name={this.state.city_name}
-                                    meet_addres={this.state.meet_addres}
-                                        />)
+                                this.state.isDelivery ? (<Delivery parentCallback = {this.deliveryCallbackFunction} />) : (<Directdeal value={this.state.gg} />)
                             }
 
                             <Grid spacing={5} container  direction="row" justify="flex-end" alignItems="center">
-                            <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.handleFormSubmit2}>콘솔</Button>
+                            <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.foo}>콘솔</Button>
                             <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.handleFormSubmit}>다음</Button>
                             </Grid>
                             

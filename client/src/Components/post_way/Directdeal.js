@@ -30,23 +30,22 @@ class Directdeal extends React.Component{
         };
     }
     
-    // 시,도
-    handleCategoryChange = (e) => {
+    // 상품 대분류
+    handleCategoryChange = (e) =>{
         
-        switch(e.target.value) {
-            case "서울특별시":
-                this.setState({local_flag: 0});
-                break;
-            case "경기도":
-                this.setState({local_flag: 1});
-                break;
+        if(e.target.value === "서울특별시") {
+            this.setState({localFlag: 0});
+        } else if(e.target.value === "경기도") {
+            this.setState({localFlag: 1});
+        } else if(e.target.value === "충청도") {
+            this.setState({localFlag: 2});
         }
         
-        
+        this.setState({local_name: e.target.value});
     }
-      // 상세 주소
+      // 상품 소분류
     handleCategoryDetailChange = (e) => {
-        console.log("상세주소");
+        this.setState({city_name: e.target.value});
     }
 
     handleValueChange = (e) => {
@@ -63,24 +62,18 @@ class Directdeal extends React.Component{
             "서울특별시", "경기도", "충청도", "경상도", "전라도", "강원도", "제주도",
             "기타 지역" 
         ];
-        const city = [
+        const local_city = [
             ["강남구", "강서구", "강동구", "강북구", "성북구", "기타 지역", ],
             ["안양시", "수원시", "고양시", "일산시", "광명시", "성남시", "평택시", "김해시"],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
         ];
 
-        const local_list = local.map((local, index) => (
-            <MenuItem key={index} value={local}>{local}</MenuItem>
-        ));
+        // const local_list = local.map((local, index) => (
+        //     <MenuItem key={index} value={local}>{local}</MenuItem>
+        // ))
 
-        const city_list = city[this.state.local_flag].map((city, index) => (
-            <MenuItem key={index} value={city}>{city}</MenuItem>
-        ));
+        // const city_list = local_city[this.props.localFlag].map((city, index) => (
+        //     <MenuItem key={index} value={city}>{city}</MenuItem>
+        // ));
 
         return(
             <div>
@@ -100,7 +93,7 @@ class Directdeal extends React.Component{
                                     value={this.props.local_name}
                                     onChange={this.handleCategoryChange} >
                                     {/* 지역 렌더링 */}
-                                    {local_list}
+                                  
                                 </Select>
                          </FormControl>
 
@@ -113,9 +106,8 @@ class Directdeal extends React.Component{
                                     name="cityName"
                                     id="cityName"
                                     value={this.props.city_name}
-                                    onClick={this.handleCategoryDetailChange} >
+                                    onChange={this.handleCategoryDetailChange} >
                                     {/* 도시 렌더링 */}
-                                    {city_list}
                                    
                                 </Select>
                          </FormControl>

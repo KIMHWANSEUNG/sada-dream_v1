@@ -14,23 +14,32 @@ import TextField from '@material-ui/core/TextField';
           marginBottom:30
         }
     })
+
+
 class Delivery extends React.Component{
     constructor(props){
         super(props);
         this.setState= {
-          receive_person: this.props.receive_person
+          receive_person: '',
         }
-            
-
     }
+
+    // foo
+    sendDataToParent = () => {
+      this.props.parentCallback(this.receive_person);
+    }
+    // foo
     handleValueChange = (e) => {
-  }
+      this.receive_person = e.target.value;
+      console.log(this.receive_person);
+      // send data to parent
+      this.sendDataToParent();
+      
+    }
     
     render(){
         const {classes} = this.props;
-        const {handleValueChange} =this.props;
-        const {receive_person}=this.props
-        console.log(receive_person)
+
         return(
             <div>
         <Typography variant="h6" gutterBottom>
@@ -45,8 +54,8 @@ class Delivery extends React.Component{
                   fullWidth
                   type="text"
                   multiline
-                  value={this.props.receive_person}
-                  onChange={handleValueChange} />
+                  value={this.receive_person}
+                  onChange={this.handleValueChange} />
                 </Grid>
             </Grid>
            
