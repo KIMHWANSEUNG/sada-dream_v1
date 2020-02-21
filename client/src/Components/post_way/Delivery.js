@@ -25,7 +25,6 @@ const state = {
 class Delivery extends React.Component {
     constructor(props) {
         super(props);
-
     }
 
     // foo
