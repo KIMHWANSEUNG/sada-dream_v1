@@ -188,7 +188,6 @@ class CustomerAdd extends React.Component {
             CategoryFlag: 0,
             CountryFlag: 0,
             PostNumber: 0,
-            gg: 'g',
 
             //택배
             isDelivery: true,
@@ -200,8 +199,7 @@ class CustomerAdd extends React.Component {
             //직거래
             local_name: '',
             city_name: '',
-            station_name: '',
-            localFlag: 0
+            meeting_place: '',
         };
     }
 
@@ -359,7 +357,7 @@ class CustomerAdd extends React.Component {
         })
     }
 
-    // 자식 -> 부모 (택배) -> 받아오는 콜백 함수 foo
+    // 자식 -> 부모 (택배) -> 받아오는 콜백 함수
     deliveryCallbackFunction = (childData) => {
         console.log(childData);
         this.setState({
@@ -367,6 +365,15 @@ class CustomerAdd extends React.Component {
             post_number: childData.post_number,
             address: childData.address,
             address_detail: childData.address_detail,
+        });
+    };
+    // 자식 -> 부모 (직거래) -> 받아오는 콜백함수 
+    directDealCallbackFunction = (childData) => {
+        console.log(childData);
+        this.setState({
+            local_name: childData.receive_person,
+            city_name: childData.city_name,
+            meeting_place: childData.meeting_place,
         });
     };
 
@@ -700,7 +707,6 @@ class CustomerAdd extends React.Component {
 
                             {/*수령 방법*/}
 
-                            {/* foo */}
                             {
                                 this.state.isDelivery ? 
                                     (
@@ -712,7 +718,11 @@ class CustomerAdd extends React.Component {
                                             address_detail={this.state.address_detail}/>
                                     )
                                     : 
-                                    (<Directdeal value={this.state.gg}/>)
+                                    (   <Directdeal    
+                                            parentCallback={this.directDealCallbackFunction}
+                                            local_name={this.state.local_name}
+                                            city_name={this.state.city_name}
+                                            meeting_place={this.state.meeting_place}/>)
                             }
 
                             <Grid
