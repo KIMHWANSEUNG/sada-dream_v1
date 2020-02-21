@@ -90,7 +90,7 @@ class Directdeal extends React.Component{
                 <Grid container spacing={3}>
                     <Grid item xs={6} className={classes.grid_margin}>
                         
-                        <FormControl>
+                         <FormControl>
                             <InputLabel id="demo-simple-select-helper-label">지역 선택</InputLabel>
                                 <Select className={classes.Select}
                                     label="지역 이름"
@@ -102,10 +102,10 @@ class Directdeal extends React.Component{
                                     {/* 지역 렌더링 */}
                                     {local_list}
                                 </Select>
-                        </FormControl>
+                         </FormControl>
 
-                        
-                        <FormControl>
+                          
+                         <FormControl>
                             <InputLabel id="demo-simple-select-helper-label">도시 선택</InputLabel>
                                 <Select className={classes.Select}
                                     label="도시 이름"
@@ -116,9 +116,9 @@ class Directdeal extends React.Component{
                                     onClick={this.handleCategoryDetailChange} >
                                     {/* 도시 렌더링 */}
                                     {city_list}
-                                
+                                   
                                 </Select>
-                        </FormControl>
+                         </FormControl>
 
                     </Grid>
                 </Grid>  
@@ -135,9 +135,9 @@ class Directdeal extends React.Component{
                                 onChange={this.handleValueChange}
                                 />
                         </Grid>
-            
+                      
             </div>
-        
+           
         )
 
     }
