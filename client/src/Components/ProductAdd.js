@@ -1,22 +1,7 @@
 import React from 'react'
-import {post} from 'axios';
-import {
-    AppBar,
-    Toolbar,
-    TextField,
-    Button,
-    Paper,
-    MenuItem,
-    Select,
-    Typography,
-    Input,
-    Grid,
-    GridList,
-    GridListTile,
-    GridListTileBar,
-    Divider,
-    IconButton
-} from '@material-ui/core';
+import { post } from 'axios';
+import {AppBar, Toolbar, TextField, Button, Paper, MenuItem, Select, Typography, Input,
+Grid, GridList, GridListTile, GridListTileBar, Divider, IconButton,  } from '@material-ui/core';
 import {withStyles, ThemeProvider, StylesProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import DateFnsUtils from '@date-io/date-fns';
@@ -25,10 +10,14 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Delivery from '../Components/post_way/Delivery';
+import Delivery from'../Components/post_way/Delivery';
 import Directdeal from '../Components/post_way/Directdeal';
 import photoIcon from './photo-icon.png';
-import {MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker} from '@material-ui/pickers';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const styles = theme => ({
     hidden: {
@@ -77,75 +66,75 @@ const styles = theme => ({
         marginLeft: 30
     },
     TextField_name: {
-        marginLeft: 20,
-        width: 230
+        marginLeft:20,
+        width: 230,
     },
-    TextField_count: {
-        width: 80,
-        marginTop: 30,
-        marginBottom: 30,
-        marginRight: 130
+    TextField_count:{
+        width:80,
+        marginTop:30,
+        marginBottom:30,
+        marginRight:130
     },
-    TextField_explain: {
-        marginBottom: 50,
-        marginTop: 30
+    TextField_explain:{
+        marginBottom:50,
+        marginTop:30
     },
-    TextField_price: {
-        width: 330,
-        textAlign: "center"
+    TextField_price:{
+        width:330,
+        textAlign:"center"
     },
-    Select: {
-        width: 220,
-        marginBottom: 30
+    Select:{
+      width:220,
+      marginBottom:30,
     },
-    KeyboardDatePicker: {
-        width: 240,
-        marginRight: 100
+    KeyboardDatePicker:{
+        width:240,
+        marginRight:100
     },
-    Select_Formcontrol: {
-        minWidth: 220
+    Select_Formcontrol:{
+        minWidth :220
     },
-    Divider: {
+    Divider:{
         marginTop: theme.spacing(20),
         marginBottom: theme.spacing(10),
-        border: "1px solid"
+        border: "1px solid",
     },
-    Button_next: {
-        width: 120,
-        height: 60,
-        margin: 30
+    Button_next:{
+        width:120,
+        height:60,
+        margin:30
     },
-    Button_directdeal: {
-        marginLeft: 10
+    Button_directdeal:{
+        marginLeft:10
     },
 
-    // 상품 이미지 속성
-    input: {
-        display: "none"
-    },
-    image_root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper
-    },
-    gridList: {
-        width: "100%",
-        height: "100%",
-        flexWrap: 'nowrap',
-        transform: 'translateZ(0)'
-    },
-    icon_button: {
-        width: "150px",
-        height: "150px",
-        marginLeft: theme.spacing(4),
-        marginRight: theme.spacing(4),
-        marginTop: theme.spacing(4),
-        marginButtom: theme.spacing(4),
-        border: "1px solid",
-        backgroundColor: "white"
-    }
+        // 상품 이미지 속성
+        input: {
+            display: "none",
+        },
+        image_root: {
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+            overflow: 'hidden',
+            backgroundColor: theme.palette.background.paper,
+        },
+        gridList: {
+            width: "100%",
+            height: "100%",
+            flexWrap: 'nowrap',
+            transform: 'translateZ(0)',
+        },
+        icon_button: {
+            width: "150px",
+            height: "150px",
+            marginLeft: theme.spacing(4),
+            marginRight: theme.spacing(4),
+            marginTop: theme.spacing(4),
+            marginButtom: theme.spacing(4),
+            border: "1px solid",
+            backgroundColor: "white",
+        }
 
 })
 
@@ -153,67 +142,72 @@ const tileData = [
     {
         id: 'upload1',
         preview: 'preview-image1'
-    }, {
+    },
+    { 
         id: 'upload2',
         preview: 'preview-image2'
-    }, {
+    },
+    {
         id: 'upload3',
         preview: 'preview-image3'
-    }, {
+    },
+    {
         id: 'upload4',
         preview: 'preview-image4'
-    }, {
+    },
+    {
         id: 'upload5',
         preview: 'preview-image5'
-    }
+    },
+    
 ];
 
 class CustomerAdd extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //상품 정보
-            file: null,
-            fileName: '',
-            product_category: '',
-            product_category_detail: '',
-            product_country: '',
-            product_city: '',
-            product_name: '',
-            product_count: '',
-            product_explain: '',
-            product_outdate: Date.now(),
-            product_price: '',
-            product_request: '',
-            CategoryFlag: 0,
-            CountryFlag: 0,
-            PostNumber: 0,
-            gg: 'g',
+        //상품 정보
+        file: null,
+        fileName: '',
+        product_category: '',
+        product_category_detail: '',
+        product_country: '',
+        product_city: '',
+        product_name: '',
+        product_count: '',
+        product_explain: '',
+        product_outdate: Date.now(),
+        product_price: '',
+        product_request: '',
+        CategoryFlag: 0,
+        CountryFlag:0,
+        PostNumber:0,
+        gg:'g',
 
-            //택배
-            isDelivery: true,
-            receive_person: '',
-            post_number: '',
-            adress: '',
-            adress_detail: '',
+        //택배
+        isDelivery: true,
+        receive_person: '',
+        post_number: '',
+        adress: '',
+        adress_detail:'',
 
-            //직거래
-            local_name: '',
-            city_name: '',
-            station_name: '',
-            localFlag: 0
+        //직거래
+        local_name: '',
+        city_name: '',
+        station_name: '',
+        localFlag:0,
         };
     }
 
-    handleFormSubmit = (e) => {
-        e.preventDefault();
-        this
-            .addCustomer()
+
+    handleFormSubmit = (e) => { 
+    e.preventDefault();
+    this.addCustomer()
             .then((response) => {
-                console.log(response.data);
-            })
+            console.log(response.data);
+        })
     }
-    foo = (e) => {
+    foo = (e) => { 
         console.log(this.state.receive_person);
     }
 
@@ -226,25 +220,25 @@ class CustomerAdd extends React.Component {
         var reader = new FileReader();
 
         reader.onload = (function (img) {
-            return function (e) {
+            return function(e) {
                 img.style.cssText = 'width 100%';
                 img.src = e.target.result
-
+                
             }
         })(preview)
 
-        if (get_file) {
+        if(get_file) {
             reader.readAsDataURL(get_file[0]);
             console.log(reader);
         }
+        
 
         this.setState({
-            file: e
-                .target
-                .files[0]
+            file: e.target.files[0],
+            
         })
     }
-
+    
     // input value event
     handleValueChange = (e) => {
         let nextState = {};
@@ -253,40 +247,42 @@ class CustomerAdd extends React.Component {
     }
     // 상품 대분류
 
-    handleCategoryChange = (e) => {
-        if (e.target.value === "뷰티/미용") {
+    handleCategoryChange = (e) =>{
+        if(e.target.value === "뷰티/미용") {
             this.setState({CategoryFlag: 0});
-        } else if (e.target.value === "식료품") {
+        } else if(e.target.value === "식료품") {
             this.setState({CategoryFlag: 1});
-        } else if (e.target.value === "패션잡화") {
+        } else if(e.target.value === "패션잡화") {
             this.setState({CategoryFlag: 2});
         }
-
+        
         this.setState({product_category: e.target.value});
     }
-    // 상품 소분류
+      // 상품 소분류
     handleCategoryDetailChange = (e) => {
         this.setState({product_category_detail: e.target.value});
     }
 
-    //나라별 분류
-    handleCountryChange = (e) => {
-        if (e.target.value === "미국") {
-            this.setState({CountryFlag: 0});
-        } else if (e.target.value === "일본") {
-            this.setState({CountryFlag: 1});
-        } else if (e.target.value === "영국") {
-            this.setState({CountryFlag: 2});
-        }
 
-        this.setState({product_country: e.target.value});
-    }
+     //나라별 분류
+     handleCountryChange=(e) =>{
+        if(e.target.value === "미국"){
+            this.setState({CountryFlag:0});
+         } else if(e.target.value === "일본"){
+             this.setState({CountryFlag:1});
+         } else if(e.target.value === "영국"){
+             this.setState({CountryFlag:2});
+         }
 
-    //도시별 분류
-    handleCityChange = (e) => {
-        this.setState({product_city: e.target.value});
-    }
+         this.setState({product_country: e.target.value});
+     }
 
+     //도시별 분류
+     handleCityChange=(e) =>{
+         this.setState({product_city:e.target.value});
+     }
+
+    
     // 마감기한 EVENT
     handleOutDateChange = (date) => {
         this.setState({product_outdate: new Date(date)});
@@ -294,29 +290,33 @@ class CustomerAdd extends React.Component {
     }
 
     // 상품 가격 EVENT
-    handlePriceChange = (e) => {
-        this.setState({product_price: e.target.value})
+     handlePriceChange = (e) => {
+        this.setState({product_price:e.target.value})
     };
 
     // 수령방법 UI 클릭 EVENT
     getStepContent = (e) => {
         switch (this.PostNumber) {
-            case 0:
-                return <Delivery/>;
-            default:
-                throw new Error('Unknown step');
+          case 0:
+            return <Delivery />;
+          default:
+            throw new Error('Unknown step');
         }
-    }
+      }
+  
 
     // 수령방법 : 택배 Event
     handleDelivery = (e) => {
-        this.setState({isDelivery: true});
+        this.setState({isDelivery: true});    
     };
 
     // 수령방법 : 직거래 Event
     handleDirectExchange = () => {
         this.setState({isDelivery: false});
     };
+
+    
+
 
     // api event
     addCustomer() {
@@ -359,111 +359,50 @@ class CustomerAdd extends React.Component {
         })
     }
 
-    // 자식 -> 부모 (택배) -> 받아오는 콜백 함수 foo
+
+    // 자식 -> 부모 (택배) -> 받아오는 콜백 함수
+    // foo
     deliveryCallbackFunction = (childData) => {
-        console.log(childData);
-        this.setState({
-            receive_person: childData.receive_person,
-            post_number: childData.post_number,
-            address: childData.address,
-            address_detail: childData.address_detail,
-        });
+        this.setState({receive_person: childData});
     };
 
     render() {
 
-        // css REACTOR! : DB화 시켜야함 => 그래야 관리자 페이지에서 카테고리 관리 가능!!!
+        // css
+        // REACTOR! : DB화 시켜야함 => 그래야 관리자 페이지에서 카테고리 관리 가능!!!
         const {classes} = this.props;
         const category = [
-            "뷰티/미용",
-            "식료품",
-            "패션 잡화",
-            "생필품",
-            "헬스/건강제품",
-            "주방용품",
-            "디지털/가전",
-            "취미/수집품",
-            "스포츠/레저",
-            "유아용품",
-            "반려동물",
-            "연예인/굿즈",
-            "도서/티켓",
-            "자동차",
-            "플리마켓"
+            "뷰티/미용", "식료품", "패션 잡화", "생필품", "헬스/건강제품", "주방용품", "디지털/가전",
+            "취미/수집품", "스포츠/레저", "유아용품", "반려동물", "연예인/굿즈", "도서/티켓", "자동차", "플리마켓"
         ];
         const category_detail = [
-            [
-                "스킨케어",
-                "썬케어",
-                "베이스메이크업",
-                "색조메이크업",
-                "향수/아로마",
-                "네일아트/케어",
-                "뷰티소품/미용기기"
-            ],
-            [
-                "스낵류/가공식품",
-                "차/음료",
-                "향신료/오일",
-                "건강식품/다이어트",
-                "쌀/과일/농수축산물",
-                "기타"
-            ]
+            ["스킨케어","썬케어","베이스메이크업", "색조메이크업", "향수/아로마", "네일아트/케어", "뷰티소품/미용기기"],
+            ["스낵류/가공식품", "차/음료", "향신료/오일", "건강식품/다이어트", "쌀/과일/농수축산물", "기타"],
         ];
-        const category_list = category.map(
-            (category, index) => (<MenuItem key={index} value={category}>{category}</MenuItem>)
-        )
+        const category_list = category.map((category, index) => (
+            <MenuItem key={index} value={category}>{category}</MenuItem>
+        ))
 
-        const category_detail_list = category_detail[this.state.CategoryFlag].map(
-            (detail, index) => (<MenuItem key={index} value={detail}>{detail}</MenuItem>)
-        );
+        const category_detail_list = category_detail[this.state.CategoryFlag].map((detail, index) => (
+            <MenuItem key={index} value={detail}>{detail}</MenuItem>
+        ));
 
         const country = [
-            "미국",
-            "일본",
-            "영국",
-            "프랑스",
-            "독일",
-            "러시아",
-            "캐나다",
-            "필리핀",
-            "태국",
-            "베트남",
-            "코타키나발루",
-            "홍콩",
-            "대만",
-            "인도네시아",
-            "말레이시아"
+            "미국", "일본", "영국", "프랑스", "독일", "러시아", "캐나다",
+            "필리핀", "태국", "베트남", "코타키나발루", "홍콩", "대만", "인도네시아", "말레이시아"
         ];
         const city = [
-            [
-                "뉴욕",
-                "LA",
-                "켈리포니아",
-                "텍사스",
-                "시카고",
-                "워싱턴D.C",
-                "뉴올리언즈"
-            ],
-            [
-                "도쿄",
-                "오사카",
-                "나고야",
-                "후쿠오카",
-                "교토",
-                "삿포로",
-                "나가사키",
-                "요코하마"
-            ]
+            ["뉴욕", "LA", "켈리포니아", "텍사스", "시카고", "워싱턴D.C", "뉴올리언즈",],
+            ["도쿄", "오사카", "나고야", "후쿠오카", "교토", "삿포로", "나가사키", "요코하마"]
         ];
 
-        const country_list = country.map(
-            (country, index) => (<MenuItem key={index} value={country}>{country}</MenuItem>)
-        )
+        const country_list = country.map((country, index) => (
+            <MenuItem key={index} value={country}>{country}</MenuItem>
+        ))
 
-        const city_list = city[this.state.CountryFlag].map(
-            (city, index) => (<MenuItem key={index} value={city}>{city}</MenuItem>)
-        );
+        const city_list = city[this.state.CountryFlag].map((city, index) => (
+            <MenuItem key={index} value={city}>{city}</MenuItem>
+        ));
 
         return (
             <div>
@@ -480,35 +419,35 @@ class CustomerAdd extends React.Component {
                 <main className={classes.layout}>
                     <Grid container="container" spacing={3} className={classes.root}>
                         <Paper className={classes.paper}>
-                            <Typography variant="h4" gutterBottom="gutterBottom" align="center">
+                            <Typography variant="h4" gutterBottom align="center">
                                 상품 정보
                             </Typography>
                             <div className={classes.image_root}>
                                 <GridList className={classes.gridList} cols={2.5}>
-                                    {
-                                        tileData.map(tile => (
-                                            <div>
-                                                <Input
-                                                    accept="image/*"
-                                                    className={classes.input}
-                                                    id={tile.id}
-                                                    type="file"
-                                                    file={this.state.file}
-                                                    value={this.state.fileName}
-                                                    onChange={this.handleFileChange}
-                                                    multiple="multiple"/>
-                                                <label htmlFor={tile.id}>
-                                                    <Button
-                                                        className={classes.icon_button}
+                                    {tileData.map(tile => (
+                                        <div>
+                                            <Input
+                                                accept="image/*"
+                                                className={classes.input}
+                                                id={tile.id}
+                                                type="file"
+                                                file={this.state.file}
+                                                value={this.state.fileName}
+                                                onChange={this.handleFileChange}
+                                                multiple
+                                            />
+                                            <label htmlFor={tile.id}>
+                                                <Button className={classes.icon_button}
                                                         variant="contained"
                                                         component="span"
-                                                        name="file">
-                                                        <img id={tile.preview} src={photoIcon}></img>
-                                                    </Button>
-                                                </label>
-                                            </div>
-                                        ))
-                                    }
+                                                        name="file"
+                                                        
+                                                >
+                                                <img id={tile.preview} src={photoIcon}></img>                                     
+                                                </Button>
+                                            </label>
+                                        </div>  
+                                    ))}
                                 </GridList>
                             </div>
                             {/* fooooo */}
@@ -518,34 +457,30 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                                <FormControl className={classes.Select_Formcontrol}>
-                                    <InputLabel id="demo-simple-select-helper-label">상품 카테고리</InputLabel>
-                                    <Select
-                                        className={classes.Select}
+                            <FormControl className={classes.Select_Formcontrol} >
+                                <InputLabel id="demo-simple-select-helper-label">상품 카테고리</InputLabel>
+                                <Select className={classes.Select}
                                         label="상품 카테고리"
                                         labelId="CategoryLabel"
                                         name="CategoryName"
                                         id="CategoryName"
                                         value={this.state.product_category}
-                                        onChange={this.handleCategoryChange}>
+                                        onChange={this.handleCategoryChange} >
                                         {/* 대분류 렌더링 */}
-                                        {category_list}
-                                    </Select>
-                                </FormControl>
-                                <FormControl className={classes.Select_Formcontrol}>
-                                    <InputLabel id="demo-simple-select-helper-label">세부 카테고리</InputLabel>
-                                    <Select
-                                        className={classes.Select}
-                                        label="상품 카테고리"
-                                        labelId="CategoryLabel"
-                                        name="CategoryName"
-                                        id="CategoryName"
-                                        value={this.state.product_category_detail}
-                                        onChange={this.handleCategoryDetailChange}>
+                                        { category_list }
+                                </Select>
+                            </FormControl>
+                            <FormControl className={classes.Select_Formcontrol} >
+                                <InputLabel id="demo-simple-select-helper-label">세부 카테고리</InputLabel>
+                                <Select className={classes.Select} label="상품 카테고리"
+                                    labelId="CategoryLabel"
+                                    name="CategoryName" id="CategoryName" 
+                                    value={this.state.product_category_detail} 
+                                    onChange={this.handleCategoryDetailChange} >
                                         {/* 소분류 렌더링 */}
-                                        {category_detail_list}
-                                    </Select>
-                                </FormControl>
+                                        { category_detail_list }
+                                </Select>              
+                            </FormControl>
                             </Grid>
 
                             <Grid
@@ -553,34 +488,32 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="space-around"
                                 alignItems="center">
-                                <FormControl className={classes.Select_Formcontrol}>
-                                    <InputLabel id="demo-simple-select-helper-label">나라 선택</InputLabel>
-                                    <Select
-                                        className={classes.Select}
+                            <FormControl className={classes.Select_Formcontrol} >
+                                <InputLabel id="demo-simple-select-helper-label">나라 선택</InputLabel>          
+                                <Select className={classes.Select}
                                         label="나라별 카테고리"
                                         labelId="CategoryLabel"
                                         name="CountryName"
                                         id="CountryName"
                                         value={this.state.product_country}
-                                        onChange={this.handleCountryChange}>
+                                        onChange={this.handleCountryChange} >
                                         {/* 나라별 렌더링 */}
-                                        {country_list}
-                                    </Select>
-                                </FormControl>
-                                <FormControl className={classes.Select_Formcontrol}>
-                                    <InputLabel id="demo-simple-select-helper-label">도시 선택</InputLabel>
-                                    <Select
-                                        className={classes.Select}
+                                        { country_list }
+                                </Select> 
+                            </FormControl>
+                            <FormControl className={classes.Select_Formcontrol} >
+                                <InputLabel id="demo-simple-select-helper-label">도시 선택</InputLabel>
+                                <Select className={classes.Select}
                                         label="도시별 카테고리"
                                         labelId="CategoryLabel"
                                         name="CityName"
                                         id="CityName"
                                         value={this.state.product_city}
-                                        onChange={this.handleCityChange}>
+                                        onChange={this.handleCityChange} >
                                         {/* 도시별 렌더링 */}
-                                        {city_list}
-                                    </Select>
-                                </FormControl>
+                                        { city_list }
+                                </Select>          
+                             </FormControl>
                             </Grid>
                             <Grid
                                 container="container"
@@ -592,23 +525,26 @@ class CustomerAdd extends React.Component {
                                     label="상품 이름"
                                     type="text"
                                     name="product_name"
-                                    multiline="multiline"
+                                    multiline
                                     value={this.state.product_name}
                                     onChange={this.handleValueChange}/>
                                 <TextField
-                                    className={classes.TextField_count}
+                                    className={classes.TextField_count}                                   
                                     label="수량"
-                                    type="number"
+                                    type="text"
                                     name="product_count"
                                     value={this.state.product_count}
                                     onChange={this.handleValueChange}
+                                    type="number"
                                     InputLabelProps={{
-                                        shrink: true
-                                    }}/> {/* 마감기한 버튼 */}
+                                        shrink: true,
+                                    }}
+                                    />
+                                {/* 마감기한 버튼 */}
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <KeyboardDatePicker
                                         className={classes.KeyboardDatePicker}
-                                        disableToolbar="disableToolbar"
+                                        disableToolbar
                                         variant="inline"
                                         format="yyyy/MM/dd"
                                         margin="normal"
@@ -617,9 +553,10 @@ class CustomerAdd extends React.Component {
                                         value={this.state.product_outdate}
                                         onChange={this.handleOutDateChange}
                                         KeyboardButtonProps={{
-                                            'aria-label' : 'change date'
-                                        }}/>
-                                </MuiPickersUtilsProvider>
+                                            'aria-label': 'change date',
+                                        }}
+                                    /> 
+                                </MuiPickersUtilsProvider>                                    
                             </Grid>
                             <Grid
                                 container="container"
@@ -631,24 +568,28 @@ class CustomerAdd extends React.Component {
                                     label="상품 설명"
                                     type="text"
                                     name="product_explain"
-                                    multiline="multiline"
+                                    multiline
                                     rows="4"
                                     variant="outlined"
                                     value={this.state.product_explain}
-                                    onChange={this.handleValueChange}/> {/* 마감기한 버튼 */}
+                                    onChange={this.handleValueChange}/>
+
+                                {/* 마감기한 버튼 */}
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <KeyboardDatePicker
-                                        disableToolbar="disableToolbar"
+                                        disableToolbar
                                         variant="inline"
                                         format="yyyy/MM/dd"
                                         margin="normal"
                                         id="product_outdate"
                                         label="마감기한"
                                         value={this.state.product_outdate}
+                                        
                                         onChange={this.handleOutDateChange}
                                         KeyboardButtonProps={{
-                                            'aria-label' : 'change date'
-                                        }}/>
+                                            'aria-label': 'change date',
+                                        }}
+                                    /> 
                                 </MuiPickersUtilsProvider>
                             </Grid>
                             <Grid
@@ -662,13 +603,13 @@ class CustomerAdd extends React.Component {
                                         id="product_cost"
                                         value={this.state.product_price}
                                         onChange={this.handlePriceChange}
-                                        endAdornment={<InputAdornment position = "end" > 원</InputAdornment>}
+                                        endAdornment={<InputAdornment position="end">원</InputAdornment>}
                                         aria-describedby="outlined-weight-helper-text"
                                         inputProps={{
-                                            'aria-label' : 'weight'
+                                        'aria-label': 'weight',
                                         }}
-                                        labelWidth={0}/>
-                                    <FormHelperText id="outlined-weight-helper-text">(상품가격, 세금, 수고비)최종금액</FormHelperText>
+                                        labelWidth={0} />
+                                <FormHelperText id="outlined-weight-helper-text">(상품가격, 세금, 수고비)최종금액</FormHelperText>
                                 </FormControl>
 
                                 <TextField
@@ -679,60 +620,25 @@ class CustomerAdd extends React.Component {
                                     onChange={this.handleValueChange}/>
                             </Grid>
 
-                            <Divider
-                                className={classes.Divider}
-                                orientation="horizontal"
-                                variant="middle"
-                                flexItem="flexItem"/>
+                            <Divider className={classes.Divider} orientation="horizontal" variant="middle" flexItem />
 
-                            <Grid
-                                container="container"
-                                direction="row"
-                                justify="flex-start"
-                                alignItems="center">
-                                <Button onClick={this.handleDelivery} variant="outlined" color="primary">택배</Button>
-                                <Button
-                                    className={classes.Button_directdeal}
-                                    onClick={this.handleDirectExchange}
-                                    variant="outlined"
-                                    color="primary">직거래</Button>
-                            </Grid>
-
+                            <Grid container   direction="row" justify="flex-start" alignItems="center">
+                                <Button   onClick={this.handleDelivery} variant="outlined" color="primary">택배</Button>
+                                <Button className={classes.Button_directdeal} onClick={this.handleDirectExchange} variant="outlined" color="primary">직거래</Button>
+                            </Grid>    
+                            
                             {/*수령 방법*/}
 
                             {/* foo */}
                             {
-                                this.state.isDelivery ? 
-                                    (
-                                        <Delivery
-                                            parentCallback={this.deliveryCallbackFunction}
-                                            receive_person={this.state.receive_person}
-                                            post_number={this.state.post_number}
-                                            address={this.state.address}
-                                            address_detail={this.state.address_detail}/>
-                                    )
-                                    : 
-                                    (<Directdeal value={this.state.gg}/>)
+                                this.state.isDelivery ? (<Delivery parentCallback = {this.deliveryCallbackFunction} />) : (<Directdeal value={this.state.gg} />)
                             }
 
-                            <Grid
-                                spacing={5}
-                                container="container"
-                                direction="row"
-                                justify="flex-end"
-                                alignItems="center">
-                                <Button
-                                    className={classes.Button_next}
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={this.foo}>콘솔</Button>
-                                <Button
-                                    className={classes.Button_next}
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={this.handleFormSubmit}>다음</Button>
+                            <Grid spacing={5} container  direction="row" justify="flex-end" alignItems="center">
+                            <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.foo}>콘솔</Button>
+                            <Button className={classes.Button_next} variant="contained" color="primary" onClick={this.handleFormSubmit}>다음</Button>
                             </Grid>
-
+                            
                         </Paper>
                     </Grid>
                 </main>
