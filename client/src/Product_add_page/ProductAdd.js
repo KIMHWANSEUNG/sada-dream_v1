@@ -25,8 +25,8 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Delivery from '../Components/post_way/Delivery';
-import Directdeal from '../Components/post_way/Directdeal';
+import Delivery from './post_way/Delivery';
+import Directdeal from './post_way/Directdeal';
 import photoIcon from './photo-icon.png';
 import {MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker} from '@material-ui/pickers';
 

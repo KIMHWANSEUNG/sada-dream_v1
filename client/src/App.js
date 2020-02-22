@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CustomerAdd from './Components/ProductAdd';
+import CustomerAdd from './Product_add_page/ProductAdd';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
