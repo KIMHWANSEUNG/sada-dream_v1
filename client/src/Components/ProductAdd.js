@@ -42,7 +42,7 @@ const styles = theme => ({
         position: 'relative'
     },
     paper: {
-        width: 1000,
+        width: 1200,
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(3),
         padding: theme.spacing(2),
@@ -65,7 +65,7 @@ const styles = theme => ({
                 .breakpoints
                 .up(600 + theme.spacing(2) * 2)
         ]: {
-            width: 1000, // 페이퍼를 늘릴려면 이걸 넓게잡고 위에 페이퍼도 넓게 잡아야된다
+            width: 1200, // 페이퍼를 늘릴려면 이걸 넓게잡고 위에 페이퍼도 넓게 잡아야된다
             marginLeft: 'auto',
             marginRight: 'auto'
         }
@@ -77,75 +77,92 @@ const styles = theme => ({
         marginLeft: 30
     },
     TextField_name: {
-        marginLeft: 20,
-        width: 230
+        marginLeft:40,
+        width: 230,
     },
-    TextField_count: {
-        width: 80,
-        marginTop: 30,
-        marginBottom: 30,
-        marginRight: 130
+    TextField_count:{
+        width:80,
+        marginTop:30,
+        marginBottom:30,
+        marginRight:200
     },
-    TextField_explain: {
-        marginBottom: 50,
-        marginTop: 30
+    TextField_explain:{
+        marginBottom:50,
+        marginTop:30
     },
-    TextField_price: {
-        width: 330,
-        textAlign: "center"
+    TextField_price:{
+        width:330,
+        textAlign:"center"
     },
-    Select: {
-        width: 220,
-        marginBottom: 30
+    Select:{
+      width:220,
+      marginBottom:30,
     },
-    KeyboardDatePicker: {
-        width: 240,
-        marginRight: 100
-    },
-    Select_Formcontrol: {
-        minWidth: 220
-    },
-    Divider: {
-        marginTop: theme.spacing(20),
-        marginBottom: theme.spacing(10),
-        border: "1px solid"
-    },
-    Button_next: {
-        width: 120,
-        height: 60,
-        margin: 30
-    },
-    Button_directdeal: {
-        marginLeft: 10
+    KeyboardDatePicker:{
+        width:300,
+        marginRight:100
     },
 
-    // 상품 이미지 속성
-    input: {
-        display: "none"
+    Select_Formcontrol:{
+        minWidth :220
     },
-    image_root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper
-    },
-    gridList: {
-        width: "100%",
-        height: "100%",
-        flexWrap: 'nowrap',
-        transform: 'translateZ(0)'
-    },
-    icon_button: {
-        width: "150px",
-        height: "150px",
-        marginLeft: theme.spacing(4),
-        marginRight: theme.spacing(4),
-        marginTop: theme.spacing(4),
-        marginButtom: theme.spacing(4),
+    Divider:{
+        marginTop: theme.spacing(20),
+        marginBottom: theme.spacing(10),
         border: "1px solid",
-        backgroundColor: "white"
-    }
+    },
+    Button_next:{
+        width:120,
+        height:60,
+        margin:30
+    },
+    Button_directdeal:{
+        marginLeft:10
+    },
+
+        // 상품 이미지 속성
+        input: {
+            display: "none",
+        },
+        div_image: {
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+            overflow: 'hidden',
+            backgroundColor: theme.palette.background.paper,
+            marginBottom:30
+        },
+
+        Grid_image: {
+            width: "100%",
+            height: "100%",
+            flexWrap: 'nowrap',
+            transform: 'translateZ(0)',
+        },
+
+        icon_button: {
+            width: "150px",
+            height: "140px",
+            marginLeft: theme.spacing(4),
+            marginRight: theme.spacing(4),
+            marginTop: theme.spacing(4),
+            marginButtom: theme.spacing(4),
+            border: "1px solid",
+            backgroundColor: "white",
+        },
+        Button_product_size:{
+            '&:focus': {
+                boxShadow: 'none',
+                backgroundColor: '#0062cc',
+                borderColor: '#005cbf',
+              },
+            width: "100px",
+            height: "90px",
+            border:"1px solid",
+           marginRight:15,
+           fontSize: 15,
+      
+        }
 
 })
 
@@ -181,13 +198,18 @@ class CustomerAdd extends React.Component {
             product_city: '',
             product_name: '',
             product_count: '',
-            product_explain: '',
             product_outdate: Date.now(),
+            product_explain: '',
+            product_size:'',
             product_price: '',
             product_request: '',
             CategoryFlag: 0,
             CountryFlag: 0,
             PostNumber: 0,
+
+            //상품크기
+            Button1:false,
+            Button2:false,
 
             //택배
             isDelivery: true,
@@ -377,6 +399,29 @@ class CustomerAdd extends React.Component {
         });
     };
 
+    handleProductsizeChange1= (e) =>{
+            this.setState({Button1:true})
+            if(this.state.Button1 === true)
+            {
+                this.setState({Button2:false})
+                this.setState({product_size:'극소'})
+                console.log(this.state.product_size)
+            }
+        
+    };
+    handleProductsizeChange2= (e) =>{
+        this.setState({Button2:true})
+        if(this.state.Button2 === true)
+        {
+
+            this.setState({Button1:false})
+            this.setState({product_size:'소'})
+            console.log(this.state.product_size)
+            
+        }
+    };
+
+
     render() {
 
         // css REACTOR! : DB화 시켜야함 => 그래야 관리자 페이지에서 카테고리 관리 가능!!!
@@ -490,8 +535,8 @@ class CustomerAdd extends React.Component {
                             <Typography variant="h4" gutterBottom="gutterBottom" align="center">
                                 상품 정보
                             </Typography>
-                            <div className={classes.image_root}>
-                                <GridList className={classes.gridList} cols={2.5}>
+                            <div className={classes.div_image}>
+                                <GridList className={classes.Grid_image} cols={2.5}>
                                     {
                                         tileData.map(tile => (
                                             <div>
@@ -642,21 +687,20 @@ class CustomerAdd extends React.Component {
                                     rows="4"
                                     variant="outlined"
                                     value={this.state.product_explain}
-                                    onChange={this.handleValueChange}/> {/* 마감기한 버튼 */}
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                    <KeyboardDatePicker
-                                        disableToolbar="disableToolbar"
-                                        variant="inline"
-                                        format="yyyy/MM/dd"
-                                        margin="normal"
-                                        id="product_outdate"
-                                        label="마감기한"
-                                        value={this.state.product_outdate}
-                                        onChange={this.handleOutDateChange}
-                                        KeyboardButtonProps={{
-                                            'aria-label' : 'change date'
-                                        }}/>
-                                </MuiPickersUtilsProvider>
+                                    onChange={this.handleValueChange}/> 
+                                    
+                            {/* 상품 크기 버튼 */}
+                           <FormControl>
+                           <Typography variant="h7" gutterBottom>
+                                물건 크기
+                            </Typography>
+                            <Grid>
+                            <Button id="product_size1" className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange1}  >극소   (2kg  　미만)</Button>
+                            <Button id="product_size2"className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange2} >　소　　(4kg　 미만)</Button>
+                            <Button id="product_size3"className={classes.Button_product_size} variant="outlined">　중　  (10kg　미만)</Button>
+                            <Button id="product_size4"className={classes.Button_product_size} variant="outlined">　대 　 (20kg　미만)</Button>
+                            </Grid>
+                            </FormControl>
                             </Grid>
                             <Grid
                                 container="container"
