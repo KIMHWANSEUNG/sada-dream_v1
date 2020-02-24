@@ -1,6 +1,10 @@
 import React from 'react';
 import './App.css';
-import CustomerAdd from './Product_add_page/ProductAdd';
+// 상품 등록 페이지
+//import ProductAdd from './Product_add_page/ProductAdd';
+
+//상품 목록 페이지
+import ProductList from './Product_list_page/ProductList' 
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
@@ -15,7 +19,7 @@ function App() {
   });
   return (
     <MuiThemeProvider theme={theme}>
-      <CustomerAdd/>
+      <ProductList/>
     </MuiThemeProvider>
   );
 }
