@@ -8,6 +8,12 @@ import Link from '@material-ui/core/Link';
 import Content from './Content';
 import Navigator from './Navigator';
 import { Divider, Grid } from '@material-ui/core';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import SendIcon from '@material-ui/icons/Send';
 
 function Copyright() {
   return (
@@ -50,24 +56,47 @@ const styles = {
      fontSize:40,
      
   },
+  Link_product_add:{
+    paddingLeft:30
+  },
   Divider:{
     border: "1px solid",
     marginTop:15,
-    marginBottom:15
+ 
   },
   Grid_navigator:{
       width:150,
       minHeight:500
   },
   Grid_content:{
-      width:1353 //컨텐츠 그리드 길이
+      marginTop:15,
+      marginLeft:30,
+      width:1200 //컨텐츠 그리드 길이
+  },
+  ListItemText_Category:{
+    width:150,
+    height:30,
+    fontSize:10
+  },
+  ListSubheader_category:{
+    fontSize:24
+  },
+  ListSubheader_country:{
+    marginTop:15,
+    fontSize:24
+  },
+  Typography_content:{
+    marginTop:15
   }
+  
+  
 };
 
 class ProductList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+          product_number:100
 
         }
     }
@@ -91,23 +120,86 @@ render(){
           <Link className={classes.Link_product_list} href="#" onClick={this.preventDefault} >
             {"상품 목록"}
           </Link>
+
+          <Link className={classes.Link_product_add} href="#" onClick={this.preventDefault} >
+            {"상품 추가하기"}
+          </Link>
+
+          
             <Divider className={classes.Divider} />
             
             <Grid container direction="row" justify="flex-start" alignItems="baseline">
 
               {/* 나비게이터(카테고리)  */}
               <Grid className={classes.Grid_navigator}>
-                  <h1>GG</h1><h1>GG</h1><h1>GG</h1>
+                
+                {/* 리스트(카테고리) */}
+                <List
+                component="nav"
+                aria-labelledby="nested-list-subheader"
+                subheader={
+                  <ListSubheader className={classes.ListSubheader_category} component="div" id="nested-list-subheader">
+                    카테고리
+                  </ListSubheader>}
+                className={classes.root} >
+
+                    <ListItem button>
+                        <ListItemText className={classes.ListItemText_Category} primary="전체" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemText className={classes.ListItemText_Category} primary="뷰티/미용" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemText className={classes.ListItemText_Category} primary="식료품" />
+                    </ListItem>
+
+              </List>
+              
                   <Divider />
-                  <h1>GG</h1><h1>GG</h1><h1>GG</h1>
+
+                  <List
+                component="nav"
+                aria-labelledby="nested-list-subheader"
+                subheader={
+                  <ListSubheader className={classes.ListSubheader_country} component="div" id="nested-list-subheader">
+                    나라별
+                  </ListSubheader>}
+                className={classes.root} >
+                     <ListItem button>
+                        <ListItemText className={classes.ListItemText_Category} primary="전체" />
+                    </ListItem>                 
+                      <ListItem button>
+                      <ListItemIcon>
+                      <SendIcon />
+                      </ListItemIcon>
+                        <ListItemText className={classes.ListItemText_Category} primary="미국" />
+                    </ListItem>
+                    <ListItem button>
+                    <ListItemIcon>
+                      <SendIcon />
+                      </ListItemIcon>
+                        <ListItemText className={classes.ListItemText_Category} primary="일본" />
+                    </ListItem> 
+                    <ListItem button>
+                    <ListItemIcon>
+                      <SendIcon />
+                      </ListItemIcon>
+                        <ListItemText className={classes.ListItemText_Category} primary="중국" />
+                    </ListItem>
+                </List>
               </Grid>
 
               {/* 컨텐츠(상품카드) */}
-              <Grid className={classes.Grid_content}>
-                  <h1>GG</h1><h1>GG</h1><h1>GG</h1>
+              <Grid  container  direction="row" justify="flex-start"  alignItems="center"  className={classes.Grid_content}>
+              <Typography className={classes.Typography_content} variant="h5" >{this.state.product_number}</Typography> <Typography className={classes.Typography_content} variant="h5">건</Typography>
+           
+                  
               
-              <Divider />
+              </Grid>
               
+              <Grid  container  direction="row" justify="flex-start"  alignItems="center"  className={classes.Grid_content}>
+                  
+             
               </Grid>
 
             </Grid>
