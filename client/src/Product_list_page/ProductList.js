@@ -17,6 +17,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import {Button } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea'
+import foo from "./cookie.jpg";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -268,7 +270,7 @@ render(){
                           <Divider></Divider>
                           <Typography className={classes.Typography_product_name}>{this.state.product_name}</Typography>
                           <Typography className={classes.Typography_product_explain}>{this.state.product_explain}</Typography>
-                          <Typography className={classes.Typography_product_cost}>{this.state.product_cost}원</Typography>
+                          <Typography className={classes.Typography_product_cost}>\{this.state.product_cost}원</Typography>
                           <Typography className={classes.Typography_after_time}>{this.state.after_time}시간 전</Typography>
                           
 
@@ -277,28 +279,14 @@ render(){
                 </Grid>
               </Card>
 
-              
-              
-                
-              
-               
           </Grid>
 
-              
         </Grid>   
-            
-
-             
-             
 
       </Grid>
 
-
-          
           </main>
-          
 
-          
           <footer className={classes.footer}>
             <Copyright />
           </footer>
