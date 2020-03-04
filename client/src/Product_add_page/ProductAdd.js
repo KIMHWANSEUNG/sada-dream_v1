@@ -356,7 +356,7 @@ class CustomerAdd extends React.Component {
         formData.append('image', this.state.file)
         formData.append('product_category', this.state.product_category)
         formData.append('product_category_detail', this.state.product_category_detail)
-        formData.append('product_country', this.state.product_country)
+        formData.append('product_country', this.state.product_country) 
         formData.append('product_city', this.state.product_city)
         formData.append('product_name', this.state.product_name)
         formData.append('product_count', this.state.product_count)

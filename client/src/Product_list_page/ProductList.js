@@ -187,6 +187,8 @@ class ProductList extends React.Component{
     preventDefault= (e) => {
 
     }
+
+    
 render(){
   const { classes } = this.props;
 
