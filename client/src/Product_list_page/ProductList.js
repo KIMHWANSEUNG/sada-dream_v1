@@ -20,6 +20,7 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import foo from "./cookie.jpg";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import ProductCard from './ProductCard'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -93,42 +94,10 @@ const styles = theme =>({
   },
   Button_Showlist:{
     marginLeft:20
-  },
-  Card_Content:{
-    width:500,
-    height:210,
-    marginLeft:50,
-    marginTop:20
-  },
-  Grid_cardmedia:{
-    width:250,
-    height:230
-  },
-  CardMedia_photo:{
-    height:230
-  },
-  Typography_request_country:{
-    fontSize:13
-  },
-  Typography_product_name:{
-    fontSize:25,
-    paddingBottom:5
-  },
-  Typography_product_explain:{
-    fontSize:20,
-    paddingBottom:10
-
-  },
-  Typography_product_cost:{
-    fontSize:25
-  },
-  Typography_after_time:{
-    fontSize:15,
-    paddingTop:15
-  },
-  Grid_content_product:{
-    width:250
-  },
+  }
+  
+  ,
+  // 여기서부터는 검색필드
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -166,6 +135,7 @@ const styles = theme =>({
       },
     },
   },
+ 
   
   
 });
@@ -302,41 +272,9 @@ render(){
               <Grid container> 
               
               {/* 컨텐츠(상품카드) */}
-              <Card className={classes.Card_Content}>
-                <Grid container direction="row" justify="flex-start" alignItems="flex-start">
-                    {/* 이미지 그리드 */}
-                    <Grid className={classes.Grid_cardmedia}  >
-                    <CardActionArea>
-                   
-                    <CardMedia
-                      className={classes.CardMedia_photo}
-                      image="./cookie.jpg"
-                      title="Contemplative Reptile"
-                      />
-                    </CardActionArea>
-                    </Grid>
-            
-                    {/* 내용 그리드 */}
-                    <Grid
-                      className={classes.Grid_content_product}
-                      container2
-                      direction="row"
-                      justify="flex-start"
-                      alignItems="flex-start">
-                      <CardActionArea>
-                          <Typography className={classes.Typography_request_country}>한국에서</Typography>
-                          <Typography className={classes.Typography_request_country}>{this.state.request_country}으로 구매요청</Typography>
-                          <Divider></Divider>
-                          <Typography className={classes.Typography_product_name}>{this.state.product_name}</Typography>
-                          <Typography className={classes.Typography_product_explain}>{this.state.product_explain}</Typography>
-                          <Typography className={classes.Typography_product_cost}>\{this.state.product_cost}원</Typography>
-                          <Typography className={classes.Typography_after_time}>{this.state.after_time}시간 전</Typography>
-                          
-
-                       </CardActionArea>
-                    </Grid>
-                  </Grid>
-                </Card>
+              <ProductCard/> 
+              <ProductCard/>  
+              <ProductCard/>
 
                 
  
