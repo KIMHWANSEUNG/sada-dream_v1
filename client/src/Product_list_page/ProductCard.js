@@ -72,13 +72,13 @@ class ProductCard extends React.Component {
               justify="flex-start"
               alignItems="flex-start">
               <CardActionArea>
-                <Typography className={classes.Typography_request_country}>한국에서</Typography>
-                <Typography className={classes.Typography_request_country}>프랑스로 구매요청</Typography>
+                <Typography className={classes.Typography_request_country}>{this.props.request_from}</Typography>
+                <Typography className={classes.Typography_request_country}>{this.props.request_to}</Typography>
                 <Divider></Divider>
-                <Typography className={classes.Typography_product_name}>루이비통</Typography>
-                <Typography className={classes.Typography_product_explain}>파리에서 팔아요</Typography>
-                <Typography className={classes.Typography_product_cost}>\5000원</Typography>
-                <Typography className={classes.Typography_after_time}>1시간 전</Typography>
+                <Typography className={classes.Typography_product_name}>{this.props.product_name}</Typography>
+                <Typography className={classes.Typography_product_explain}>{this.props.product_discription}</Typography>
+                <Typography className={classes.Typography_product_cost}>\{this.props.product_price}원</Typography>
+                <Typography className={classes.Typography_after_time}>{this.props.product_time_of_enroll}</Typography>
               </CardActionArea>
             </Grid>
           </Grid>

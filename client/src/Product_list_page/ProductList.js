@@ -266,21 +266,15 @@ render(){
               <Grid container>
 
                 {/* 컨텐츠(상품카드) */}
+                <ProductCard request_from={"요청나라"}
+                             request_to={"요청받은나라"}
+                             product_name={"상품1"}
+                             product_discription={"상세설명"}
+                             product_price={"1000"}
+                             product_time_of_enroll={"1시간"}
+                />
                 <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
-                <ProductCard/>
+
 
               </Grid>
 
