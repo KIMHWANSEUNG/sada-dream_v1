@@ -21,11 +21,11 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-const multer = require('multer');
-const upload = multer({dest: './upload'});
+  const multer = require('multer');
+  const upload = multer({dest: './upload'});
 
-app.get('/api/customers', (req, res) => {
-  res.send([
+  app.get('/api/customers', (req, res) => {
+    res.send([
 
   ])
 });

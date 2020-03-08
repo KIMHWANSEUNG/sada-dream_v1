@@ -21,6 +21,8 @@ import foo from "./cookie.jpg";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import ProductCard from './ProductCard'
+
+// rendering of copyright
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -42,11 +44,11 @@ const styles = theme =>({
     paddingLeft:200,
 
   },
- div_app: {
+    div_app: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
- 
+
   },
   main: {
     flex: 1,
@@ -54,8 +56,7 @@ const styles = theme =>({
   footer: {
   },
   Link_product_list:{
-     fontSize:40,
-     
+    fontSize:40,
   },
   Link_product_add:{
     paddingLeft:30
@@ -63,19 +64,19 @@ const styles = theme =>({
   Divider:{
     border: "1px solid",
     marginTop:15,
- 
+
   },
   Grid_navigator:{
-      width:150,
-      minHeight:500
+    width:150,
+    minHeight:500
   },
   Grid_content_header:{
 
   },
   Grid_content:{
-      marginLeft:200,
-      width:1300, //컨텐츠 그리드 길이
-      position:'absolute' //화면확대 해도 고정시키는 기능 !!
+    marginLeft:200,
+    width:1300, //컨텐츠 그리드 길이
+    position:'absolute' //화면확대 해도 고정시키는 기능 !!
   },
   ListItemText_Category:{
     width:150,
@@ -95,7 +96,7 @@ const styles = theme =>({
   Button_Showlist:{
     marginLeft:20
   }
-  
+
   ,
   // 여기서부터는 검색필드
   search: {
@@ -135,162 +136,165 @@ const styles = theme =>({
       },
     },
   },
- 
-  
-  
 });
 
+// foo 
 class ProductList extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-          product_number:100,
-          request_country:'일본',
-          product_name:"루이비통 가방",
-          product_explain:"파리 매장에서 팔아요~",
-          product_cost:3000,
-          after_time:1,
-
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      product_name: '',
+      product_price: '',
+      product_discription: '',
+      time_from_enroll: '',
     }
+  }
 
-    preventDefault= (e) => {
-
-    }
-
-    
 render(){
   const { classes } = this.props;
 
   return (
 
-      <div className={classes.div_root}>
-        <CssBaseline />
-        
+    <div className={classes.div_root}>
+      <CssBaseline/>
 
-        <div className={classes.div_app}>
-     
-          {/* 위치: 중앙 */}
-          <main className={classes.main}> 
-          <Link className={classes.Link_product_list} href="#" onClick={this.preventDefault} >
+
+      <div className={classes.div_app}>
+
+        {/* 위치: 중앙 */}
+        <main className={classes.main}>
+          <Link className={classes.Link_product_list} href="#" onClick={this.preventDefault}>
             {"상품 목록"}
           </Link>
 
-          <Link className={classes.Link_product_add} href="#" onClick={this.preventDefault} >
+          <Link className={classes.Link_product_add} href="#" onClick={this.preventDefault}>
             {"상품 추가하기"}
           </Link>
 
-          
-            <Divider className={classes.Divider} />
-            
-            <Grid container direction="row" justify="flex-start" alignItems="baseline">
 
-              {/* 나비게이터(카테고리)  */}
-              <Grid className={classes.Grid_navigator}>
-                
-                {/* 리스트(카테고리) */}
-                <List
+          <Divider className={classes.Divider}/>
+
+          <Grid container direction="row" justify="flex-start" alignItems="baseline">
+
+            {/* 나비게이터(카테고리)  */}
+            <Grid className={classes.Grid_navigator}>
+
+              {/* 리스트(카테고리) */}
+              <List
                 component="nav"
                 aria-labelledby="nested-list-subheader"
                 subheader={
                   <ListSubheader className={classes.ListSubheader_category} component="div" id="nested-list-subheader">
                     카테고리
                   </ListSubheader>}
-                className={classes.root} >
+                className={classes.root}>
 
-                    <ListItem button>
-                        <ListItemText className={classes.ListItemText_Category} primary="전체" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText className={classes.ListItemText_Category} primary="뷰티/미용" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText className={classes.ListItemText_Category} primary="식료품" />
-                    </ListItem>
+                <ListItem button>
+                  <ListItemText className={classes.ListItemText_Category} primary="전체"/>
+                </ListItem>
+                <ListItem button>
+                  <ListItemText className={classes.ListItemText_Category} primary="뷰티/미용"/>
+                </ListItem>
+                <ListItem button>
+                  <ListItemText className={classes.ListItemText_Category} primary="식료품"/>
+                </ListItem>
 
               </List>
-              
-                  <Divider />
 
-                  <List
+              <Divider/>
+
+              <List
                 component="nav"
                 aria-labelledby="nested-list-subheader"
                 subheader={
                   <ListSubheader className={classes.ListSubheader_country} component="div" id="nested-list-subheader">
                     나라별
                   </ListSubheader>}
-                className={classes.root} >
-                     <ListItem button>
-                        <ListItemText className={classes.ListItemText_Category} primary="전체" />
-                    </ListItem>                 
-                      <ListItem button>
-                      <ListItemIcon>
-                      <SendIcon />
-                      </ListItemIcon>
-                        <ListItemText className={classes.ListItemText_Category} primary="미국" />
-                    </ListItem>
-                    <ListItem button>
-                    <ListItemIcon>
-                      <SendIcon />
-                      </ListItemIcon>
-                        <ListItemText className={classes.ListItemText_Category} primary="일본" />
-                    </ListItem> 
-                    <ListItem button>
-                    <ListItemIcon>
-                      <SendIcon />
-                      </ListItemIcon>
-                        <ListItemText className={classes.ListItemText_Category} primary="중국" />
-                    </ListItem>
-                </List>
+                className={classes.root}>
+                <ListItem button>
+                  <ListItemText className={classes.ListItemText_Category} primary="전체"/>
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <SendIcon/>
+                  </ListItemIcon>
+                  <ListItemText className={classes.ListItemText_Category} primary="미국"/>
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <SendIcon/>
+                  </ListItemIcon>
+                  <ListItemText className={classes.ListItemText_Category} primary="일본"/>
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <SendIcon/>
+                  </ListItemIcon>
+                  <ListItemText className={classes.ListItemText_Category} primary="중국"/>
+                </ListItem>
+              </List>
+            </Grid>
+
+
+            <Grid container direction="column" justify="flex-start" alignItems="flex-start"
+                  className={classes.Grid_content}>
+
+              {/* 상품 건수, 목록 버튼 */}
+              <Grid container direction="row" justify="flex-start" alignItems="center"
+                    className={classes.Grid_content_header}>
+                <Typography className={classes.Typography_content} variant="h5">{this.state.product_number}</Typography>
+                <Typography className={classes.Typography_content} variant="h5">건</Typography>
+                <Button className={classes.Button_Showlist}>최신순</Button>
+                <Button className={classes.Button_Showlist}>마감순</Button>
+                <Button className={classes.Button_Showlist}>가격낮은순</Button>
+                <div className={classes.search}>
+                  <div className={classes.searchIcon}>
+                    <SearchIcon/>
+                  </div>
+                  <InputBase
+                    placeholder="Search…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                    inputProps={{'aria-label': 'search'}}
+                  />
+                </div>
+                <Divider></Divider>
               </Grid>
 
-            
-              <Grid container direction="column" justify="flex-start" alignItems="flex-start" className={classes.Grid_content}>
-                
-                {/* 상품 건수, 목록 버튼 */}
-                <Grid container  direction="row" justify="flex-start"  alignItems="center"  className={classes.Grid_content_header}>
-                <Typography className={classes.Typography_content} variant="h5" >{this.state.product_number}</Typography> <Typography className={classes.Typography_content} variant="h5">건</Typography>
-                  <Button className={classes.Button_Showlist}>최신순</Button>
-                  <Button className={classes.Button_Showlist}>마감순</Button>
-                  <Button className={classes.Button_Showlist}>가격낮은순</Button>
-                  <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-                  <Divider></Divider>
-                </Grid>
-              
-              <Grid container> 
-              
-              {/* 컨텐츠(상품카드) */}
-              <ProductCard/> 
-              <ProductCard/>  
-              <ProductCard/>
+              <Grid container>
 
-                
- 
+                {/* 컨텐츠(상품카드) */}
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+                <ProductCard/>
+
+              </Grid>
+
+            </Grid>
+
           </Grid>
 
-        </Grid>   
+        </main>
 
-      </Grid>
-
-          </main>
-
-          <footer className={classes.footer}>
-            <Copyright />
-          </footer>
-        </div>
+        <footer className={classes.footer}>
+          <Copyright/>
+        </footer>
       </div>
+    </div>
 
   );
 }
