@@ -21,19 +21,18 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-  const multer = require('multer');
-  const upload = multer({dest: './upload'});
+const multer = require('multer');
+const upload = multer({dest: './upload'});
 
-  app.get('/api/customers', (req, res) => {
-    res.send([
-
-  ])
+app.get('/api/customers', (req, res) => {
+  res.send([])
 });
 
 // image folder shares upload
 app.use('/image', express.static('./upload'));
 
-app.post('/api/product/add', upload.single('image'), (req, res) => {
+// 요청 상품 등록 POST
+app.post('/api/ask/add', upload.single('image'), (req, res) => {
   let sql = 'INSERT INTO PRODUCT VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
   let image = '/image/' + req.file.filename;
   let product_category = req.body.product_category;
@@ -47,13 +46,23 @@ app.post('/api/product/add', upload.single('image'), (req, res) => {
   let product_price = req.body.product_price;
   let product_request = req.body.product_request;
   let params = [image, product_category, product_category_detail, product_country, product_city
-  ,product_name ,product_count ,product_explain ,product_outdate ,product_price ,product_request];
-  
-  connection.query(sql, params, 
-      (err, rows, fields) => {
-        res.send(rows);
-      }
-    );
+    , product_name, product_count, product_explain, product_outdate, product_price, product_request];
+
+  connection.query(sql, params,
+    (err, rows, fields) => {
+      res.send(rows);
+    }
+  );
+});
+
+// 요청 상품 리스트 GET
+app.get('/api/ask/list', (req, res) => {
+  connection.query(
+    'select * from PRODUCT',
+    (err, rows, fields) => {
+      res.send(rows);
+    }
+  )
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

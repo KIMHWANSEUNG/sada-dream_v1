@@ -351,7 +351,7 @@ class CustomerAdd extends React.Component {
 
     // api event
     addCustomer() {
-        const url = '/api/product/add';
+        const url = '/api/ask/add';
         const formData = new FormData();
         formData.append('image', this.state.file)
         formData.append('product_category', this.state.product_category)
