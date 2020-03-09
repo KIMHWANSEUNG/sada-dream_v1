@@ -25,10 +25,12 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Delivery from '../Components/post_way/Delivery';
-import Directdeal from '../Components/post_way/Directdeal';
+import Delivery from './post_way/Delivery';
+import Directdeal from './post_way/Directdeal';
 import photoIcon from './photo-icon.png';
 import {MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker} from '@material-ui/pickers';
+import { blue } from '@material-ui/core/colors';
+
 
 const styles = theme => ({
     hidden: {
@@ -116,9 +118,6 @@ const styles = theme => ({
         height:60,
         margin:30
     },
-    Button_directdeal:{
-        marginLeft:10
-    },
 
         // 상품 이미지 속성
         input: {
@@ -153,7 +152,7 @@ const styles = theme => ({
         Button_product_size:{
             '&:focus': {
                 boxShadow: 'none',
-                backgroundColor: '#0062cc',
+                backgroundColor: '#004C99',
                 borderColor: '#005cbf',
               },
             width: "100px",
@@ -161,6 +160,18 @@ const styles = theme => ({
             border:"1px solid",
            marginRight:15,
            fontSize: 15,
+      
+        },
+        Button_post_way:{
+            '&:focus': {
+                boxShadow: 'none',
+                fontColor:'#060B0B',
+                borderColor: '#003399',
+                border: '2px solid',
+              },
+              margin:10,
+              
+
       
         }
 
@@ -234,7 +245,7 @@ class CustomerAdd extends React.Component {
             })
     }
     foo = (e) => {
-        console.log(this.state.receive_person);
+        console.log(this.state.product_size);
     }
 
     // input file event
@@ -340,12 +351,12 @@ class CustomerAdd extends React.Component {
 
     // api event
     addCustomer() {
-        const url = '/api/product/add';
+        const url = '/api/ask/add';
         const formData = new FormData();
         formData.append('image', this.state.file)
         formData.append('product_category', this.state.product_category)
         formData.append('product_category_detail', this.state.product_category_detail)
-        formData.append('product_country', this.state.product_country)
+        formData.append('product_country', this.state.product_country) 
         formData.append('product_city', this.state.product_city)
         formData.append('product_name', this.state.product_name)
         formData.append('product_count', this.state.product_count)
@@ -399,27 +410,37 @@ class CustomerAdd extends React.Component {
         });
     };
 
+    //물건 크기<>
     handleProductsizeChange1= (e) =>{
-            this.setState({Button1:true})
-            if(this.state.Button1 === true)
-            {
-                this.setState({Button2:false})
-                this.setState({product_size:'극소'})
-                console.log(this.state.product_size)
-            }
-        
+        var button_verySmall=document.getElementById('product_size1').style.backgroundColor="#E6EBFF"
+        var button_Small=document.getElementById('product_size2').style.backgroundColor="white"
+        var button_Middle=document.getElementById('product_size3').style.backgroundColor="white"
+        var button_Large=document.getElementById('product_size4').style.backgroundColor="white"
+        this.setState({product_size:"극소(2kg미만)"})
     };
     handleProductsizeChange2= (e) =>{
-        this.setState({Button2:true})
-        if(this.state.Button2 === true)
-        {
-
-            this.setState({Button1:false})
-            this.setState({product_size:'소'})
-            console.log(this.state.product_size)
-            
-        }
+        var button_verySmall=document.getElementById('product_size1').style.backgroundColor="white"
+        var button_Small=document.getElementById('product_size2').style.backgroundColor="#E6EBFF"
+        var button_Middle=document.getElementById('product_size3').style.backgroundColor="white"
+        var button_Large=document.getElementById('product_size4').style.backgroundColor="white"
+        this.setState({product_size:"소(4kg미만)"})
     };
+    handleProductsizeChange3= (e) =>{
+        var button_verySmall=document.getElementById('product_size1').style.backgroundColor="white"
+        var button_Small=document.getElementById('product_size2').style.backgroundColor="white"
+        var button_Middle=document.getElementById('product_size3').style.backgroundColor="#E6EBFF"
+        var button_Large=document.getElementById('product_size4').style.backgroundColor="white"
+        this.setState({product_size:"중(10kg미만)"})
+    };
+    handleProductsizeChange4= (e) =>{
+        var button_verySmall=document.getElementById('product_size1').style.backgroundColor="white"
+        var button_Small=document.getElementById('product_size2').style.backgroundColor="white"
+        var button_Middle=document.getElementById('product_size3').style.backgroundColor="white"
+        var button_Large=document.getElementById('product_size4').style.backgroundColor="#E6EBFF"
+        this.setState({product_size:"대(20kg미만)"})
+    };
+
+
 
 
     render() {
@@ -516,6 +537,7 @@ class CustomerAdd extends React.Component {
         const city_list = city[this.state.CountryFlag].map(
             (city, index) => (<MenuItem key={index} value={city}>{city}</MenuItem>)
         );
+        
 
         return (
             <div>
@@ -696,9 +718,9 @@ class CustomerAdd extends React.Component {
                             </Typography>
                             <Grid>
                             <Button id="product_size1" className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange1}  >극소   (2kg  　미만)</Button>
-                            <Button id="product_size2"className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange2} >　소　　(4kg　 미만)</Button>
-                            <Button id="product_size3"className={classes.Button_product_size} variant="outlined">　중　  (10kg　미만)</Button>
-                            <Button id="product_size4"className={classes.Button_product_size} variant="outlined">　대 　 (20kg　미만)</Button>
+                            <Button id="product_size2"className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange2}  >　소　　(4kg　 미만)</Button>
+                            <Button id="product_size3"className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange3}>　중　  (10kg　미만)</Button>
+                            <Button id="product_size4"className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange4}>　대 　 (20kg　미만)</Button>
                             </Grid>
                             </FormControl>
                             </Grid>
@@ -741,12 +763,8 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="flex-start"
                                 alignItems="center">
-                                <Button onClick={this.handleDelivery} variant="outlined" color="primary">택배</Button>
-                                <Button
-                                    className={classes.Button_directdeal}
-                                    onClick={this.handleDirectExchange}
-                                    variant="outlined"
-                                    color="primary">직거래</Button>
+                                <Button className={classes.Button_post_way} onClick={this.handleDelivery} variant="outlined" color="primary">택배</Button>
+                                <Button className={classes.Button_post_way} className={classes.Button_post_way} onClick={this.handleDirectExchange} variant="outlined" color="primary">직거래</Button>
                             </Grid>
 
                             {/*수령 방법*/}
