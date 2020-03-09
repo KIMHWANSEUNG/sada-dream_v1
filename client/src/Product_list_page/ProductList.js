@@ -144,12 +144,7 @@ class ProductList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-          product_number:100,
-          request_country:'일본',
-          product_name:"루이비통 가방",
-          product_explain:"파리 매장에서 팔아요~",
-          product_cost:3000,
-          after_time:1,
+
 
         }
     }
@@ -157,7 +152,7 @@ class ProductList extends React.Component{
     preventDefault= (e) => {
 
     }
-
+    
     
 render(){
   const { classes } = this.props;

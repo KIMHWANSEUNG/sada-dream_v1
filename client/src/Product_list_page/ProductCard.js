@@ -92,8 +92,6 @@ class ProductCard extends React.Component{
                                         <Typography className={classes.Typography_product_explain}>파리에서 팔아요</Typography>
                                         <Typography className={classes.Typography_product_cost}>\5000원</Typography>
                                         <Typography className={classes.Typography_after_time}>1시간 전</Typography>
-                                        
-            
                                     </CardActionArea>
                                 </Grid>
                                 </Grid>
