@@ -2,6 +2,7 @@ import React from 'react';
 import { CardMedia, CardActionArea, Card, TextField, Button, Paper, Select, Typography, Grid, Divider, Hidden,} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import cookie from './cookie.jpg'
+import './card.css';
 
 const styles = theme =>({
 
@@ -49,8 +50,15 @@ class ProductCard extends React.Component {
 
   render() {
     const {classes} = this.props;
-    const img_style={
-      overflow:Hidden
+    const img_scale={
+      overflow:Hidden,
+      width:250,
+      height:200,
+      paddingRight:10,
+      paddingLeft:5,
+      paddingTop:5,
+      paddingBottom:10,
+
     }
 
     return (
@@ -61,8 +69,10 @@ class ProductCard extends React.Component {
             {/* 이미지 그리드 */}
             <Grid className={classes.Grid_cardmedia}>
               <CardActionArea>
-                <div style={img_style}>
-                  <img />
+                <div style={img_scale}>
+                  <div class="scale">
+                  <img style={img_scale} src={cookie}/>
+                  </div>
 
                 </div>
               </CardActionArea>
