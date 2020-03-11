@@ -20,7 +20,15 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import foo from "./cookie.jpg";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import Avatar from '@material-ui/core/Avatar';
 import ProductCard from './ProductCard'
+
+//국기 이미지
+import USA from "./Country_flag/u-s.png"
+import JP from "./Country_flag/j-p.png"
+import FRANCE from "./Country_flag/france.png"
+import Germany from "./Country_flag/germany.png"
+import My from "./Country_flag/m-y.png"
 
 // rendering of copyright
 function Copyright() {
@@ -66,7 +74,7 @@ const styles = theme => ({
 
   },
   Grid_navigator: {
-    width: 150,
+    width: 180,
     minHeight: 500
   },
   Grid_content_header: {},
@@ -76,22 +84,28 @@ const styles = theme => ({
     position: 'absolute' //화면확대 해도 고정시키는 기능 !!
   },
   ListItemText_Category: {
-    width: 150,
+    width: 180,
     height: 30,
-    fontSize: 10
+    marginTop:10,
+    fontSize:15,
+    '&:hover': {
+      color:"#6495ED"
+    },
+
   },
   ListSubheader_category: {
     fontSize: 24
   },
   ListSubheader_country: {
     marginTop: 15,
-    fontSize: 24
+    fontSize: 25
   },
   Typography_content: {
-    marginTop: 15
+  
   },
   Button_Showlist: {
-    marginLeft: 20
+    marginLeft: 20,
+    marginTop:5
   }
 
   ,
@@ -213,14 +227,14 @@ class ProductList extends React.Component {
                     </ListSubheader>}
                   className={classes.root}>
 
-                  <ListItem button>
-                    <ListItemText className={classes.ListItemText_Category} primary="전체"/>
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemText  primary="전체"/>
                   </ListItem>
-                  <ListItem button>
-                    <ListItemText className={classes.ListItemText_Category} primary="뷰티/미용"/>
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemText  primary="뷰티/미용"/>
                   </ListItem>
-                  <ListItem button>
-                    <ListItemText className={classes.ListItemText_Category} primary="식료품"/>
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemText primary="식료품"/>
                   </ListItem>
 
                 </List>
@@ -236,26 +250,30 @@ class ProductList extends React.Component {
                       나라별
                     </ListSubheader>}
                   className={classes.root}>
-                  <ListItem button>
-                    <ListItemText className={classes.ListItemText_Category} primary="전체"/>
+                  
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemText  primary="전체"/>
                   </ListItem>
-                  <ListItem button>
+
+                  <ListItem button className={classes.ListItemText_Category}>
                     <ListItemIcon>
-                      <SendIcon/>
+                    <Avatar variant="rounded" src={USA}  className={classes.small} />
                     </ListItemIcon>
-                    <ListItemText className={classes.ListItemText_Category} primary="미국"/>
+                    <ListItemText  primary="미국"/>
                   </ListItem>
-                  <ListItem button>
+
+                  <ListItem button className={classes.ListItemText_Category}>
                     <ListItemIcon>
-                      <SendIcon/>
+                    <Avatar variant="rounded" src={JP}  className={classes.small} />
                     </ListItemIcon>
-                    <ListItemText className={classes.ListItemText_Category} primary="일본"/>
+                    <ListItemText primary="일본"/>
                   </ListItem>
-                  <ListItem button>
+
+                  <ListItem button className={classes.ListItemText_Category}>
                     <ListItemIcon>
-                      <SendIcon/>
+                    <Avatar variant="rounded" src={FRANCE}  className={classes.small} />
                     </ListItemIcon>
-                    <ListItemText className={classes.ListItemText_Category} primary="중국"/>
+                    <ListItemText  primary="프랑스"/>
                   </ListItem>
                 </List>
               </Grid>

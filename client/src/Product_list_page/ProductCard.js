@@ -1,6 +1,7 @@
 import React from 'react';
-import { CardMedia, CardActionArea, Card, TextField, Button, Paper, Select, Typography, Grid, Divider,} from '@material-ui/core';
+import { CardMedia, CardActionArea, Card, TextField, Button, Paper, Select, Typography, Grid, Divider, Hidden,} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import cookie from './cookie.jpg'
 
 const styles = theme =>({
 
@@ -15,7 +16,7 @@ const styles = theme =>({
         height:230
       },
       CardMedia_photo:{
-        height:230
+        height:230,
       },
       Typography_request_country:{
         fontSize:13
@@ -41,12 +42,16 @@ const styles = theme =>({
       },
 
 
+
 })
 
 class ProductCard extends React.Component {
 
   render() {
     const {classes} = this.props;
+    const img_style={
+      overflow:Hidden
+    }
 
     return (
       <div>
@@ -56,11 +61,10 @@ class ProductCard extends React.Component {
             {/* 이미지 그리드 */}
             <Grid className={classes.Grid_cardmedia}>
               <CardActionArea>
-                <CardMedia
-                  className={classes.CardMedia_photo}
-                  image="./cookie.jpg"
-                  title="Contemplative Reptile"
-                />
+                <div style={img_style}>
+                  <img />
+
+                </div>
               </CardActionArea>
             </Grid>
 
