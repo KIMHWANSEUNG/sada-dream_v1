@@ -30,6 +30,9 @@ import FRANCE from "./Country_flag/france.png"
 import Germany from "./Country_flag/germany.png"
 import My from "./Country_flag/m-y.png"
 
+//더보기 이미지
+import more_icon from "./icon/more-icon.png"
+
 // rendering of copyright
 function Copyright() {
   return (
@@ -58,6 +61,10 @@ const styles = theme => ({
     flexDirection: 'column',
 
   },
+  div_more_icon:{
+    flexDirection:'column'
+  }
+  ,
   main: {
     flex: 1,
   },
@@ -87,7 +94,7 @@ const styles = theme => ({
     width: 180,
     height: 30,
     marginTop:10,
-    fontSize:15,
+    fontSize:10,
     '&:hover': {
       color:"#6495ED"
     },
@@ -97,8 +104,8 @@ const styles = theme => ({
     fontSize: 24
   },
   ListSubheader_country: {
-    marginTop: 15,
-    fontSize: 25
+    marginTop: 10,
+    fontSize: 24
   },
   Typography_content: {
   
@@ -110,7 +117,18 @@ const styles = theme => ({
       color:"#6495ED"
     },
   }
+  ,
+  Button_more_icon:{
+    fontSize:20,
+    marginTop:10,
+    '&:hover': {
+      color:"#6495ED"
+    },
 
+  },
+  img_more_icon:{
+    marginRight:5
+  }
   ,
   // 여기서부터는 검색필드
   search: {
@@ -159,9 +177,18 @@ class ProductList extends React.Component {
     this.state = {
       product_list: [],
       product_num: 0,
-
+      more_icon:'none',
+      more_icon2:''
     }
   }
+
+  // 카테고리 더보기 아이콘 함수
+  handleMoreIcon = (e) => {
+    this.setState({
+      more_icon:'',
+      more_icon2:"none"
+  })
+};
 
   // 모든 요소가 렌더링 된 후에 실행되는 함수 (리액트 생명주기)
   componentDidMount() {
@@ -239,6 +266,18 @@ class ProductList extends React.Component {
                   <ListItem button className={classes.ListItemText_Category}>
                     <ListItemText primary="식료품"/>
                   </ListItem>
+                  <Button style={{display:this.state.more_icon2}} className={classes.Button_more_icon} onClick={this.handleMoreIcon} ><img className={classes.img_more_icon} src={more_icon}/>더보기</Button>
+                  <div className={classes.div_more_icon}  style={{display:this.state.more_icon}}>
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemText primary="헬스/건강"/>
+                  </ListItem>
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemText primary="전자제품"/>
+                  </ListItem>
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemText primary="악세사리"/>
+                  </ListItem>
+                  </div>
 
                 </List>
 

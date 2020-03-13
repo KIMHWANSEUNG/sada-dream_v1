@@ -54,12 +54,9 @@ class ProductCard extends React.Component {
     //이미지 크기 조정
     const img_scale={
       overflow:Hidden,
-      width:250,
-      height:200,
-      paddingRight:30,
-      paddingLeft:10,
-      paddingBottom:5,
-      paddingTop:3
+      width:230,
+      height:190,
+      padding:5
     }
 
     return (
