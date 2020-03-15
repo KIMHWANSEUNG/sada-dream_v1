@@ -22,13 +22,20 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Avatar from '@material-ui/core/Avatar';
 import ProductCard from './ProductCard'
+import Box from '@material-ui/core/Box';
+import './productlist.css';
 
 //국기 이미지
 import USA from "./Country_flag/u-s.png"
 import JP from "./Country_flag/j-p.png"
 import FRANCE from "./Country_flag/france.png"
 import Germany from "./Country_flag/germany.png"
-import My from "./Country_flag/m-y.png"
+import italy from "./Country_flag/italy.png"
+import UK from "./Country_flag/u-k.png"
+import VN from "./Country_flag/v-n.png"
+import all from "./Country_flag/earth-sm.png"
+
+
 
 //더보기 이미지
 import more_icon from "./icon/more-icon.png"
@@ -51,14 +58,16 @@ const styles = theme => ({
   div_root: {
     display: 'flex',
     minHeight: '100vh',
-    paddingRight: 200,
-    paddingLeft: 200,
-
+    paddingRight: 330,
+    paddingLeft: 320,
   },
   div_app: {
     flex: 1,
     display: 'flex',
+    width:1210,
+    height:1500,
     flexDirection: 'column',
+    position:'absolute',
 
   },
   div_more_icon:{
@@ -70,42 +79,46 @@ const styles = theme => ({
   },
   footer: {},
   Link_product_list: {
-    fontSize: 40,
+    fontSize: 30,
   },
   Link_product_add: {
     paddingLeft: 30
   },
   Divider: {
     border: "1px solid",
-    marginTop: 15,
+    marginTop: 1,
 
   },
   Grid_navigator: {
     width: 180,
     minHeight: 500
   },
-  Grid_content_header: {},
   Grid_content: {
     marginLeft: 200,
     width: 1300, //컨텐츠 그리드 길이
     position: 'absolute' //화면확대 해도 고정시키는 기능 !!
   },
+  Grid_header:{
+    marginTop:20,
+    marginBottom:20
+  },
   ListItemText_Category: {
     width: 180,
     height: 30,
     marginTop:10,
-    fontSize:10,
+    
+   
     '&:hover': {
       color:"#6495ED"
     },
 
   },
   ListSubheader_category: {
-    fontSize: 24
+    fontSize: 30
   },
   ListSubheader_country: {
     marginTop: 10,
-    fontSize: 24
+    fontSize: 30
   },
   Typography_content: {
   
@@ -120,7 +133,7 @@ const styles = theme => ({
   ,
   Button_more_icon:{
     fontSize:20,
-    marginTop:10,
+  
     '&:hover': {
       color:"#6495ED"
     },
@@ -128,46 +141,56 @@ const styles = theme => ({
   },
   img_more_icon:{
     marginRight:5
-  }
-  ,
-  // 여기서부터는 검색필드
+  },
+  //여기서부터 검색창 스타일
+  div_search:{
+    paddingLeft:600
+  },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: (theme.palette.common.white, 0.15),
+    backgroundColor: "#e6e6fa",
     '&:hover': {
-      backgroundColor: (theme.palette.common.white, 0.25),
+      backgroundColor: "#e6e6fa",
     },
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
+    marginLeft: theme.spacing.unit,
+    width: 'auto',
     },
-  },
-  searchIcon: {
-    width: theme.spacing(7),
+    },
+
+    searchIcon: {
+    width: theme.spacing.unit * 9,
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  inputRoot: {
+    },
+
+    inputRoot: {
     color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 7),
+    width: '100%',
+    },
+
+    inputInput: {
+    color:'#708090',
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 10,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: 120,
-      '&:focus': {
-        width: 200,
-      },
+    width: 120,
+    '&:focus': {
+    width: 200,
     },
-  },
+    },
+    }
+
 });
 
 class ProductList extends React.Component {
@@ -178,7 +201,9 @@ class ProductList extends React.Component {
       product_list: [],
       product_num: 0,
       more_icon:'none',
-      more_icon2:''
+      more_icon2:'',
+      more_icon3:'none',
+      more_cion4:''
     }
   }
 
@@ -187,6 +212,14 @@ class ProductList extends React.Component {
     this.setState({
       more_icon:'',
       more_icon2:"none"
+  })
+};
+
+  // 나라별 더보기 아이콘 함수
+  handleMoreIcon2 = (e) => {
+    this.setState({
+      more_icon3:'',
+      more_icon4:"none"
   })
 };
 
@@ -230,13 +263,42 @@ class ProductList extends React.Component {
 
           {/* 위치: 중앙 */}
           <main className={classes.main}>
-            <Link className={classes.Link_product_list} href="#" onClick={this.preventDefault}>
-              {"상품 목록"}
-            </Link>
 
-            <Link className={classes.Link_product_add} href="#" onClick={this.preventDefault}>
-              {"상품 추가하기"}
-            </Link>
+            {/*헤더 */}
+            <Grid  container
+             className={classes.Grid_header}
+              direction="row"
+              justify="flex-start"
+              alignItems="flex-end">
+
+                  <Link className={classes.Link_product_list} href="#" onClick={this.preventDefault}>
+                    {"상품 목록"}
+                  </Link>
+
+                  <Link className={classes.Link_product_add} href="#" onClick={this.preventDefault}>
+                    {"상품 추가하기"}
+                  </Link>
+           
+           {/* 검색창 */}
+           <div className={classes.div_search}>     
+            <Box  borderRadius={16} className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+                    <InputBase
+                    placeholder="검색하기"
+                    classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                    }}
+                    name="searchKeyword"
+                    value={this.searchKeyword}
+                    onChange={this.handleValueChange}
+                    />
+              </Box>
+           </div>  
+            </Grid>
+      
 
 
             <Divider className={classes.Divider}/>
@@ -258,24 +320,27 @@ class ProductList extends React.Component {
                   className={classes.root}>
 
                   <ListItem button className={classes.ListItemText_Category}>
-                    <ListItemText  primary="전체"/>
+                    <Typography variant="h7">전체</Typography>
                   </ListItem>
                   <ListItem button className={classes.ListItemText_Category}>
-                    <ListItemText  primary="뷰티/미용"/>
+                    <Typography variant="h7">뷰티/미용</Typography>
                   </ListItem>
                   <ListItem button className={classes.ListItemText_Category}>
-                    <ListItemText primary="식료품"/>
+                    <Typography variant="h7">식료품</Typography>
                   </ListItem>
+                  
+                  {/* 더보기 아이콘 */}
                   <Button style={{display:this.state.more_icon2}} className={classes.Button_more_icon} onClick={this.handleMoreIcon} ><img className={classes.img_more_icon} src={more_icon}/>더보기</Button>
+
                   <div className={classes.div_more_icon}  style={{display:this.state.more_icon}}>
                   <ListItem button className={classes.ListItemText_Category}>
-                    <ListItemText primary="헬스/건강"/>
+                  <Typography variant="h7">헬스/건강</Typography>
                   </ListItem>
                   <ListItem button className={classes.ListItemText_Category}>
-                    <ListItemText primary="전자제품"/>
+                  <Typography variant="h7">전자제품</Typography>
                   </ListItem>
                   <ListItem button className={classes.ListItemText_Category}>
-                    <ListItemText primary="악세사리"/>
+                  <Typography variant="h7">악세사리</Typography>
                   </ListItem>
                   </div>
 
@@ -294,32 +359,70 @@ class ProductList extends React.Component {
                   className={classes.root}>
                   
                   <ListItem button className={classes.ListItemText_Category}>
-                    <ListItemText  primary="전체"/>
+                  <Typography variant="h7">전체</Typography>
                   </ListItem>
 
                   <ListItem button className={classes.ListItemText_Category}>
                     <ListItemIcon>
                     <Avatar variant="rounded" src={USA}  className={classes.small} />
                     </ListItemIcon>
-                    <ListItemText  primary="미국"/>
+                    <Typography variant="h7">미국</Typography>
                   </ListItem>
 
                   <ListItem button className={classes.ListItemText_Category}>
                     <ListItemIcon>
                     <Avatar variant="rounded" src={JP}  className={classes.small} />
                     </ListItemIcon>
-                    <ListItemText primary="일본"/>
+                    <Typography variant="h7">일본</Typography>
                   </ListItem>
 
                   <ListItem button className={classes.ListItemText_Category}>
                     <ListItemIcon>
                     <Avatar variant="rounded" src={FRANCE}  className={classes.small} />
                     </ListItemIcon>
-                    <ListItemText  primary="프랑스"/>
+                    <Typography variant="h7">프랑스</Typography>
                   </ListItem>
-                </List>
-              </Grid>
+                  
+                  {/* 더보기 아이콘 */}
+                  <Button style={{display:this.state.more_icon4}} className={classes.Button_more_icon} onClick={this.handleMoreIcon2} ><img className={classes.img_more_icon} src={more_icon}/>더보기</Button>
 
+                  <div className={classes.div_more_icon}  style={{display:this.state.more_icon3}}>
+
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemIcon>
+                    <Avatar variant="rounded" src={italy}  className={classes.small} />
+                    </ListItemIcon>
+                    <Typography variant="h7">이탈리아</Typography>
+                  </ListItem>
+
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemIcon>
+                    <Avatar variant="rounded" src={UK}  className={classes.small} />
+                    </ListItemIcon>
+                    <Typography variant="h7">영국</Typography>
+                  </ListItem>
+
+                  
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemIcon>
+                    <Avatar variant="rounded" src={VN}  className={classes.small} />
+                    </ListItemIcon>
+                    <Typography variant="h7">베트남</Typography>
+                  </ListItem>
+
+                  <ListItem button className={classes.ListItemText_Category}>
+                    <ListItemIcon>
+                    <Avatar variant="rounded" src={all}  className={classes.small} />
+                    </ListItemIcon>
+                    <Typography variant="h7">기타국가</Typography>
+                  </ListItem>
+                 
+                  </div>
+
+                </List>
+                <Divider/>
+
+              </Grid>
 
               <Grid container direction="column" justify="flex-start" alignItems="flex-start"
                     className={classes.Grid_content}>
@@ -334,19 +437,7 @@ class ProductList extends React.Component {
                   <Button className={classes.Button_Showlist}>최신순</Button>
                   <Button className={classes.Button_Showlist}>마감순</Button>
                   <Button className={classes.Button_Showlist}>가격낮은순</Button>
-                  <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                      <SearchIcon/>
-                    </div>
-                    <InputBase
-                      placeholder="Search…"
-                      classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                      }}
-                      inputProps={{'aria-label': 'search'}}
-                    />
-                  </div>
+
                   <Divider></Divider>
                 </Grid>
 
@@ -374,9 +465,6 @@ class ProductList extends React.Component {
   }
 }
 
-ProductList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 
 export default withStyles(styles)(ProductList);
