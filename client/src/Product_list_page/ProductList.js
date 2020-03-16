@@ -23,7 +23,9 @@ import InputBase from '@material-ui/core/InputBase';
 import Avatar from '@material-ui/core/Avatar';
 import ProductCard from './ProductCard'
 import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import './productlist.css';
+
 
 //국기 이미지
 import USA from "./Country_flag/u-s.png"
@@ -42,170 +44,174 @@ import more_icon from "./icon/more-icon.png"
 
 // rendering of copyright
 function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        사다드림
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const styles = theme => ({
-  div_root: {
-    display: 'flex',
-    minHeight: '100vh',
-    paddingRight: 330,
-    paddingLeft: 320,
-  },
-  div_app: {
-    flex: 1,
-    display: 'flex',
-    width:1210,
-    height:1500,
-    flexDirection: 'column',
-    position:'absolute',
-
-  },
-  div_more_icon:{
-    flexDirection:'column'
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          사다드림
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
   }
-  ,
-  main: {
-    flex: 1,
-  },
-  footer: {},
-  Link_product_list: {
-    fontSize: 30,
-  },
-  Link_product_add: {
-    paddingLeft: 30
-  },
-  Divider: {
-    border: "1px solid",
-    marginTop: 1,
+  const styles = theme => ({
 
-  },
-  Grid_navigator: {
-    width: 180,
-    minHeight: 500
-  },
-  Grid_content: {
-    marginLeft: 200,
-    width: 1300, //컨텐츠 그리드 길이
-    position: 'absolute' //화면확대 해도 고정시키는 기능 !!
-  },
-  Grid_header:{
-    marginTop:20,
-    marginBottom:20
-  },
-  ListItemText_Category: {
-    width: 180,
-    height: 30,
-    marginTop:10,
-    
-   
-    '&:hover': {
-      color:"#6495ED"
+    div_root:{
+      
     },
-
-  },
-  ListSubheader_category: {
-    fontSize: 30
-  },
-  ListSubheader_country: {
-    marginTop: 10,
-    fontSize: 30
-  },
-  Typography_content: {
   
-  },
-  Button_Showlist: {
-    marginLeft: 20,
-    marginTop:5,
-    '&:hover': {
-      color:"#6495ED"
-    },
-  }
-  ,
-  Button_more_icon:{
-    fontSize:20,
+    div_app: {
+      width:1200,
+      flexDirection: 'column',
+      
+     
+     
   
-    '&:hover': {
-      color:"#6495ED"
     },
-
-  },
-  img_more_icon:{
-    marginRight:5
-  },
-  //여기서부터 검색창 스타일
-  div_search:{
-    paddingLeft:600
-  },
-  search: {
-    position: 'relative',
-    backgroundColor: "#e6e6fa",
-    '&:hover': {
-      backgroundColor: "#e6e6fa",
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing.unit,
-    width: 'auto',
-    },
-    },
-
-    searchIcon: {
-    width: theme.spacing.unit * 9,
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    },
-
-    inputRoot: {
-    color: 'inherit',
-    width: '100%',
-    },
-
-    inputInput: {
-    color:'#708090',
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-    width: 120,
-    '&:focus': {
-    width: 200,
-    },
-    },
+    div_more_icon:{
+      flexDirection:'column'
     }
+    ,
+  
+    
+    Link_product_list: {
+      fontSize: 30,
+    },
+    Link_product_add: {
+      paddingLeft: 30
+    },
+    Divider: {
+      border: "1px solid",
+      marginTop: 1,
+    },
+    header_Divider:{
+      border: "1px solid",
+      marginTop: 1,
+      width:1200,
+    },
+    Grid_navigator: {
+      width: 180,
+      minHeight: 500
+    },
+    Grid_content: {
+      marginLeft: 200,
+      width:1200, //컨텐츠 그리드 길이
+      position: 'absolute' //화면확대 해도 고정시키는 기능 !!
+    },
+    Grid_header:{
+      marginTop:20,
+      marginBottom:20
+    },
+    ListItemText_Category: {
+      width: 180,
+      height: 30,
+      marginTop:10,
+      
+     
+      '&:hover': {
+        color:"#6495ED"
+      },
+  
+    },
+    ListSubheader_category: {
+      fontSize: 30
+    },
+    ListSubheader_country: {
+      marginTop: 10,
+      fontSize: 30
+    },
+    Typography_content: {
+    
+    },
+    Button_Showlist: {
+      marginLeft: 20,
+      marginTop:5,
+      '&:hover': {
+        color:"#6495ED"
+      },
+    }
+    ,
+    Button_more_icon:{
+      fontSize:20,
+    
+      '&:hover': {
+        color:"#6495ED"
+      },
+  
+    },
+    img_more_icon:{
+      marginRight:5
+    },
 
-});
+    Container:{
+        align:"50%"
+    },
+
+    //여기서부터 검색창 스타일
+    div_search:{
+      paddingLeft:600
+    },
+    search: {
+      position: 'relative',
+      backgroundColor: "#e6e6fa",
+      '&:hover': {
+        backgroundColor: "#e6e6fa",
+      },
+      marginLeft: 0,
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing.unit,
+      width: 'auto',
+      },
+      },
+  
+      searchIcon: {
+      width: theme.spacing.unit * 9,
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      },
+  
+      inputRoot: {
+      color: 'inherit',
+      width: '100%',
+      },
+  
+      inputInput: {
+      color:'#708090',
+      paddingTop: theme.spacing.unit,
+      paddingRight: theme.spacing.unit,
+      paddingBottom: theme.spacing.unit,
+      paddingLeft: theme.spacing.unit * 10,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+      width: 120,
+      '&:focus': {
+      width: 200,
+      },
+      },
+      }
+  
+  });
 
 class ProductList extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      product_list: [],
-      product_num: 0,
-      more_icon:'none',
-      more_icon2:'',
-      more_icon3:'none',
-      more_cion4:''
-    }
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+          product_list: [],
+          product_num: 0,
+          more_icon:'none',
+          more_icon2:'',
+          more_icon3:'none',
+          more_cion4:''
+        }
+      }
 
   // 카테고리 더보기 아이콘 함수
   handleMoreIcon = (e) => {
@@ -251,18 +257,14 @@ class ProductList extends React.Component {
       </ProductCard>
     ));
 
-
-    return (
-
-
-      <div className={classes.div_root}>
-        <CssBaseline/>
-
-
+    return(
+        <Container className={classes.Container} component="main" >
+            <CssBaseline />
+    <div className={classes.div_root}>
         <div className={classes.div_app}>
-
+      
           {/* 위치: 중앙 */}
-          <main className={classes.main}>
+          
 
             {/*헤더 */}
             <Grid  container
@@ -301,7 +303,7 @@ class ProductList extends React.Component {
       
 
 
-            <Divider className={classes.Divider}/>
+            <Divider className={classes.header_Divider}/>
 
             <Grid container direction="row" justify="flex-start" alignItems="baseline">
 
@@ -445,24 +447,35 @@ class ProductList extends React.Component {
                   {/*foo1*/}
                   {/* 컨텐츠(상품카드) */}
                   {product_list}
+                  <ProductCard/><ProductCard/><ProductCard/><ProductCard/><ProductCard/><ProductCard/>
 
 
                 </Grid>
 
+         {/* 페이지 수 */}
+          <Grid 
+           className="grid"
+          > 
+            
+            <Link  variant="h5" href="#">1</Link>
+            <Divider></Divider>
+          </Grid>
+
+        <footer className="footer" >
+          <Copyright />
+        </footer>
               </Grid>
 
             </Grid>
-
-          </main>
-
-          <footer className={classes.footer}>
-            <Copyright/>
-          </footer>
         </div>
-      </div>
+        </div>
 
-    );
-  }
+
+
+      </Container>
+    )
+
+}
 }
 
 
