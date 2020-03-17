@@ -57,10 +57,7 @@ function Copyright() {
   }
   const styles = theme => ({
 
-    div_root:{
-      
-    },
-  
+
     div_app: {
       width:1200,
       flexDirection: 'column',
@@ -260,7 +257,7 @@ class ProductList extends React.Component {
     return(
         <Container className={classes.Container} component="main" >
             <CssBaseline />
-    <div className={classes.div_root}>
+   
         <div className={classes.div_app}>
       
           {/* 위치: 중앙 */}
@@ -453,25 +450,19 @@ class ProductList extends React.Component {
                 </Grid>
 
          {/* 페이지 수 */}
-          <Grid 
-           className="grid"
-          > 
-            
-            <Link  variant="h5" href="#">1</Link>
-            <Divider></Divider>
-          </Grid>
-
-        <footer className="footer" >
-          <Copyright />
-        </footer>
-              </Grid>
-
+              <Grid 
+              className="grid" > 
+                <Link  variant="h5" href="#">1</Link>
+              <Divider></Divider>
+             </Grid>
+             
+                {/* footer */}
+              <footer className="footer" >
+                <Copyright />
+              </footer>
             </Grid>
+          </Grid>
         </div>
-        </div>
-
-
-
       </Container>
     )
 
