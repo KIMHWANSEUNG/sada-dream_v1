@@ -4,7 +4,10 @@ import './App.css';
 //import ProductAdd from './Product_add_page/ProductAdd';
 
 //상품 목록 페이지
-import ProductList from './Product_list_page/ProductList' 
+//import ProductList from './Product_list_page/ProductList' 
+
+//회원가입 페이지
+import Register from './Register/Register'
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
@@ -19,7 +22,7 @@ function App() {
   });
   return (
     <MuiThemeProvider theme={theme}>
-      <ProductList/>
+      <Register/>
     </MuiThemeProvider>
   );
 }

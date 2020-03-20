@@ -606,6 +606,7 @@ class CustomerAdd extends React.Component {
                                         {category_list}
                                     </Select>
                                 </FormControl>
+                                
                                 <FormControl className={classes.Select_Formcontrol}>
                                     <InputLabel id="demo-simple-select-helper-label">세부 카테고리</InputLabel>
                                     <Select
