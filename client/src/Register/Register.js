@@ -50,6 +50,12 @@ class Register extends React.Component{
         }
     }
 
+    handleValueChange = (e) => {
+      let nextState = {};
+      nextState[e.target.name] = e.target.value;
+      this.setState(nextState);
+  }
+
     country_handlechange= (e) => {
       this.setState({user_country_number: e.target.value});
     }
@@ -74,25 +80,23 @@ class Register extends React.Component{
                  
                   <Grid item xs={12} >
                     <TextField
-                      autoComplete="fname"
-                      name="firstName"
+                      name="user_email"
                       variant="outlined"
-                      required
+                      type="text"
                       fullWidth
-                      id=""
-                      label="이메일(아이디)"
-                      autoFocus
-                    />
+                      value={this.state.user_email}
+                      onChange={this.handleValueChange}
+                      label="이메일(아이디)" />
                   </Grid>
 
                   <Grid item xs={12} >
                     <TextField
+                      name="user_password"
                       variant="outlined"
-                      required
                       fullWidth
-                      id="lastName"
+                      value={this.state.user_password}
                       label="비밀번호"
-                      name="lastName"
+                      onChange={this.handleValueChange}
                       autoComplete="lname"
                     />
                   </Grid>
@@ -102,9 +106,10 @@ class Register extends React.Component{
                       variant="outlined"
                       required
                       fullWidth
-                      id="lastName"
+                      value={this.state.user_password_comfirm}
+                      onChange={this.handleValueChange}
                       label="비밀번호 확인"
-                      name="lastName"
+                      name="user_password_comfirm"
                       autoComplete="lname"
                     />
                   </Grid>
@@ -114,9 +119,10 @@ class Register extends React.Component{
                       variant="outlined"
                       required
                       fullWidth
-                      id="email"
+                      value={this.state.user_name}
+                      onChange={this.handleValueChange}
                       label="이름"
-                      name="email"
+                      name="user_name"
                     />
                   </Grid>
 
@@ -125,9 +131,10 @@ class Register extends React.Component{
                       variant="outlined"
                       required
                       fullWidth
-                      id="email"
+                      value={this.state.user_birth}
+                      onChange={this.handleValueChange}
                       label="생년월일 YYYY/MM/DD"
-                      name="email"
+                      name="user_birth"
                     />
                      <FormHelperText>8자리로 입력해주세요. 14세 이상만 가입 가능합니다.</FormHelperText>
                   </Grid>
