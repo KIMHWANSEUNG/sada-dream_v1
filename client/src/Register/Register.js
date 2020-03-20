@@ -31,8 +31,10 @@ function Copyright() {
     );
   }
   
+  
+
 class Register extends React.Component{
-    
+
     constructor(props){
         super(props)
         this.state = {
@@ -44,18 +46,85 @@ class Register extends React.Component{
           user_country_number:'',
           user_phone_number:'',
           user_gender:'',
-          recommender:''
+          recommender:'',
+
+          //아이디 비밀번호 정규식
+          id_logic:false,
+          id_logic_label:false,
+          password_logic:false,
+          password_logic_label:false,
 
 
         }
     }
+      //이메일
+    ID_handleValueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+        
+        this.setState({
+          id_logic:false,
+          id_logic_label:false,
+        });
+        
+        //이메일 정규식
+        var email_logic = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        if (!email_logic.test(document.getElementById('email').value)) { 
+          this.setState({
+            id_logic:true,
+            id_logic_label:true
+          });
+          if(document.getElementById('email').value==="")
+          {
+            this.setState({
+              id_logic:false,
+              id_logic_label:false,
+            });
+          }
+        }
+    }
 
-    handleValueChange = (e) => {
-      let nextState = {};
-      nextState[e.target.name] = e.target.value;
-      this.setState(nextState);
-  }
+    //비밀번호
+    PW_handleValueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
 
+        this.setState({
+          password_logic:false,
+          password_logic_label:false,
+        });
+        //비밀번호 정규식
+        var pw_logic=/^.*(?=.{6,12})(?=.*[0-9])(?=.*[a-zA-Z]).*$/
+        if(!pw_logic.test(document.getElementById('password').value)){
+          this.setState({
+            password_logic:true,
+            password_logic_label:true,
+          });
+
+        if(document.getElementById('password').value==="")
+                {
+                  this.setState({
+                    password_logic:false,
+                    password_logic_label:false,
+                  });
+                }
+              } 
+            }
+
+      //비밀번호 확인
+      PW_CHECK_handleValueChange = (e) => {
+        
+      }
+      handleValueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+
+        
+          }
+      
     country_handlechange= (e) => {
       this.setState({user_country_number: e.target.value});
     }
@@ -80,25 +149,31 @@ class Register extends React.Component{
                  
                   <Grid item xs={12} >
                     <TextField
+                      id="email"
+                      error={this.state.id_logic}
                       name="user_email"
                       variant="outlined"
                       type="text"
                       fullWidth
                       value={this.state.user_email}
-                      onChange={this.handleValueChange}
-                      label="이메일(아이디)" />
+                      onChange={this.ID_handleValueChange}
+                      label={this.state.id_logic_label?"이메일 형식에 맞게 입력해주세요":"이메일(아이디)"} />
                   </Grid>
 
                   <Grid item xs={12} >
                     <TextField
+                      error={this.state.password_logic}
+                      id="password"
                       name="user_password"
                       variant="outlined"
                       fullWidth
                       value={this.state.user_password}
-                      label="비밀번호"
-                      onChange={this.handleValueChange}
+                      type={'password'}
+                      label={this.state.password_logic_label?"비밀번호 형식에 맞게 입력해주세요":"비밀번호"}
+                      onChange={this.PW_handleValueChange}
                       autoComplete="lname"
                     />
+                    <FormHelperText>6~12자리 숫자와 문자를 입력해주세요.</FormHelperText>
                   </Grid>
 
                   <Grid item xs={12} >
@@ -106,6 +181,7 @@ class Register extends React.Component{
                       variant="outlined"
                       required
                       fullWidth
+                      type={'password'}
                       value={this.state.user_password_comfirm}
                       onChange={this.handleValueChange}
                       label="비밀번호 확인"
