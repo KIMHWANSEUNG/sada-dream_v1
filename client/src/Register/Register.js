@@ -38,6 +38,7 @@ class Register extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+          //회원 테이블 값들
           user_email:'',
           user_password:'',
           user_password_comfirm:'',
@@ -48,11 +49,29 @@ class Register extends React.Component{
           user_gender:'',
           recommender:'',
 
-          //아이디 비밀번호 정규식
+          //아이디 비밀번호 이름 생년월일 핸드폰번호 정규식
           id_logic:false,
           id_logic_label:false,
           password_logic:false,
           password_logic_label:false,
+          name_logic:false,
+          name_logic_label:false,
+          birth_logic:false,
+          birth_logic_label:false,
+          phone_number_logic:false,
+          phone_number_logic_label:false,
+
+          //비밀번호 확인
+          password_confirm:false,
+          password_confirm_label:false,
+          
+          //style
+          gender_marginRight:20,
+
+          //성별 버튼
+          gender_male:false,
+          gender_female:false,
+
 
 
         }
@@ -114,16 +133,125 @@ class Register extends React.Component{
             }
 
       //비밀번호 확인
-      PW_CHECK_handleValueChange = (e) => {
-        
-      }
-      handleValueChange = (e) => {
+      PW_confirm_handleValueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
 
+        this.setState({
+          password_confirm:false,
+          password_confirm_label:false,
+        });
+        if(!(document.getElementById("password_confirm").value === document.getElementById("password").value)){
+
+        this.setState({
+          password_confirm:true,
+          password_confirm_label:true,
+        });
+
+        if(document.getElementById("password_confirm").value===""){
+          this.setState({
+            password_confirm:false,
+            password_confirm_label:false,
+          });
+        }
+        }
+      }
+      //이름
+      NAME_handleValueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+
+        this.setState({
+          name_logic:false,
+          name_logic_label:false,
+        });
+        //이름 정규식
+      var name_logic=/^[가-힣]{2,5}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+       if(!name_logic.test(document.getElementById("name").value)){
+        this.setState({
+          name_logic:true,
+          name_logic_label:true,
+        });
         
+        if(document.getElementById("name").value ===""){
+          this.setState({
+            name_logic:false,
+            name_logic_label:false,
+          });
+        }
+      }
+      }
+
+      BIRTH_handleValueChange = (e) =>{
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+
+        this.setState({
+          birth_logic:false,
+          birth_logic_label:false,
+        });
+
+      var birth_logic=/^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
+      if(!birth_logic.test(document.getElementById("birth").value)){
+        this.setState({
+          birth_logic:true,
+          birth_logic_label:true,
+        });
+        if(document.getElementById("birth").value ===""){
+          this.setState({
+            birth_logic:false,
+            birth_logic_label:false,
+          });
+        }
+      }
+      }
+      //핸드폰 번호
+      PHONE_NUMBER_handleValueChange = (e) =>{
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+
+        this.setState({
+          phone_number_logic:false,
+          phone_number_logic_label:false,
+        });
+        //핸드폰 번호 정규식
+        var phone_number_logic=/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g
+        if(!phone_number_logic.test(document.getElementById("phone_number").value)){
+          this.setState({
+            phone_number_logic:true,
+            phone_number_logic_label:true,
+          });
+
+          if(document.getElementById("phone_number") === ""){
+            this.setState({
+              phone_number_logic:false,
+              phone_number_logic_label:false,
+            });
           }
+        }
+      }
+  
+    //성별 
+    gender_male_handleValueChange = (e) => {
+        this.setState({
+          user_gender:"남자",
+          gender_male:true,
+          gender_female:false
+        })
+          }
+
+          gender_female_handleValueChange = (e) => {
+            this.setState({
+              user_gender:"여자",
+              gender_male:false,
+              gender_female:true
+            })
+              }
+
       
     country_handlechange= (e) => {
       this.setState({user_country_number: e.target.value});
@@ -147,7 +275,7 @@ class Register extends React.Component{
               <form className="form" noValidate>
                 <Grid container spacing={2}>
                  
-                  <Grid item xs={12} >
+                  <Grid  className="Grid_all" >
                     <TextField
                       id="email"
                       error={this.state.id_logic}
@@ -160,7 +288,7 @@ class Register extends React.Component{
                       label={this.state.id_logic_label?"이메일 형식에 맞게 입력해주세요":"이메일(아이디)"} />
                   </Grid>
 
-                  <Grid item xs={12} >
+                  <Grid className="Grid_all" >
                     <TextField
                       error={this.state.password_logic}
                       id="password"
@@ -176,46 +304,52 @@ class Register extends React.Component{
                     <FormHelperText>6~12자리 숫자와 문자를 입력해주세요.</FormHelperText>
                   </Grid>
 
-                  <Grid item xs={12} >
+                  <Grid className="Grid_all" >
                     <TextField
+                     id="password_confirm"
+                    error={this.state.password_confirm}
                       variant="outlined"
                       required
                       fullWidth
                       type={'password'}
                       value={this.state.user_password_comfirm}
-                      onChange={this.handleValueChange}
-                      label="비밀번호 확인"
+                      onChange={this.PW_confirm_handleValueChange}
+                      label={this.state.password_confirm_label?"비밀번호가 다릅니다":"비밀번호 확인"}
                       name="user_password_comfirm"
                       autoComplete="lname"
                     />
                   </Grid>
 
-                  <Grid item xs={12}>
+                  <Grid className="Grid_all">
                     <TextField
+                      id="name"
+                      error={this.state.name_logic}
                       variant="outlined"
                       required
                       fullWidth
                       value={this.state.user_name}
-                      onChange={this.handleValueChange}
-                      label="이름"
+                      onChange={this.NAME_handleValueChange}
+                      label={this.state.name_logic_label?"이름을 정확히 써주세요":"이름"}
                       name="user_name"
                     />
                   </Grid>
 
-                  <Grid item xs={12}>
+                  <Grid className="Grid_all" >
                     <TextField
+                      error={this.state.birth_logic}
+                      id="birth"
                       variant="outlined"
                       required
                       fullWidth
                       value={this.state.user_birth}
-                      onChange={this.handleValueChange}
-                      label="생년월일 YYYY/MM/DD"
+                      onChange={this.BIRTH_handleValueChange}
+                      label={this.state.birth_logic_label?"생년월일 형식에 맞게 써주세요":"생년월일 YYYYMMDD"}
                       name="user_birth"
                     />
-                     <FormHelperText>8자리로 입력해주세요. 14세 이상만 가입 가능합니다.</FormHelperText>
+                     <FormHelperText>8자리로 입력해주세요. </FormHelperText>
                   </Grid>
 
-                  <Grid item xs={12}>
+                  <Grid className="Grid_all" >
                   <FormControl  className="Select_Formcontrol">
                   <InputLabel>국적 선택</InputLabel>
                     <Select  value={this.state.user_country_number} onChange={this.country_handlechange} className="" >
@@ -225,18 +359,34 @@ class Register extends React.Component{
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={12}>
-                    
-
+                  <Grid  className="Grid_all">
+                  <TextField
+                      error={this.state.phone_number_logic}
+                      id="phone_number"
+                      variant="outlined"
+                      required
+                      fullWidth
+                      value={this.state.user_phone_number}
+                      onChange={this.PHONE_NUMBER_handleValueChange}
+                      label={this.state.phone_number_logic_label?"형식에 맞게 써주세요":"휴대폰 번호"}
+                      name="user_phone_number"
+                    />
+                     <FormHelperText>8자리로 입력해주세요. </FormHelperText>
                   </Grid>
 
-                  <Grid >
+                  <Grid className="Grid_all" >
+                  <Button   color={this.state.gender_male?"primary":""} onClick={this.gender_male_handleValueChange} variant="outlined" className="Button_gender" style={{marginRight:this.state.gender_marginRight}}>남자</Button>
+                  <Button  color={this.state.gender_female?"primary":""} onClick={this.gender_female_handleValueChange}  variant="outlined" className="Button_gender" >여자</Button>
+                  </Grid>
+
+                  <Grid className="Grid_all" >
                     <FormControlLabel
                     className="FormControlLabel_agree"
                       control={<Checkbox value="allowExtraEmails" color="primary" />}
                       label="모든약관에 동의합니다."
                     />
                   </Grid>
+
                 </Grid>
                 <Button
                   type="submit"

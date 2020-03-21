@@ -31,5 +31,17 @@
 
   .Select_Formcontrol{
     minWidth:220;
+    }
+
+ .Grid_all{
+     width: 1000px;
+     margin-top:10px;
+     margin-bottom:10px;
     
-}
+ }
+
+ .Button_gender{
+     margin: 20px;
+     width:100px;
+     height:50px;
+ }
