@@ -244,9 +244,6 @@ class CustomerAdd extends React.Component {
                 console.log(response.data);
             })
     }
-    foo = (e) => {
-        console.log(this.state.product_size);
-    }
 
     // input file event
     handleFileChange = (e) => {

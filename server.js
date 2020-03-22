@@ -55,6 +55,9 @@ app.post('/api/ask/add', upload.single('image'), (req, res) => {
   );
 });
 
+// 회원가입 POST
+
+
 // 요청 상품 리스트 GET
 app.get('/api/ask/list', (req, res) => {
   connection.query(
