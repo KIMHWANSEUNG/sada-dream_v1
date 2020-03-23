@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import {FormControl,FormHelperText} from '@material-ui/core';
+import {FormControl,FormHelperText,AppBar,Toolbar,withStyles} from '@material-ui/core';
 
 
 function Copyright() {
@@ -30,7 +30,17 @@ function Copyright() {
       </Typography>
     );
   }
-  
+
+  const styles = theme => ({
+    
+    Link_appbar:{
+      marginRight:10,
+      marginLeft:10
+    }
+
+
+
+  })
   
 
 class Register extends React.Component{
@@ -258,11 +268,44 @@ class Register extends React.Component{
     }
 
     render(){
+      const {classes} = this.props;
       const country=["대한민국","일본","미국","중국","영국","프랑스","캐나다","러시아","몽골","이탈리아","스페인","태국","베트남","말레이시아","인도네시아","네덜란드","멕시코","브라질","아르헨티나","칠레"]
     const country_list=country.map((country,index) => (<MenuItem key={index} value={country}>{country}</MenuItem>))
         return(
-            <Container component="main" maxWidth="xs">
+          <React.Fragment>
             <CssBaseline />
+            {/* 앱바 */}
+              <AppBar  position="sticky" color="default" elevation={0}>
+                <Toolbar className="">
+                <Grid
+                  container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="center"
+                >
+                  <Typography variant="h6" color="inherit" noWrap className="">
+                    사다드림
+                  </Typography>
+                  <nav className="appbar">
+                    <Link variant="button" color="textPrimary" href="#" className={classes.Link_appbar}>
+                      요청리스트
+                    </Link>
+                    <Link variant="button" color="textPrimary" href="#" className={classes.Link_appbar}>
+                      여행자리스트
+                    </Link>
+                    <Link variant="button" color="textPrimary" href="#" className={classes.Link_appbar}>
+                      고객센터
+                    </Link>
+                  <Button href="#" color="primary" variant="outlined" className="">
+                    로그인
+                  </Button>
+                  </nav>
+                 </Grid>
+              </Toolbar>
+            </AppBar>
+
+            {/* 회원가입  */}
+            <Container component="main" maxWidth="xs">
             <div class="paper">
                 <div class="div_icon">
               <Avatar class="avatar" >
@@ -411,7 +454,9 @@ class Register extends React.Component{
             <Copyright/>
             </Box>
           </Container>
+
+          </React.Fragment>
         )
     }
 }
-export default Register;
+export default withStyles(styles)(Register);
