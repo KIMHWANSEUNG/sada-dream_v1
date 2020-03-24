@@ -22,13 +22,7 @@
       margin-top:30px;
   }
 
-  .FormControlLabel_agree{
-      width:150;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: flex;
-      flex-direction: row;
-  }
+
 
   .Select_Formcontrol{
     minWidth:220;

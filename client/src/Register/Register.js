@@ -16,7 +16,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import {FormControl,FormHelperText,AppBar,Toolbar,withStyles} from '@material-ui/core';
-
+import Dialogs from "./Dialogs"
 
 function Copyright() {
     return (
@@ -36,6 +36,35 @@ function Copyright() {
     Link_appbar:{
       marginRight:10,
       marginLeft:10
+    },
+    Button_gender:{
+      width:187,
+      height:50,
+    },
+    Checkbox_agree:{
+      marginLeft:50,
+    },
+    FormControlLabel_agree:{
+   
+      marginTop:20,
+      htmlFontSize: 10,
+      '&:hover': {
+        color:"#6495ED"
+      },
+    },
+    Box_agree:{
+      width:400,
+      height:245,
+      border:"solid 1px",
+      color:"silver",
+    },
+    Button_submit:{
+      marginTop:50,
+      height:70,
+      borderRadius:10
+    },
+    Typography_country:{
+      fontSize:17
     }
 
 
@@ -57,7 +86,11 @@ class Register extends React.Component{
           user_country_number:'',
           user_phone_number:'',
           user_gender:'',
-          recommender:'',
+
+          //광고성 정보 수신 동의
+          receive_agree:false,
+         
+          //(보류)recommender:'',
 
           //아이디 비밀번호 이름 생년월일 핸드폰번호 정규식
           id_logic:false,
@@ -86,6 +119,17 @@ class Register extends React.Component{
 
         }
     }
+
+    //광고성 정보 수신 동의 
+    receive_agreeCallbackFunction = (childData) => {
+      console.log(childData);
+      this.setState({
+          receive_agree: childData.receive_agree,
+
+      });
+  };
+
+
       //이메일
     ID_handleValueChange = (e) => {
         let nextState = {};
@@ -267,6 +311,10 @@ class Register extends React.Component{
       this.setState({user_country_number: e.target.value});
     }
 
+    submit = (e) => {
+      console.log(this.state.receive_agree)
+    }
+
     render(){
       const {classes} = this.props;
       const country=["대한민국","일본","미국","중국","영국","프랑스","캐나다","러시아","몽골","이탈리아","스페인","태국","베트남","말레이시아","인도네시아","네덜란드","멕시코","브라질","아르헨티나","칠레"]
@@ -393,12 +441,12 @@ class Register extends React.Component{
                   </Grid>
 
                   <Grid className="Grid_all" >
-                  <FormControl  className="Select_Formcontrol">
+                  <FormControl fullWidth  className="Select_Formcontrol">
                   <InputLabel>국적 선택</InputLabel>
                     <Select  value={this.state.user_country_number} onChange={this.country_handlechange} className="" >
                     {country_list}
                     </Select>
-                    <FormHelperText>해외 거주자나 해외 유심 이용자는 해당 국가번호를 선택</FormHelperText>
+                    <FormHelperText><Typography className={classes.Typography_country}>해외 유심 이용자는 해당 국가번호를 선택</Typography></FormHelperText>
                     </FormControl>
                   </Grid>
 
@@ -418,25 +466,32 @@ class Register extends React.Component{
                   </Grid>
 
                   <Grid className="Grid_all" >
-                  <Button   color={this.state.gender_male?"primary":""} onClick={this.gender_male_handleValueChange} variant="outlined" className="Button_gender" style={{marginRight:this.state.gender_marginRight}}>남자</Button>
-                  <Button  color={this.state.gender_female?"primary":""} onClick={this.gender_female_handleValueChange}  variant="outlined" className="Button_gender" >여자</Button>
+                  <Button className={classes.Button_gender}  color={this.state.gender_male?"primary":""} onClick={this.gender_male_handleValueChange} variant="outlined"  style={{marginRight:this.state.gender_marginRight}}>남자</Button>
+                  <Button className={classes.Button_gender}  color={this.state.gender_female?"primary":""} onClick={this.gender_female_handleValueChange}  variant="outlined"  >여자</Button>
                   </Grid>
 
                   <Grid className="Grid_all" >
-                    <FormControlLabel
-                    className="FormControlLabel_agree"
-                      control={<Checkbox value="allowExtraEmails" color="primary" />}
-                      label="모든약관에 동의합니다."
-                    />
+                  <FormControlLabel
+                    className={classes.FormControlLabel_agree}
+                    value="start"
+                    control={<Checkbox className={classes.Checkbox_agree} color="primary" />}
+                    label="모든 약관에 동의 합니다."
+                    labelPlacement="start"
+                    htmlFontSize={100}
+                  />
+                  <Box className={classes.Box_agree}>
+                    <Dialogs parentCallback={this.receive_agreeCallbackFunction}/>
+                  </Box>
                   </Grid>
 
                 </Grid>
                 <Button
+                className={classes.Button_submit}
+                  onClick={this.submit}
                   type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
-                  
                 >
                   회원 가입
                 </Button>
