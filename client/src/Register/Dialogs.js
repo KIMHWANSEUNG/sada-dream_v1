@@ -15,7 +15,8 @@ const state = {
 const styles = theme=> ({
   Link:{
     marginLeft:10,
-    fontSize:23
+    fontSize:23,
+    paddingBottom:10,
   },
   div_checkbox:{
     marginTop:10,
@@ -29,7 +30,8 @@ const styles = theme=> ({
   }
   ,
   Typography_agree:{
-    fontSize:23
+    fontSize:23,
+    
     
   },
   div_agree:{
@@ -139,17 +141,13 @@ class Dialogs extends React.Component {
 </div>  
 <Box className={classes.Box_agree}>
   <Grid
-      container
-      direction="column"
-      justify="flex-start"
-      alignItems="flex-start"
+  container
+  direction="row"
+  justify="flex-start"
+  alignItems="baseline"
       >
     <div className={classes.div_checkbox}>
-      <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center">
+
           <div className={classes.div_chkbox}>
           <input type="checkbox" id="service" class="checkbox-style" />
             <label  for="service"> 
@@ -158,7 +156,7 @@ class Dialogs extends React.Component {
                 서비스 이용 동의
               </Link>
           </div>
-        </Grid>
+       
 
         <Grid
           container

@@ -57,7 +57,7 @@ input[type=checkbox] + label{
     position: relative;  
     padding-left: 25px;  
     margin-right: 15px;  
-    font-size: 13px;
+    font-size: 18px;
     margin-left: 20px;
 
     
@@ -74,7 +74,7 @@ input[type=checkbox]+ label:before {
     margin-right: 10px;  
     position: absolute;  
     left: 0;  
-    bottom: 0px;  
+    bottom: 5px;  
     background-color: #ccc;  
     border-radius: 50%; 
     box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
@@ -84,7 +84,7 @@ input[type=checkbox]:checked + label:before {
     content: "\2713";  /* 체크모양 */
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
     font-size: 18px; 
-    font-weight:10; 
+    font-weight:0; 
     color: #fff;  
     background:#2f87c1;
     text-align: center;  
