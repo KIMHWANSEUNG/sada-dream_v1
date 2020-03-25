@@ -5,7 +5,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {Grid,FormControlLabel,Checkbox,withStyles,Link,Typography,Box} from '@material-ui/core';
+import {Grid,FormControlLabel,withStyles,Link,Typography,Box,Checkbox} from '@material-ui/core';
+
 
 
 const state = {
@@ -14,13 +15,22 @@ const state = {
 const styles = theme=> ({
   Link:{
     marginLeft:10,
-    fontSize:20
+    fontSize:23
   },
   div_checkbox:{
-    marginTop:10
+    marginTop:10,
   },
+  Typography_all_agree:{
+    fontSize:30,
+    marginLeft:20,
+    '&:hover': {
+      color:"#6495ED"
+    },
+  }
+  ,
   Typography_agree:{
-    fontSize:20
+    fontSize:23
+    
   },
   div_agree:{
     marginLeft:10
@@ -28,7 +38,6 @@ const styles = theme=> ({
   FormControlLabel_agree:{
    
     marginTop:20,
-    htmlFontSize: 10,
     '&:hover': {
       color:"#6495ED"
     },
@@ -40,9 +49,16 @@ const styles = theme=> ({
     color:"silver",
   },
   Checkbox_agree:{
-    marginLeft:50,
+    marginLeft:20,
   },
-
+  div_chkbox:{
+    marginTop:10,
+    marginBottom:10
+  },
+  div_all_agree:{
+    marginTop:20,
+    marginBottom:10,
+  }
 })
 
 
@@ -55,13 +71,6 @@ class Dialogs extends React.Component {
       scroll:'paper',
       scroll2:'paper',
 
-      //체크박스 상태
-     all_check:false,
-     service_check:false,
-     info_check:false,
-     ad_check:false,
-     SMS_check:false,
-     email_check:false,
 
 
     }
@@ -110,6 +119,7 @@ class Dialogs extends React.Component {
   all_check = (e) => {
     
     if(e.target.checked===true){
+      document.getElementById("service").checked=1
   
     }
   }
@@ -117,136 +127,146 @@ class Dialogs extends React.Component {
 
   render(){
     const {classes} = this.props;
+   
 
   return (
     <React.Fragment>
-    <FormControlLabel
-    className={classes.FormControlLabel_agree}
-    value="start"
-    control={<Checkbox  onChange={this.all_check} className={classes.Checkbox_agree} color="primary" />}
-    label="모든 약관에 동의 합니다."
-    labelPlacement="start"
-    htmlFontSize={100}
-  />
-  <Box className={classes.Box_agree}>
-    <Grid
-    container
-    direction="column"
-    justify="flex-start"
-    alignItems="flex-start"
-    >
-      <div className={classes.div_checkbox}>
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
+<div className={classes.div_all_agree}>
+  <input type="checkbox" onChange={this.all_check} id="all_check" class="checkbox-style" />
+    <label for="all_check">
+      <Typography className={classes.Typography_all_agree} >모든 약관에 동의합니다</Typography>
+    </label>
+</div>  
+<Box className={classes.Box_agree}>
+  <Grid
+      container
+      direction="column"
+      justify="flex-start"
+      alignItems="flex-start"
       >
-      <Link className={classes.Link} variant="body2" onClick={this.handleClickOpen}>
-        서비스 이용 동의
-      </Link>
-      <Checkbox id="service"  color="primary" />
-      </Grid>
+    <div className={classes.div_checkbox}>
+      <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center">
+          <div className={classes.div_chkbox}>
+          <input type="checkbox" id="service" class="checkbox-style" />
+            <label  for="service"> 
+            </label>
+              <Link className={classes.Link} variant="body2" onClick={this.handleClickOpen}>
+                서비스 이용 동의
+              </Link>
+          </div>
+        </Grid>
 
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-      >
-      <Link  className={classes.Link}  variant="body2" onClick={this.handleClickOpen2}>
-        개인정보 처리 방침 동의
-      </Link>
-      <Checkbox  color="primary" />
-      </Grid>
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+          <div className={classes.div_chkbox}>
+          <input type="checkbox" id="info" class="checkbox-style" />
+            <label  for="info"> 
+            </label>
+            <Link  className={classes.Link}  variant="body2" onClick={this.handleClickOpen2}>
+              개인정보 처리 방침 동의
+            </Link>
+          </div>          
+
+        </Grid>
+        
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+        <div className={classes.div_chkbox}>
+          <input type="checkbox" id="ad" class="checkbox-style" onClick={this.receive_info}   />
+            <label  for="ad"> 
+            </label>
+            <Link  className={classes.Link}  variant="body2" >
+              이벤트/광고 수신동의 (선택)
+            </Link>
+        </div> 
       
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-      >
-      <Link  className={classes.Link}  variant="body2">
-      이벤트/광고성 알림 수신동의 (선택)
-      </Link>
-      <Checkbox  onChange={this.receive_info} color="primary" />
-      <div className={classes.div_agree}>
-      <FormControlLabel
-          fontSize="5"
-          value="end"
-          control={ <Checkbox onChange={this.receive_info} color="primary" />}
-          label={<Typography className={classes.Typography_agree}>SMS</Typography>}
-          labelPlacement="end"
-        />
+        <div className={classes.div_agree}>
 
-        <FormControlLabel
-          value="end"
-          control={ <Checkbox onChange={this.receive_info} color="primary" />}
-          label={<Typography className={classes.Typography_agree}>이메일</Typography>}
-          labelPlacement="end"
-        />
+        <div className="div_ad">
+          <input type="checkbox" id="email_agree" class="checkbox-style" onClick={this.receive_info}   />
+            <label  for="email_agree"> 
+            </label>
+            {<Typography className={classes.Typography_agree} color="primary">이메일</Typography>}
+
+            <input type="checkbox" id="SMS_agree" class="checkbox-style" onClick={this.receive_info}   />
+            <label  for="SMS_agree"> 
+            </label>
+            {<Typography className={classes.Typography_agree} color="primary" >SMS</Typography>}
+        </div> 
 
 
-      </div>
+        </div>
+
+      </Grid>
+    </div>
     
+
+        
+        {/*서비스 이용 동의  */}
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          scroll={this.state.scroll}
+        >
+          <DialogTitle id="scroll-dialog-title">서비스 이용 동의</DialogTitle>
+          <DialogContent dividers={this.state.scroll === 'paper'}>
+            <DialogContentText
+              id="scroll-dialog-description"
+              tabIndex={-1}
+            >
+              {[...new Array(10)]
+                .map(
+                  () => '블라',
+                )
+                .join('\n')}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              확인
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+
+      {/* 개인정보 처리 방침 동의*/}
+        <Dialog
+          open={this.state.open2}
+          onClose={this.handleClose2}
+          scroll={this.state.scroll}
+        >
+          <DialogTitle id="scroll-dialog-title">서비스 이용 동의</DialogTitle>
+          <DialogContent dividers={this.state.scroll2 === 'paper'}>
+            <DialogContentText
+              id="scroll-dialog-description"
+              tabIndex={-1}
+            >
+              {[...new Array(10)]
+                .map(
+                  () => '히히',
+                )
+                .join('\n')}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose2} color="primary">
+              확인
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Grid>
-      </div>
-  
-
-      
-      {/*서비스 이용 동의  */}
-      <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        scroll={this.state.scroll}
-      >
-        <DialogTitle id="scroll-dialog-title">서비스 이용 동의</DialogTitle>
-        <DialogContent dividers={this.state.scroll === 'paper'}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            tabIndex={-1}
-          >
-            {[...new Array(10)]
-              .map(
-                () => '블라',
-              )
-              .join('\n')}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            확인
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-
-    {/* 개인정보 처리 방침 동의*/}
-      <Dialog
-        open={this.state.open2}
-        onClose={this.handleClose2}
-        scroll={this.state.scroll}
-      >
-        <DialogTitle id="scroll-dialog-title">서비스 이용 동의</DialogTitle>
-        <DialogContent dividers={this.state.scroll2 === 'paper'}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            tabIndex={-1}
-          >
-            {[...new Array(10)]
-              .map(
-                () => '히히',
-              )
-              .join('\n')}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.handleClose2} color="primary">
-            확인
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Grid>
   </Box>
 </React.Fragment>
   );
