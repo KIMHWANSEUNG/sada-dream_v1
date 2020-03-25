@@ -117,6 +117,9 @@ class Register extends React.Component{
 
 
 
+
+
+
         }
     }
 
@@ -407,8 +410,7 @@ class Register extends React.Component{
                       onChange={this.PW_confirm_handleValueChange}
                       label={this.state.password_confirm_label?"비밀번호가 다릅니다":"비밀번호 확인"}
                       name="user_password_comfirm"
-                      autoComplete="lname"
-                    />
+                      autoComplete="lname" />
                   </Grid>
 
                   <Grid className="Grid_all">
@@ -421,8 +423,7 @@ class Register extends React.Component{
                       value={this.state.user_name}
                       onChange={this.NAME_handleValueChange}
                       label={this.state.name_logic_label?"이름을 정확히 써주세요":"이름"}
-                      name="user_name"
-                    />
+                      name="user_name"/>
                   </Grid>
 
                   <Grid className="Grid_all" >
@@ -462,7 +463,7 @@ class Register extends React.Component{
                       label={this.state.phone_number_logic_label?"형식에 맞게 써주세요":"휴대폰 번호"}
                       name="user_phone_number"
                     />
-                     <FormHelperText>8자리로 입력해주세요. </FormHelperText>
+                     <FormHelperText>11자리로 입력해주세요. </FormHelperText>
                   </Grid>
 
                   <Grid className="Grid_all" >
@@ -471,17 +472,9 @@ class Register extends React.Component{
                   </Grid>
 
                   <Grid className="Grid_all" >
-                  <FormControlLabel
-                    className={classes.FormControlLabel_agree}
-                    value="start"
-                    control={<Checkbox className={classes.Checkbox_agree} color="primary" />}
-                    label="모든 약관에 동의 합니다."
-                    labelPlacement="start"
-                    htmlFontSize={100}
-                  />
-                  <Box className={classes.Box_agree}>
+                
                     <Dialogs parentCallback={this.receive_agreeCallbackFunction}/>
-                  </Box>
+                 
                   </Grid>
 
                 </Grid>

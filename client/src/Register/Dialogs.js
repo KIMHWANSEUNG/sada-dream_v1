@@ -5,7 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {Grid,FormControlLabel,Checkbox,withStyles,Link,Typography} from '@material-ui/core';
+import {Grid,FormControlLabel,Checkbox,withStyles,Link,Typography,Box} from '@material-ui/core';
 
 
 const state = {
@@ -25,6 +25,23 @@ const styles = theme=> ({
   div_agree:{
     marginLeft:10
   },
+  FormControlLabel_agree:{
+   
+    marginTop:20,
+    htmlFontSize: 10,
+    '&:hover': {
+      color:"#6495ED"
+    },
+  },
+  Box_agree:{
+    width:400,
+    height:245,
+    border:"solid 1px",
+    color:"silver",
+  },
+  Checkbox_agree:{
+    marginLeft:50,
+  },
 
 })
 
@@ -37,6 +54,15 @@ class Dialogs extends React.Component {
       open2:false,
       scroll:'paper',
       scroll2:'paper',
+
+      //체크박스 상태
+     all_check:false,
+     service_check:false,
+     info_check:false,
+     ad_check:false,
+     SMS_check:false,
+     email_check:false,
+
 
     }
   }
@@ -81,11 +107,28 @@ class Dialogs extends React.Component {
     }
   };
 
+  all_check = (e) => {
+    
+    if(e.target.checked===true){
+  
+    }
+  }
+
 
   render(){
     const {classes} = this.props;
 
   return (
+    <React.Fragment>
+    <FormControlLabel
+    className={classes.FormControlLabel_agree}
+    value="start"
+    control={<Checkbox  onChange={this.all_check} className={classes.Checkbox_agree} color="primary" />}
+    label="모든 약관에 동의 합니다."
+    labelPlacement="start"
+    htmlFontSize={100}
+  />
+  <Box className={classes.Box_agree}>
     <Grid
     container
     direction="column"
@@ -102,7 +145,7 @@ class Dialogs extends React.Component {
       <Link className={classes.Link} variant="body2" onClick={this.handleClickOpen}>
         서비스 이용 동의
       </Link>
-      <Checkbox  className={classes.Checkbox_agree} color="primary" />
+      <Checkbox id="service"  color="primary" />
       </Grid>
 
       <Grid
@@ -114,7 +157,7 @@ class Dialogs extends React.Component {
       <Link  className={classes.Link}  variant="body2" onClick={this.handleClickOpen2}>
         개인정보 처리 방침 동의
       </Link>
-      <Checkbox className={classes.Checkbox_agree} color="primary" />
+      <Checkbox  color="primary" />
       </Grid>
       
       <Grid
@@ -126,19 +169,19 @@ class Dialogs extends React.Component {
       <Link  className={classes.Link}  variant="body2">
       이벤트/광고성 알림 수신동의 (선택)
       </Link>
-      <Checkbox className={classes.Checkbox_agree} onChange={this.receive_info} color="primary" />
+      <Checkbox  onChange={this.receive_info} color="primary" />
       <div className={classes.div_agree}>
       <FormControlLabel
           fontSize="5"
           value="end"
-          control={ <Checkbox className={classes.Checkbox_agree} onChange={this.receive_info} color="primary" />}
+          control={ <Checkbox onChange={this.receive_info} color="primary" />}
           label={<Typography className={classes.Typography_agree}>SMS</Typography>}
           labelPlacement="end"
         />
 
         <FormControlLabel
           value="end"
-          control={ <Checkbox className={classes.Checkbox_agree} onChange={this.receive_info} color="primary" />}
+          control={ <Checkbox onChange={this.receive_info} color="primary" />}
           label={<Typography className={classes.Typography_agree}>이메일</Typography>}
           labelPlacement="end"
         />
@@ -203,9 +246,9 @@ class Dialogs extends React.Component {
           </Button>
         </DialogActions>
       </Dialog>
-
-
     </Grid>
+  </Box>
+</React.Fragment>
   );
 }
 }
