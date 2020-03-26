@@ -12,7 +12,7 @@ import {Grid,FormControlLabel,withStyles,Link,Typography,Box,Checkbox} from '@ma
 const state = {
   receive_agree:false
 }
-const styles = theme=> ({
+const styles = theme => ({
   Link:{
     marginLeft:10,
     fontSize:23,
