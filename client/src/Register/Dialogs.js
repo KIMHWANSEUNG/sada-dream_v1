@@ -118,11 +118,22 @@ class Dialogs extends React.Component {
     }
   };
 
+  //약관 모두 동의
   all_check = (e) => {
     
     if(e.target.checked===true){
       document.getElementById("service").checked=1
-  
+      document.getElementById("info").checked=1
+      document.getElementById("ad").checked=1
+      document.getElementById("email_agree").checked=1
+      document.getElementById("SMS_agree").checked=1
+    }
+    if(e.target.checked===false){
+      document.getElementById("service").checked=0
+      document.getElementById("info").checked=0
+      document.getElementById("ad").checked=0
+      document.getElementById("email_agree").checked=0
+      document.getElementById("SMS_agree").checked=0
     }
   }
 
@@ -145,7 +156,8 @@ class Dialogs extends React.Component {
   direction="row"
   justify="flex-start"
   alignItems="baseline"
-      >
+  >
+
     <div className={classes.div_checkbox}>
 
           <div className={classes.div_chkbox}>
