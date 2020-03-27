@@ -145,10 +145,18 @@ class Dialogs extends React.Component {
   return (
     <React.Fragment>
 <div className={classes.div_all_agree}>
+<Grid
+  container
+  direction="row"
+  justify="flex-start"
+  alignItems="baseline"
+>
   <input type="checkbox" onChange={this.all_check} id="all_check" class="checkbox-style" />
     <label for="all_check">
       <Typography className={classes.Typography_all_agree} >모든 약관에 동의합니다</Typography>
     </label>
+</Grid>   
+
 </div>  
 <Box className={classes.Box_agree}>
   <Grid
@@ -205,15 +213,22 @@ class Dialogs extends React.Component {
         <div className={classes.div_agree}>
 
         <div className="div_ad">
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="baseline"
+          >
           <input type="checkbox" id="email_agree" class="checkbox-style" onClick={this.receive_info}   />
             <label  for="email_agree"> 
             </label>
-            {<Typography className={classes.Typography_agree} color="primary">이메일</Typography>}
+            <Typography className={classes.Typography_agree} color="primary">이메일</Typography>
 
             <input type="checkbox" id="SMS_agree" class="checkbox-style" onClick={this.receive_info}   />
             <label  for="SMS_agree"> 
             </label>
-            {<Typography className={classes.Typography_agree} color="primary" >SMS</Typography>}
+            <Typography className={classes.Typography_agree} color="primary" >SMS</Typography>
+            </Grid>
         </div> 
 
 

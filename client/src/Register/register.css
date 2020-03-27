@@ -73,8 +73,9 @@ input[type=checkbox]+ label:before {
   
     margin-right: 10px;  
     position: absolute;  
-    left: 0;  
-    bottom: 5px;  
+    left: 0;
+    margin-top: 2px; 
+    bottom: 0px;  
     background-color: #ccc;  
     border-radius: 50%; 
     box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
