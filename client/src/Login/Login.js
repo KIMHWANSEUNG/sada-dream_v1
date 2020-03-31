@@ -30,9 +30,10 @@ const styles = theme =>({
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
       },
-      submit: {
+      Button_submit:{
+        borderRadius:10,
         margin: theme.spacing(3, 0, 2),
-      },
+      }
 
 })
 
@@ -53,12 +54,20 @@ class Login extends React.Component{
     constructor(props){
         super(props)
         this.state={
+            user_email:"",
+            user_password:""
             
-
         }
+    }
+
+    handlevalueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
     }
     render(){
     const {classes} = this.props;
+
 
         return(
         <React.Fragment>
@@ -93,20 +102,25 @@ class Login extends React.Component{
                         fullWidth
                         id="email"
                         label="이메일 주소"
-                        name="email"
+                        name="user_email"
+                        value={this.state.user_email}
                         autoComplete="email"
                         autoFocus
+                        onChange={this.handlevalueChange}
                     />
                     <TextField
                         variant="outlined"
                         margin="normal"
                         required
                         fullWidth
-                        name="password"
+                        name="user_password"
+                        value={this.state.user_password}
                         label="비밀번호"
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={this.handlevalueChange}
+
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -117,19 +131,20 @@ class Login extends React.Component{
                         fullWidth
                         variant="contained"
                         color="primary"
-                        className={classes.submit}
+                        className={classes.Button_submit}
+                        
                     >
                         로그인
                     </Button>
                     <Grid container>
                         <Grid item xs>
                         <Link href="#" variant="body2">
-                            비밀번호 찾기
+                            회원가입
                         </Link>
                         </Grid>
                         <Grid item>
                         <Link href="#" variant="body2">
-                            {"회원가입"}
+                             비밀번호 찾기
                         </Link>
                         </Grid>
                     </Grid>
