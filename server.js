@@ -1,3 +1,6 @@
+const userRouter = require('./routes/user');
+
+
 const fs = require('fs');
 const express = require('express');
 const app = express();
@@ -28,6 +31,10 @@ connection.connect();
 
 const multer = require('multer');
 const upload = multer({dest: './upload'});
+
+app.use('/api/auth', userRouter);
+
+
 
 app.get('/api/customers', (req, res) => {
   res.send([])
