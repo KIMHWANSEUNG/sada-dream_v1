@@ -37,6 +37,8 @@ const styles = theme =>({
 
 })
 
+
+
 function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
@@ -55,18 +57,63 @@ class Login extends React.Component{
         super(props)
         this.state={
             user_email:"",
-            user_password:""
+            user_password:"",
+            email_value:"gg"
             
         }
     }
+
+
+    
+            lsRememberMe = (e) => {
+
+                
+
+
+            if (document.getElementById("rememberMe").checked==true && this.state.user_email !== "") {
+                console.log("dd")
+                localStorage.username = this.state.user_email
+                localStorage.checkbox = document.getElementById("rememberMe").value;
+            } else {
+                localStorage.username = "";
+                localStorage.checkbox = "";
+            }
+            
+            console.log(localStorage)
+            console.log(document.getElementById("email").value)
+            
+        }
+
+         
+
+        componentDidMount(){
+            if (localStorage.checkbox && localStorage.checkbox !== "") {
+                document.getElementById("rememberMe").setAttribute("checked", "checked");
+                this.state.user_email = localStorage.username;
+            } else {
+                document.getElementById("rememberMe").removeAttribute("checked");
+                document.getElementById("email").value = "";
+            }
+        }
+
 
     handlevalueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }
+
+    email_handlevalueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+
+
+    }
     render(){
     const {classes} = this.props;
+    
+
 
 
         return(
@@ -95,19 +142,20 @@ class Login extends React.Component{
                     로그인
                     </Typography>
                     <form className={classes.form} noValidate>
+  
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
-                        id="email"
-                        label="이메일 주소"
+                        required
                         name="user_email"
                         value={this.state.user_email}
-                        autoComplete="email"
-                        autoFocus
-                        onChange={this.handlevalueChange}
-                    />
+                        label="이메일"
+                        type="email"
+                        id="email"
+                        onChange={this.email_handlevalueChange}
+                            
+                        />
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -122,20 +170,13 @@ class Login extends React.Component{
                         onChange={this.handlevalueChange}
 
                     />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="아이디 기억하기"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.Button_submit}
-                        
-                    >
-                        로그인
-                    </Button>
+                     <input type="checkbox" 
+                     value="lsRememberMe" 
+                     id="rememberMe"/> 
+                     <label for="rememberMe">Remember me</label>
+
+                     <Button  value="Login" onClick={this.lsRememberMe} >bb</Button>
+
                     <Grid container>
                         <Grid item xs>
                         <Link href="#" variant="body2">
