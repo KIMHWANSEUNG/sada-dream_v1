@@ -64,6 +64,7 @@ app.post('/api/ask/add', upload.single('image'), (req, res) => {
 // 회원가입 POST
 app.post('/api/auth/userReg', (req, res) => {
   let sql = 'INSERT INTO USER(u_email, u_pass, u_name, u_birth, u_nation, u_phnbr, u_sex) VALUES(?, ?, ?, ?, ?, ?, ?)';
+  
   let user_email = req.body.user_email;
   let user_password = req.body.user_password;
   let user_name = req.body.user_name;
@@ -75,10 +76,6 @@ app.post('/api/auth/userReg', (req, res) => {
   let params = [user_email, user_password, user_name, user_birth, 
   user_country_number, user_phone_number, user_gender];
   
-  console.log('####');
-  console.log(req.body);
-  console.log('####');
-
   connection.query(sql, params, 
     (err, rows, fields) => {
       if(err) {
