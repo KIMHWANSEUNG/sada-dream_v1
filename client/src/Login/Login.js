@@ -31,8 +31,15 @@ const styles = theme =>({
         marginTop: theme.spacing(1),
       },
       Button_submit:{
+        width:"100%",
+        height:60,
+        backgroundColor:"#ADC7E4",
         borderRadius:10,
         margin: theme.spacing(3, 0, 2),
+        '&:hover': {
+            color:"#ffffff",
+            backgroundColor:"#000000",
+          },
       }
 
 })
@@ -58,43 +65,39 @@ class Login extends React.Component{
         this.state={
             user_email:"",
             user_password:"",
-            email_value:"gg"
-            
+           
         }
     }
 
 
-    
-            lsRememberMe = (e) => {
+        //아이디 기억하기
+        //     lsRememberMe = (e) => {
 
-                
-
-
-            if (document.getElementById("rememberMe").checked==true && this.state.user_email !== "") {
-                console.log("dd")
-                localStorage.username = this.state.user_email
-                localStorage.checkbox = document.getElementById("rememberMe").value;
-            } else {
-                localStorage.username = "";
-                localStorage.checkbox = "";
-            }
+        //     if (document.getElementById("rememberMe").checked==true && this.state.user_email !== "") {
+        //         console.log("dd")
+        //         localStorage.username = this.state.user_email
+        //         localStorage.checkbox = document.getElementById("rememberMe").value;
+        //     } else {
+        //         localStorage.username = "";
+        //         localStorage.checkbox = "";
+        //     }
             
-            console.log(localStorage)
-            console.log(document.getElementById("email").value)
+        //     console.log(localStorage)
+        //     console.log(document.getElementById("email").value)
             
-        }
+        // }
 
          
-
-        componentDidMount(){
-            if (localStorage.checkbox && localStorage.checkbox !== "") {
-                document.getElementById("rememberMe").setAttribute("checked", "checked");
-                this.state.user_email = localStorage.username;
-            } else {
-                document.getElementById("rememberMe").removeAttribute("checked");
-                document.getElementById("email").value = "";
-            }
-        }
+        // 아이디 기억하기
+        // componentDidMount(){
+        //     if (localStorage.checkbox ==="lsRememberMe") {
+        //         document.getElementById("rememberMe").setAttribute("checked", "checked");
+        //         document.getElementById("email").value = localStorage.username;
+        //     } else {
+        //         document.getElementById("rememberMe").removeAttribute("checked");
+        //         document.getElementById("email").value = "";
+        //     }
+        // }
 
 
     handlevalueChange = (e) => {
@@ -142,19 +145,19 @@ class Login extends React.Component{
                     로그인
                     </Typography>
                     <form className={classes.form} noValidate>
-  
+                    
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        fullWidth
                         required
+                        fullWidth
                         name="user_email"
                         value={this.state.user_email}
                         label="이메일"
                         type="email"
                         id="email"
-                        onChange={this.email_handlevalueChange}
-                            
+                        autoComplete="current-password"
+                        onChange={this.handlevalueChange}
                         />
                     <TextField
                         variant="outlined"
@@ -168,14 +171,9 @@ class Login extends React.Component{
                         id="password"
                         autoComplete="current-password"
                         onChange={this.handlevalueChange}
-
                     />
-                     <input type="checkbox" 
-                     value="lsRememberMe" 
-                     id="rememberMe"/> 
-                     <label for="rememberMe">Remember me</label>
 
-                     <Button  value="Login" onClick={this.lsRememberMe} >bb</Button>
+                     <Button  className={classes.Button_submit} type="submit" value="Login"  >로그인</Button>
 
                     <Grid container>
                         <Grid item xs>

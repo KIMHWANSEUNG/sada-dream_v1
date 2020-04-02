@@ -7,7 +7,7 @@ import './App.css';
 //import ProductList from './Product_list_page/ProductList' 
 
 //회원가입 페이지
-//import Register from './Register/Register'
+import Register from './Register/Register'
 
 //로그인 페이지
 import Login from './Login/Login'
