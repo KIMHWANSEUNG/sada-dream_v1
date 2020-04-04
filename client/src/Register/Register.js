@@ -19,7 +19,6 @@ import Select from '@material-ui/core/Select';
 import {FormControl,FormHelperText,AppBar,Toolbar,withStyles} from '@material-ui/core';
 import Dialogs from "./Dialogs"
 
-import {FormControl,FormHelperText} from '@material-ui/core';
 import axios from 'axios';
 
 

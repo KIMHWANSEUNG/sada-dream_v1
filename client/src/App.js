@@ -33,6 +33,8 @@ function App() {
         <Route exact path='/product/add' component={ProductAdd} />
         <Route exact path='/product/list' component={ProductList} />
         <Route exact path='/user/register' component={Register} />
+        <Route exact path='/login' component={Login}/>
+
       </Switch>
 
     </MuiThemeProvider>
