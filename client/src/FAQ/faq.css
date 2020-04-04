@@ -1,0 +1,57 @@
+/* 메뉴 버튼 */
+.menu_buttn{
+    width: 200;
+    background:#fff;
+    color:#000000;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:20px;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+
+  }
+  .menu_buttn:hover{
+    background:#fff;
+    color:#1AAB8A;
+  }
+  .menu_buttn:before,.menu_buttn:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+  }
+  .menu_buttn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .menu_buttn:hover:before,.menu_buttn:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+
+
+  /* 컨텐츠 버튼 */
+  .content_button{
+      text-align: left;
+      width: 1200px;
+      background: none;
+      border: none;
+      border-color: white;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      align-content: flex-start;
+      font-size: 18px;
+  }
+  .content_button a{
+    text-decoration:none;
+    color: #000000;
+  }

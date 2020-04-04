@@ -12,6 +12,9 @@ import Register from './Register/Register'
 //로그인 페이지
 import Login from './Login/Login'
 
+//FAQ 페이지
+import FAQ from './FAQ/FAQ'
+
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
 
@@ -25,7 +28,7 @@ function App() {
   });
   return (
     <MuiThemeProvider theme={theme}>
-      <Login/>
+      <FAQ/>
     </MuiThemeProvider>
   );
 }
