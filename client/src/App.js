@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
 // 상품 등록 페이지
-//import ProductAdd from './Product_add_page/ProductAdd';
+import ProductAdd from './Product_add_page/ProductAdd';
 
 //상품 목록 페이지
-//import ProductList from './Product_list_page/ProductList' 
+import ProductList from './Product_list_page/ProductList' 
 
 //회원가입 페이지
 import Register from './Register/Register'
@@ -28,7 +29,12 @@ function App() {
   });
   return (
     <MuiThemeProvider theme={theme}>
-      <FAQ/>
+      <Switch>
+        <Route exact path='/product/add' component={ProductAdd} />
+        <Route exact path='/product/list' component={ProductList} />
+        <Route exact path='/user/register' component={Register} />
+      </Switch>
+
     </MuiThemeProvider>
   );
 }

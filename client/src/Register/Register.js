@@ -15,8 +15,14 @@ import Container from '@material-ui/core/Container';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+
 import {FormControl,FormHelperText,AppBar,Toolbar,withStyles} from '@material-ui/core';
 import Dialogs from "./Dialogs"
+
+import {FormControl,FormHelperText} from '@material-ui/core';
+import axios from 'axios';
+
+
 
 function Copyright() {
     return (
@@ -123,6 +129,7 @@ class Register extends React.Component{
         }
     }
 
+
     //광고성 정보 수신 동의 
     receive_agreeCallbackFunction = (childData) => {
       console.log(childData);
@@ -131,6 +138,40 @@ class Register extends React.Component{
 
       });
   };
+    // api event
+    addCustomer() {
+      const url = '/api/auth/userReg';
+      
+      return axios.post(url, {
+        user_email: this.state.user_email,
+        user_password: this.state.user_password,
+        user_name: this.state.user_name,
+        user_birth: this.state.user_birth,
+        user_country_number: this.state.user_country_number,
+        user_phone_number: this.state.user_phone_number,
+        user_gender: this.state.user_gender
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+    handleFormSubmit = (e) => {
+      e.preventDefault();
+      this
+          .addCustomer()
+          .then((response) => {
+              console.log(response.data);
+          })
+          .catch(error => {
+            console.log('failed', error)
+          });
+  }
+
+
 
 
       //이메일
@@ -485,6 +526,7 @@ class Register extends React.Component{
                   fullWidth
                   variant="contained"
                   color="primary"
+                  onClick={this.handleFormSubmit}
                 >
                   회원 가입
                 </Button>
