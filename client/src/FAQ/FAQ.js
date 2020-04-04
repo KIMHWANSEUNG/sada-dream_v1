@@ -12,9 +12,9 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import {AppBar,Toolbar, Divider} from '@material-ui/core';
+import {AppBar,Toolbar, Divider,ExpansionPanel,ExpansionPanelSummary,ExpansionPanelDetails} from '@material-ui/core';
 import NotListedLocationRoundedIcon from '@material-ui/icons/NotListedLocationRounded';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import "./faq.css"
 
 const styles = theme =>({
@@ -164,15 +164,21 @@ class FAQ extends React.Component{
                     className={classes.Grid_content}
                     >
                       <Divider className={classes.Divider_content}/>
-                      <div className="content_button"   ><a href="#" onClick={this.handleContentChange}>Q. 사다드림은 어떤 서비스인가요?</a></div>
-                      { this.state.content1?
-                      <Grid >
-                        <h3>블라블라</h3>
-                      </Grid>
-                      : <div></div>
-                      
-                      }
-                  
+                     <ExpansionPanel>
+                      <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <Typography >사다드림은 어떤 서비스인가요?</Typography>
+                      </ExpansionPanelSummary>
+                      <ExpansionPanelDetails>
+                        <Typography variant="h5">
+                          gg
+                        </Typography> 
+                      </ExpansionPanelDetails>
+                     </ExpansionPanel>
+
                       
                       <Divider className={classes.Divider_content}/>
 
