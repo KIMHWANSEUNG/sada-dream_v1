@@ -444,8 +444,7 @@ class ProductList extends React.Component {
                   {/*foo1*/}
                   {/* 컨텐츠(상품카드) */}
                   {product_list}
-                  <ProductCard/><ProductCard/><ProductCard/><ProductCard/><ProductCard/><ProductCard/>
-
+                  
 
                 </Grid>
 
