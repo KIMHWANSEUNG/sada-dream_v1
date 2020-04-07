@@ -16,6 +16,9 @@ import Login from './Login/Login'
 //FAQ 페이지
 import FAQ from './FAQ/FAQ'
 
+//고객센터
+import ServiceCenter from './Service center/ServiceCenter'
+
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
 
@@ -35,6 +38,7 @@ function App() {
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login}/>
         <Route exact path='/faq' component={FAQ}/>
+        <Route exact path='/servicecenter' component={ServiceCenter}/>
 
       </Switch>
 
