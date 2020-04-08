@@ -85,6 +85,7 @@ function Copyright() {
     header_Divider:{
       border: "1px solid",
       marginTop: 1,
+      marginBottom:20,
       width:1200,
     },
     Grid_navigator: {
@@ -270,11 +271,11 @@ class ProductList extends React.Component {
               justify="flex-start"
               alignItems="flex-end">
 
-                  <Link className={classes.Link_product_list} href="#" onClick={this.preventDefault}>
+                  <Link className={classes.Link_product_list} href="prodctlist" onClick={this.preventDefault}>
                     {"상품 목록"}
                   </Link>
 
-                  <Link className={classes.Link_product_add} href="#" onClick={this.preventDefault}>
+                  <Link className={classes.Link_product_add} href="productadd" onClick={this.preventDefault}>
                     {"상품 추가하기"}
                   </Link>
            

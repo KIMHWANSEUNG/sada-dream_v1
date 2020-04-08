@@ -12,10 +12,12 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import {AppBar,Toolbar, Divider,ExpansionPanel,ExpansionPanelSummary,ExpansionPanelDetails} from '@material-ui/core';
+import { Divider,ExpansionPanel,ExpansionPanelSummary,ExpansionPanelDetails} from '@material-ui/core';
 import NotListedLocationRoundedIcon from '@material-ui/icons/NotListedLocationRounded';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import "./faq.css";
+import Appbar from "../Appbar/Appbar1"
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 
 
@@ -46,12 +48,24 @@ const styles = theme =>({
       },
       Typography_header:{
           color:"#000000",
-          marginRight:30
       },
+      Typography_header1:{
+        color:"#000000",
+        marginRight:30,
+    },
       Divider_content:{
         border:"1 solid",
         color:"#c0c0c0"
       },
+      Link_header:{
+        marginRight:30
+      },
+      icon_servicecenter:{
+        paddingTop:25
+      },
+      Grid_header:{
+        marginBottom:10
+      }
 
 
 
@@ -78,12 +92,7 @@ class FAQ extends React.Component{
     constructor(props){
         super(props)
         this.state={
-          content1:false,
-          content2:false,
-          content3:false,
-          content4:false,
-          content5:false,
-          content6:false,
+
           question_number:0
 
 
@@ -94,7 +103,6 @@ class FAQ extends React.Component{
     handleButtonChange = (e) => {
       //각각의 버튼 구분해주는 로직
       for(var i=0; i<6; i++){
-
         
         if(e.target.id==="buttonheader"+[i]){
           this.setState({question_number:i})
@@ -132,7 +140,7 @@ class FAQ extends React.Component{
     const {classes} = this.props;
     
     //자주하는질문
-    var question0= ["여행의직구는 어떤 서비스인가요?","여행의직구는 합법적인 서비스인가요?","회원정보 수정은 어디서 하나요?"]
+    var question0= ["여행의직구는 어떤 서비스인가요?","여행의직구는 합법적인 서비스인가요?","회원정보 수정은 어디서 하나요?","여행의직구는 한국인만 사용가능한가요?","로그인 장애시나 기타 장애시 어떻게 하나요?","회원 탈퇴는 어떻게 하나요?","탈퇴 후, 재가입도 가능한가요?"]
     var question1= ["셀러 활동은 누구나 가능한가요?","사업자등록증이 있는 셀러인 경우에는 어떻게 거래해야하나요?","수익금 정산은 어떻게 될까요?","거래중인 1:1 요청 상품 및 마켓 상품을 구할 수 없거나 취소해야하는 경우 어떻게 하나요?","통관시, 물품을 압수당하는 경우는 어떻게 해야하나요?","구매자와 거래 확정 후, 영수증을 첨부해야하는 경우 어떻게 하나요?"]
     var question2=["1:1 요청상품 거래시, 해외 사이트 온라인 구매를 부탁해도 되나요?","1:1구매 요청을 하면 안되는 물건은 있나요?","1:1요청상품에 관해, 셀러와 거래 매칭 전 취소가 가능한가요?","1:1 요청상품에 관해, 요청 가격은 어떻게 책정하면 되나요?" ]
     var question3= ["물건을 거래하다가 문제가 생기면 환불이 보장되나요?","세금계산서와 현금영수증은 어떻게 발행되나요?","2건 이상 다른 여행자에게 구매요청을 했을시, 한번에 결제할 수는 없나요?"]
@@ -148,7 +156,7 @@ class FAQ extends React.Component{
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography >{questions}</Typography>
+          <Typography >Q.{questions}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography variant="h5">
@@ -165,30 +173,21 @@ class FAQ extends React.Component{
 
         return(
         <React.Fragment>
-            <AppBar  position="static" color="default" elevation={0}>
-                <Toolbar className="">
-                <Grid
-                  container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="center"
-                >
-                    <Typography variant="h6" color="inherit" noWrap className="">
-                        사다드림
-                    </Typography>
-                </Grid>
-                </Toolbar>
-            </AppBar>
+              <Appbar/>
                 <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div className={classes.paper}>
                  <form className={classes.form}>
-                    <Grid
-                    className={classes.Grid_row}
-                    >
+                 <Grid
+                    container
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="flex-end"
+                    className={classes.Grid_header}
+                  >
                         <NotListedLocationRoundedIcon className={classes.icon_header} color="primary"/>
-                        <Link href="#"> <Typography  className={classes.Typography_header} variant="h5" >FAQ</Typography></Link>
-                        <Link href="#"><Typography className={classes.Typography_header}   variant="h5">고객센터 문의</Typography></Link>
+                         <Typography  className={classes.Typography_header1} variant="h5" >FAQ</Typography>
+                        <Link href="servicecenter"><Typography className={classes.Typography_header}   variant="h7">고객센터 문의</Typography><ArrowForwardIcon className={classes.icon_servicecenter} fontSize="large"/></Link>
                     </Grid>
                      <Divider className={classes.Divider_header}/>
                     <Grid
