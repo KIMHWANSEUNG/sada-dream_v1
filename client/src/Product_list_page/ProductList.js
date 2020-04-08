@@ -25,6 +25,7 @@ import ProductCard from './ProductCard'
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import './productlist.css';
+import Appbar from '../Appbar/Appbar1';
 
 
 //국기 이미지
@@ -257,6 +258,7 @@ class ProductList extends React.Component {
 
     return(
         <Container className={classes.Container} component="main" >
+          <Appbar/>
             <CssBaseline />
    
         <div className={classes.div_app}>
@@ -271,7 +273,7 @@ class ProductList extends React.Component {
               justify="flex-start"
               alignItems="flex-end">
 
-                  <Link className={classes.Link_product_list} href="prodctlist" onClick={this.preventDefault}>
+                  <Link className={classes.Link_product_list} href="productlist" onClick={this.preventDefault}>
                     {"상품 목록"}
                   </Link>
 
