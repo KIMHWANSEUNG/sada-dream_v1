@@ -25,6 +25,7 @@ import ProductCard from './ProductCard'
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import './productlist.css';
+import Appbar from '../Appbar/Appbar1';
 
 
 //국기 이미지
@@ -85,6 +86,7 @@ function Copyright() {
     header_Divider:{
       border: "1px solid",
       marginTop: 1,
+      marginBottom:20,
       width:1200,
     },
     Grid_navigator: {
@@ -256,6 +258,7 @@ class ProductList extends React.Component {
 
     return(
         <Container className={classes.Container} component="main" >
+          <Appbar/>
             <CssBaseline />
    
         <div className={classes.div_app}>
@@ -270,11 +273,11 @@ class ProductList extends React.Component {
               justify="flex-start"
               alignItems="flex-end">
 
-                  <Link className={classes.Link_product_list} href="#" onClick={this.preventDefault}>
+                  <Link className={classes.Link_product_list} href="productlist" onClick={this.preventDefault}>
                     {"상품 목록"}
                   </Link>
 
-                  <Link className={classes.Link_product_add} href="#" onClick={this.preventDefault}>
+                  <Link className={classes.Link_product_add} href="productadd" onClick={this.preventDefault}>
                     {"상품 추가하기"}
                   </Link>
            
@@ -444,8 +447,7 @@ class ProductList extends React.Component {
                   {/*foo1*/}
                   {/* 컨텐츠(상품카드) */}
                   {product_list}
-                  <ProductCard/><ProductCard/><ProductCard/><ProductCard/><ProductCard/><ProductCard/>
-
+                  
 
                 </Grid>
 
