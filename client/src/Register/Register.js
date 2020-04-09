@@ -18,6 +18,7 @@ import Select from '@material-ui/core/Select';
 
 import {FormControl,FormHelperText,AppBar,Toolbar,withStyles} from '@material-ui/core';
 import Dialogs from "./Dialogs"
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import axios from 'axios';
 
@@ -75,10 +76,10 @@ function Copyright() {
 
 
   })
-  
+
 
 class Register extends React.Component{
-
+    
     constructor(props){
         super(props)
         this.state = {
@@ -91,7 +92,9 @@ class Register extends React.Component{
           user_country_number:'',
           user_phone_number:'',
           user_gender:'',
-
+          
+          // 회원가입 성공 여부
+          isJoinSuccess: false,
           //광고성 정보 수신 동의
           receive_agree:false,
          
@@ -120,11 +123,6 @@ class Register extends React.Component{
           gender_male:false,
           gender_female:false,
 
-
-
-
-
-
         }
     }
 
@@ -136,34 +134,52 @@ class Register extends React.Component{
           receive_agree: childData.receive_agree,
 
       });
-  };
+    };
+
     // api event
     addCustomer() {
-      const url = '/api/auth/userReg';
+      const url = 'users/join';
+      try {
+        if(this.state.user_email === '') {
+          alert('이메일을 입력해주세요');
+          window.location.reload();
+        } else if (this.state.user_password === '') {
+          alert('비밀번호 값을 입력해주세요');
+          window.location.reload();
+        } else {
+          return axios.post(url, {
+            u_email: this.state.user_email,
+            u_password: this.state.user_password,
+            u_name: this.state.user_name,
+            u_birth: this.state.user_birth,
+            u_nation: this.state.user_country_number,
+            u_phnbr: this.state.user_phone_number,
+            u_sex: this.state.user_gender
+          }).then(function(response) {
+            // 중복 아이디 체크
+            if(response.data.result === 'fail') {
+              alert(response.data.message);
+            } else if(response.data.result === 'ok') {
+              this.setState({
+                isJoinSuccess: true,
+              });
+              alert(response.data.message);
+            }
+          })
+          .catch(error => console.log(error));
+        }
+      } catch(err) {
+        console.log(err);
+      }
       
-      return axios.post(url, {
-        user_email: this.state.user_email,
-        user_password: this.state.user_password,
-        user_name: this.state.user_name,
-        user_birth: this.state.user_birth,
-        user_country_number: this.state.user_country_number,
-        user_phone_number: this.state.user_phone_number,
-        user_gender: this.state.user_gender
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
-    handleFormSubmit = (e) => {
+    handleFormSubmit = async (e) => {
       e.preventDefault();
       this
           .addCustomer()
           .then((response) => {
-              console.log(response.data);
+              
           })
           .catch(error => {
             console.log('failed', error)
@@ -361,10 +377,15 @@ class Register extends React.Component{
     render(){
       const {classes} = this.props;
       const country=["대한민국","일본","미국","중국","영국","프랑스","캐나다","러시아","몽골","이탈리아","스페인","태국","베트남","말레이시아","인도네시아","네덜란드","멕시코","브라질","아르헨티나","칠레"]
-    const country_list=country.map((country,index) => (<MenuItem key={index} value={country}>{country}</MenuItem>))
+      const country_list=country.map((country,index) => (<MenuItem key={index} value={country}>{country}</MenuItem>))
+
+      const isJoinSuccess = this.state.isJoinSuccess;
+      
         return(
           <React.Fragment>
             <CssBaseline />
+            {/* 회원가입 완료했는지 확인하는 코드 리다이렉트 */}
+            {isJoinSuccess ? <Redirect to ='/login' /> : <Redirect to ='/register'/>}
             {/* 앱바 */}
               <AppBar  position="sticky" color="default" elevation={0}>
                 <Toolbar className="">

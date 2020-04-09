@@ -14,6 +14,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {AppBar,Toolbar} from '@material-ui/core';
+import axios from 'axios';
+
 
 const styles = theme =>({
     paper: {
@@ -65,7 +67,6 @@ class Login extends React.Component{
         this.state={
             user_email:"",
             user_password:"",
-           
         }
     }
 
@@ -98,7 +99,52 @@ class Login extends React.Component{
         //         document.getElementById("email").value = "";
         //     }
         // }
+    handleFormSubmit = async (e) => {
+        e.preventDefault();
+        this
+        .onLoginClick()
+        .then((response) => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log('fail', error);
+        })
+    }
 
+    onLogoutClick = (e) => {
+        const url = 'users/logout';
+
+        axios.get(url, {
+            
+        }).then(function(response) {
+            console.log(response);
+        }).catch(function(error) {
+            console.log(error);
+        })
+        
+    }
+
+    handleFormLogout = async (e) => {
+        e.preventDefault();
+        this
+        .onLogoutClick();
+    }
+
+    onLoginClick = (e) => {
+
+        const url = 'users/login';
+        
+        return axios.post(url, {
+            u_email: this.state.user_email,
+            u_password: this.state.user_password,
+        })
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
     handlevalueChange = (e) => {
         let nextState = {};
@@ -110,14 +156,9 @@ class Login extends React.Component{
         let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
-
-
     }
     render(){
     const {classes} = this.props;
-    
-
-
 
         return(
         <React.Fragment>
@@ -173,7 +214,15 @@ class Login extends React.Component{
                         onChange={this.handlevalueChange}
                     />
 
-                     <Button  className={classes.Button_submit} type="submit" value="Login"  >로그인</Button>
+                    <Button className={classes.Button_submit}
+                            type="submit"
+                            value="Login"
+                            onClick={this.handleFormSubmit} >로그인</Button>
+
+                    <Button className={classes.Button_submit}
+                                                type="submit"
+                                                value="Login"
+                                                onClick={this.handleFormLogout} >로그아웃</Button>
 
                     <Grid container>
                         <Grid item xs>
