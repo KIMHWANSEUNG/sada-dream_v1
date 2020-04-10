@@ -179,18 +179,23 @@ const styles = theme => ({
 
 const tileData = [
     {
+        number:1,
         id: 'upload1',
         preview: 'preview-image1'
     }, {
+        number:2,
         id: 'upload2',
         preview: 'preview-image2'
     }, {
+        number:3,
         id: 'upload3',
         preview: 'preview-image3'
     }, {
+        number:4,
         id: 'upload4',
         preview: 'preview-image4'
     }, {
+        number:5,
         id: 'upload5',
         preview: 'preview-image5'
     }
@@ -255,23 +260,23 @@ class CustomerAdd extends React.Component {
 
         reader.onload = (function (img) {
             return function (e) {
-                img.style.cssText = 'width 100%';
+                img.style.cssText = 'width:160px';
+                img.style.cssText='height:200px'
+                img.style.cssText="max-width: 100%"
                 img.src = e.target.result
-
             }
         })(preview)
-
         if (get_file) {
             reader.readAsDataURL(get_file[0]);
             console.log(reader);
         }
-
         this.setState({
             file: e
                 .target
                 .files[0]
         })
     }
+
 
     // input value event
     handleValueChange = (e) => {
