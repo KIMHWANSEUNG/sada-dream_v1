@@ -33,8 +33,8 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Switch>
-        <Route exact path='/productadd' component={ProductAdd} />
-        <Route exact path='/productlist' component={ProductList} />
+        <Route exact path='/product/add' component={ProductAdd} />
+        <Route exact path='/product/list' component={ProductList} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login}/>
         <Route exact path='/faq' component={FAQ}/>

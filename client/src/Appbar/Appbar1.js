@@ -88,7 +88,7 @@ class Appbar1 extends React.Component{
                     사다드림
                   </Typography>
                   <nav className="appbar">
-                    <Link variant="button" color="textPrimary" href="/productlist" className={classes.Link_appbar}>
+                    <Link variant="button" color="textPrimary" href="/prodctlist" className={classes.Link_appbar}>
                       요청리스트
                     <LocalGroceryStoreIcon color="primary" className={classes.icon} variant="primary"/>
                     </Link>
@@ -102,14 +102,6 @@ class Appbar1 extends React.Component{
                     </Link>
                     <Link variant="button" color="textPrimary" href="#" className={classes.Link_appbar}>
                       여행등록
-                      <AddCircleOutlineIcon color="primary" className={classes.icon}/>
-                    </Link>
-                    <Link variant="button" color="textPrimary" href="login" className={classes.Link_appbar}>
-                      로그인
-                      <AddCircleOutlineIcon color="primary" className={classes.icon}/>
-                    </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.Link_appbar}>
-                      로그아웃
                       <AddCircleOutlineIcon color="primary" className={classes.icon}/>
                     </Link>
                   </nav>
