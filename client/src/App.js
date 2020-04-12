@@ -19,6 +19,9 @@ import FAQ from './FAQ/FAQ'
 //고객센터
 import ServiceCenter from './Service center/ServiceCenter'
 
+//문의작성 
+import QuestionAdd from './QuestionAdd/QuestionAdd'
+
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
 
@@ -39,6 +42,8 @@ function App() {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/faq' component={FAQ}/>
         <Route exact path='/servicecenter' component={ServiceCenter}/>
+        <Route exact path='/quetionadd' component={QuestionAdd}/>
+
 
       </Switch>
 
