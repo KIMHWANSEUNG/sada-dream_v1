@@ -22,6 +22,9 @@ import ServiceCenter from './Service center/ServiceCenter'
 //문의작성 
 import QuestionAdd from './QuestionAdd/QuestionAdd'
 
+//상품 구매 후 여행자매칭
+import Mathch_Traveler from './Match_Traveler_page/MatchTraveler'
+
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
 
@@ -43,6 +46,8 @@ function App() {
         <Route exact path='/faq' component={FAQ}/>
         <Route exact path='/servicecenter' component={ServiceCenter}/>
         <Route exact path='/quetionadd' component={QuestionAdd}/>
+        <Route exact path='/matchtraveler' component={Mathch_Traveler}/>
+
 
 
       </Switch>
