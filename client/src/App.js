@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from './components/view/Footer.js';
-import LinkAppBar from './components/Appbar/LinkAppbar.js.js';
+import LinkAppBar from './components/Appbar/LinkAppbar.js';
 import Home from './components/view/Home.js';
 import Mypage from "./components/mypage/Mypage.js";
 import Paymentdetails from "./components/Paymentdetails.js";

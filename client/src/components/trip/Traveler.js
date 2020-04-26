@@ -6,8 +6,8 @@ import {CssBaseline, Container, Typography, Grid, Button,
   NativeSelect,InputBase,TextareaAutosize, FormControl,
   FormControlLabel,RadioGroup, Radio, Divider } from '@material-ui/core';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
-import TripImage from '../photo/trip.jpg';
-import MyImage from '../photo/박재성.jpg';
+
+
 import Roundtrip from './Roundtrip.js';
 import Oneway from './Oneway.js';
 const styles = theme =>({
@@ -128,7 +128,7 @@ class Traveler extends React.Component{
 		<CssBaseline />
     {/* 위 배경이미지 */}
     <div className={classes.div_root}>
-    <img src={TripImage} className={classes.img_main}></img>
+    <img src={null} className={classes.img_main}></img>
     </div>
     <Container>
     <div className={classes.div_traveler}>
@@ -148,7 +148,7 @@ class Traveler extends React.Component{
         justify="space-evenly"
         alignItems="flex-start">
         <div>
-          <img className={classes.img_user} src={MyImage}></img>
+          <img className={classes.img_user} src={null}></img>
         </div>
         <div>
           <Typography variant="body1">이름</Typography>

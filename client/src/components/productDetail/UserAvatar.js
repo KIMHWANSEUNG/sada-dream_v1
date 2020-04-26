@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import MyImage from '../photo/박재성.jpg';
+
 
 const styles = theme =>({
   div_root: {
@@ -26,7 +26,7 @@ class UserAvatar extends React.Component {
     const {classes}= this.props;
     return(
       <div className={classes.div_root}>
-        <Avatar component="a" href="/Mypage" className={classes.Avater_avatar} alt={this.state.user} src={MyImage}></Avatar>
+        <Avatar component="a" href="/Mypage" className={classes.Avater_avatar} alt={this.state.user} src={null}></Avatar>
     </div>
     );
   }

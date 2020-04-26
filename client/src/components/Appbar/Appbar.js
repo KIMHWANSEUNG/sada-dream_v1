@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import '../index.css';
+import '../../index.css';
 import { AppBar, Typography, Toolbar, Link, Avatar } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 import Mypage from '../mypage/Mypage.js';
 import Detail from '../productDetail/Detail.js';
 import Paymentdetails from '../Paymentdetails.js';
-import MyImage from '../photo/박재성.jpg';
 import Home from '../view/Home.js';
 
 function TabPanel(props) {

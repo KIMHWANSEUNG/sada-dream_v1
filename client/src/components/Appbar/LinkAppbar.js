@@ -2,12 +2,11 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Typography } from '@material-ui/core';
-import '../index.css';
+import '../../index.css';
 import { AppBar, Toolbar, Link, Avatar, Grid } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MyImage from '../photo/박재성.jpg';
 
 const styles = theme =>({
   Link_title: {

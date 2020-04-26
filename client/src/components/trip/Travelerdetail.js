@@ -7,8 +7,7 @@ import {CssBaseline, Container, Typography, Grid, Button,
   FormControlLabel, Grow, Divider, Chip, Avatar } from '@material-ui/core';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import TripImage from '../photo/trip.jpg';
-import MyImage from '../photo/박재성.jpg';
+
 import AccountCircle from '@material-ui/icons/AccountCircle';
 const styles = theme =>({
 	div_root: {
@@ -126,7 +125,7 @@ class Travelerdetail extends React.Component{
 		<CssBaseline />
     {/* 위 배경이미지 */}
     <div className={classes.div_root}>
-    <img src={TripImage} className={classes.img_main}></img>
+    <img src={null} className={classes.img_main}></img>
     </div>
     <Container fixed className={classes.Container}>
 {/* 01정보입력 */}
@@ -137,7 +136,7 @@ class Travelerdetail extends React.Component{
         justify="space-evenly"
         alignItems="flex-start">
         <div className={classes.div_imageinfo}> {/* div_imageinfo */}
-          <img className={classes.img_user} src={MyImage}></img>
+          <img className={classes.img_user} src={null}></img>
           <br /><br />
           <Typography variant="h5" color="primary">{this.state.user}</Typography>
           <br />
@@ -259,7 +258,7 @@ class Travelerdetail extends React.Component{
             direction="row"
             justify="flex-start"
             alignItems="center">
-            <Grid item><Avatar alt="박재성" src={MyImage} className={classes.Avatar}></Avatar></Grid>
+            <Grid item><Avatar alt="박재성" src={null} className={classes.Avatar}></Avatar></Grid>
             &nbsp;&nbsp;<Grid item>
               <TextField className={classes.TextField_q}
               id="input-with-icon-grid"

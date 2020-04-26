@@ -5,9 +5,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Korea from '../photo/south_korea.jpg';
+
 import { Avatar } from '@material-ui/core';
-import MyImage from '../photo/박재성.jpg';
+
 import FlightIcon from '@material-ui/icons/Flight';
 const styles = theme =>({
   Card_root: {
@@ -50,7 +50,7 @@ class Listcard extends React.Component{
   constructor(props) {
     super(props)
     this.state={
-      Country_Media: Korea,
+      Country_Media: null,
       traveler: '박재성',
       start_country: '필리핀',
       end_country: '한국',
@@ -69,7 +69,7 @@ class Listcard extends React.Component{
           image={this.state.Country_Media}
           title="Country_Media" />
 		<div className={classes.div_body}>
-		<Avatar alt="박재성" src={MyImage} className={classes.Avatar}></Avatar>
+		<Avatar alt="박재성" src={null} className={classes.Avatar}></Avatar>
 		</div>
     <div className={classes.div_traveler}>
     <Typography variant="h6">{this.state.traveler}</Typography>

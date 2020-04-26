@@ -5,17 +5,11 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import { Grid } from '@material-ui/core';
-import MangoImage from '../../../static/photo/mango.jpg';
-import DogImage from '../../../static/photo/dog.jpg';
-import KoreaImage from '../../../static/photo/korea.jpg';
-import ROKMCImage from '../../../static/photo/ROKMC.png';
+
+
 
 const productImage = [
-  {imgPath: MangoImage},
-  {imgPath: DogImage},
-  {imgPath: KoreaImage},
-  {imgPath: ROKMCImage},
-  {imgPath: DogImage},
+
 ];
 const styles = theme =>({
   div_root: {
