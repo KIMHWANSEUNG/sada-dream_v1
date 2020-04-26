@@ -25,11 +25,7 @@ yarn server (or npm start)
 # Start client
 yarn client 
 
-<<<<<<< HEAD
 # Start test (jest)
-=======
-# Test start
->>>>>>> 7c36672d881c8190c8c2d3350565bfe4eb2a50fa
 yarn test
 
 ```
