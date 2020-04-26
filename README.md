@@ -10,20 +10,24 @@
 # Clone the repository
 git clone https://github.com/dongwooklee96/sada-dream.git
 
-# Go inside the directory
-cd sada-dream
+# Install dependencies (server)
+npm i (or yarn instsall)
 
-# Install dependencies
+# Install dependencies (client)
 yarn (or npm install)
 
-# Start development server
+# Start development server and client
 yarn dev (or npm run dev)
 
-# Build for production
-yarn build (or npm run build)
+# Start server
+yarn server (or npm start)
 
-# Start production server
-yarn start (or npm start)
+# Start client
+yarn client 
+
+# Test start
+yarn test
+
 ```
 
 ## 도큐먼트
