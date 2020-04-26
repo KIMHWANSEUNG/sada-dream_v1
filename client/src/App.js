@@ -11,25 +11,25 @@ import Traveler from "./components/trip/Traveler.js";
 import Travelerlist from "./components/trip/Travelerlist.js";
 import Travelerdetail from "./components/trip/Travelerdetail.js";
 
-import ProductAdd from './Product_add_page/ProductAdd';
+import ProductAdd from './components/Product_add_page/ProductAdd';
 
 //상품 목록 페이지
-import ProductList from './Product_list_page/ProductList' 
+import ProductList from './components/Product_list_page/ProductList' 
 
 //회원가입 페이지
-import Register from './Register/Register'
+import Register from './components/Register/Register'
 
 //로그인 페이지
-import Login from './Login/Login'
+import Login from './components/Login/Login'
 
 //FAQ 페이지
-import FAQ from './FAQ/FAQ'
+import FAQ from './components/FAQ/FAQ'
 
 //고객센터
-import ServiceCenter from './Service center/ServiceCenter'
+import ServiceCenter from './components/Service center/ServiceCenter'
 
 //문의작성 
-import QuestionAdd from './QuestionAdd/QuestionAdd'
+import QuestionAdd from './components/QuestionAdd/QuestionAdd'
 
 export default class App extends React.Component {
 
