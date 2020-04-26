@@ -19,6 +19,12 @@ import FAQ from './FAQ/FAQ'
 //고객센터
 import ServiceCenter from './Service center/ServiceCenter'
 
+//문의작성 
+import QuestionAdd from './QuestionAdd/QuestionAdd'
+
+//상품 구매 후 여행자매칭
+import Mathch_Traveler from './Match_Traveler_page/MatchTraveler'
+
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
 
@@ -34,13 +40,17 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Switch>
-        <Route exact path='/productadd' component={ProductAdd} />
-        <Route exact path='/productlist' component={ProductList} />
+        <Route exact path='/product/add' component={ProductAdd} />
+        <Route exact path='/product/list' component={ProductList} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login}/>
         <Route exact path='/faq' component={FAQ}/>
         <Route exact path='/servicecenter' component={ServiceCenter}/>
-        <Route exact path='/test' component={Test}/>
+        <Route exact path='/quetionadd' component={QuestionAdd}/>
+        <Route exact path='/matchtraveler' component={Mathch_Traveler}/>
+
+
+
       </Switch>
 
     </MuiThemeProvider>

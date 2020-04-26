@@ -185,12 +185,15 @@ const tileData = [
         id: 'upload1',
         preview: 'preview-image1'
     }, {
+        number:2,
         id: 'upload2',
         preview: 'preview-image2'
     }, {
+        number:3,
         id: 'upload3',
         preview: 'preview-image3'
     }, {
+        number:4,
         id: 'upload4',
         preview: 'preview-image4'
     }
@@ -267,6 +270,7 @@ class CustomerAdd extends React.Component {
             
         }
     }
+
 
     // input value event
     handleValueChange = (e) => {
