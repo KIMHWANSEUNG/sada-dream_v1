@@ -22,6 +22,7 @@ import ServiceCenter from './Service center/ServiceCenter'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
 
+import Test from './test/testComponent';
 
 function App() {
   const theme = createMuiTheme({
@@ -39,7 +40,7 @@ function App() {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/faq' component={FAQ}/>
         <Route exact path='/servicecenter' component={ServiceCenter}/>
-
+        <Route exact path='/test' component={Test}/>
       </Switch>
 
     </MuiThemeProvider>

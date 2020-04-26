@@ -1,5 +1,3 @@
-const userRouter = require('./routes/user');
-
 
 const fs = require('fs');
 const express = require('express');
@@ -32,9 +30,6 @@ connection.connect();
 const multer = require('multer');
 const upload = multer({dest: './upload'});
 
-app.use('/api/auth', userRouter);
-
-
 
 app.get('/api/customers', (req, res) => {
   res.send([])
@@ -44,28 +39,39 @@ app.get('/api/customers', (req, res) => {
 app.use('/image', express.static('./upload'));
 
 // 요청 상품 등록 POST
-app.post('/api/ask/add', upload.single('image'), (req, res) => {
+app.post('/api/ask/add', upload.array('image1'), (req, res) => {
   
   let sql = 'INSERT INTO PRODUCT VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  let image = '/image/' + req.file.filename;
-  let product_category = req.body.product_category;
-  let product_category_detail = req.body.product_category_detail;
-  let product_country = req.body.product_country;
-  let product_city = req.body.product_city;
-  let product_name = req.body.product_name;
-  let product_count = req.body.product_count;
-  let product_explain = req.body.product_explain;
-  let product_outdate = req.body.product_outdate;
-  let product_price = req.body.product_price;
-  let product_request = req.body.product_request;
-  let params = [image, product_category, product_category_detail, product_country, product_city
-    , product_name, product_count, product_explain, product_outdate, product_price, product_request];
 
-  connection.query(sql, params,
-    (err, rows, fields) => {
-      res.send(rows);
-    }
-  );
+  let image1 = '/image/' + req.files[0].originalname;
+  let image2 = '/image/' + req.files[1].originalname;
+  let image3 = '/image/' + req.files[2].originalname;
+  let image4 = '/image/' + req.files[3].originalname;
+  let image5 = '/image/' + req.files[4].originalname;
+
+  console.log('image1', image1);
+  console.log('image2', image2);
+  console.log('image3', image3);
+  console.log('image4', image4);
+  console.log('image5', image5);
+
+  // let product_category = req.body.product_category;
+  // let product_category_detail = req.body.product_category_detail;
+  // let product_country = req.body.product_country;
+  // let product_city = req.body.product_city;
+  // let product_name = req.body.product_name;
+  // let product_count = req.body.product_count;
+  // let product_explain = req.body.product_explain;
+  // let product_outdate = req.body.product_outdate;
+  // let product_price = req.body.product_price;
+  // let product_request = req.body.product_request;
+  // let params = [image, product_category, product_category_detail, product_country, product_city
+  //   , product_name, product_count, product_explain, product_outdate, product_price, product_request];
+
+
+  return res.json({result: "ok",
+                  file: req.file,
+                  files: req.files});
 });
 
 // 회원가입 POST

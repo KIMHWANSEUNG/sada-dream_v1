@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d960f4db-bd9a-4331-9e33-9ff4278d0cbb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Product_add_page/ProductAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Product_add_page/ProductAdd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Product_list_page/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Product_list_page/ProductList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
@@ -29,7 +30,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/pro_spring5" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -87,6 +88,7 @@
       <updated>1583672283004</updated>
       <workItem from="1583672284602" duration="4186000" />
       <workItem from="1583690900456" duration="6189000" />
+      <workItem from="1587136246642" duration="130000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {post} from 'axios';
+import axios from 'axios';
 import {
     AppBar,
     Toolbar,
@@ -179,6 +179,9 @@ const styles = theme => ({
 
 const tileData = [
     {
+        id: 'upload0',
+        preview: 'preview-image0'
+    }, {
         id: 'upload1',
         preview: 'preview-image1'
     }, {
@@ -190,9 +193,6 @@ const tileData = [
     }, {
         id: 'upload4',
         preview: 'preview-image4'
-    }, {
-        id: 'upload5',
-        preview: 'preview-image5'
     }
 ];
 
@@ -201,8 +201,18 @@ class CustomerAdd extends React.Component {
         super(props);
         this.state = {
             //상품 정보
-            file: null,
-            fileName: '',
+            file1: null,
+            file2: null,
+            file3: null,
+            file4: null,
+            file5: null,
+
+            fileName0: '',
+            fileName1: '',
+            fileName2: '',
+            fileName3: '',
+            fileName4: '',
+            
             product_category: '',
             product_category_detail: '',
             product_country: '',
@@ -238,39 +248,24 @@ class CustomerAdd extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        this
-            .addCustomer()
-            .then((response) => {
-                console.log(response.data);
-            })
+        
+        this.sendFormData();
     }
 
     // input file event
     handleFileChange = (e) => {
-        console.log(e);
-        var upload = document.querySelector('#upload1');
-        var preview = document.querySelector('#preview-image1');
-        var get_file = e.target.files;
-        var reader = new FileReader();
-
-        reader.onload = (function (img) {
-            return function (e) {
-                img.style.cssText = 'width 100%';
-                img.src = e.target.result
-
+        for(let i = 0; i < 5; i++) 
+        {
+            if (e.target.id === "raised-button-file" + i)
+            {
+                let nextState = {};
+                nextState["file" + i] = e.target.files[0];
+                nextState["fileName" + i] = e.target.value;
+                this.setState(nextState);
+                
             }
-        })(preview)
-
-        if (get_file) {
-            reader.readAsDataURL(get_file[0]);
-            console.log(reader);
+            
         }
-
-        this.setState({
-            file: e
-                .target
-                .files[0]
-        })
     }
 
     // input value event
@@ -347,38 +342,49 @@ class CustomerAdd extends React.Component {
     };
 
     // api event
-    addCustomer() {
-        const url = '/api/ask/add';
-        const formData = new FormData();
-        formData.append('image', this.state.file)
-        formData.append('product_category', this.state.product_category)
-        formData.append('product_category_detail', this.state.product_category_detail)
-        formData.append('product_country', this.state.product_country) 
-        formData.append('product_city', this.state.product_city)
-        formData.append('product_name', this.state.product_name)
-        formData.append('product_count', this.state.product_count)
-        formData.append('product_explain', this.state.product_explain)
-        formData.append('product_outdate', this.state.product_outdate)
-        formData.append('product_price', this.state.product_price)
-        formData.append('product_request', this.state.product_request)
 
+    sendFormData() {
+        const url = "products/ask/add";
+        
+        const formData = new FormData();
+        // product img
+        formData.append('image1', this.state.file0)
+        formData.append('image1', this.state.file1)
+        formData.append('image1', this.state.file2)
+        formData.append('image1', this.state.file3)
+        formData.append('image1', this.state.file4)
+
+        formData.append('product_main_category',this.state.product_category);
+        formData.append('product_sub_category',this.state.product_category_detail);
+        formData.append('product_country',this.state.product_country);
+        formData.append('product_city',this.state.product_city);
+        formData.append('product_name',this.state.product_name);
+        formData.append('product_num',this.state.product_count);
+        formData.append('product_description',this.state.product_explain);
+        formData.append('product_price',this.state.product_price);
+        formData.append('product_delivery',this.state.isDelivery);
+        formData.append('product_size',this.state.product_size);
+        formData.append('product_requirement',this.state.product_request);
+        formData.append('req_expired',this.state.product_outdate);
+        
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
             }
-        }
-        return post(url, formData, config);
+        };
+
+        axios.post(url, formData, config);
     }
     // close button event
     handleClose = () => {
         this.setState({
             file: null,
-            fileName: '',
+            fileName: "",
             product_category: '',
             product_category_detail: '',
             product_country: '',
             product_city: '',
-            product_name: '',
+            product_city: '',
             product_count: '',
             product_explain: '',
             product_outdate: '',
@@ -441,7 +447,7 @@ class CustomerAdd extends React.Component {
 
 
     render() {
-
+        
         // css REACTOR! : DB화 시켜야함 => 그래야 관리자 페이지에서 카테고리 관리 가능!!!
         const {classes} = this.props;
         const category = [
@@ -556,30 +562,58 @@ class CustomerAdd extends React.Component {
                             </Typography>
                             <div className={classes.div_image}>
                                 <GridList className={classes.Grid_image} cols={2.5}>
-                                    {
-                                        tileData.map(tile => (
-                                            <div>
-                                                <Input
-                                                    accept="image/*"
-                                                    className={classes.input}
-                                                    id={tile.id}
-                                                    type="file"
-                                                    file={this.state.file}
-                                                    value={this.state.fileName}
-                                                    onChange={this.handleFileChange}
-                                                    multiple="multiple"/>
-                                                <label htmlFor={tile.id}>
-                                                    <Button
-                                                        className={classes.icon_button}
-                                                        variant="contained"
-                                                        component="span"
-                                                        name="file">
-                                                        <img id={tile.preview} src={photoIcon}></img>
-                                                    </Button>
-                                                </label>
-                                            </div>
-                                        ))
-                                    }
+                                    
+                                        {/* image1 */}
+                                        <input className={classes.input} accept="image/*" id="raised-button-file0" type="file"  file={this.state.file0} value={this.state.fileName0} onChange={this.handleFileChange} />
+                                        <label htmlFor="raised-button-file0">
+                                            {/* 작업 내용 */}
+                                            <Button variant="contained" color="primary" component="span" name="file">
+                                                {this.state.fileName0 ==="" ? "프로필 이미지 선택1" :this.state.fileName0}
+                                            </Button>
+                                            
+                                        </label>
+
+                                        {/* image2 */}
+                                        <input className={classes.hidden} accept="image/*" id="raised-button-file1" type="file"  file={this.state.file1} value={this.state.fileName1} onChange={this.handleFileChange} />
+                                        <label htmlFor="raised-button-file1">
+                                            {/* 작업 내용 */}
+                                            <Button variant="contained" color="primary" component="span" name="file">
+                                                {this.state.fileName1 ==="" ? "프로필 이미지 선택2" :this.state.fileName1}
+                                            </Button>
+                                            
+                                        </label>
+
+                                        {/* image3 */}
+                                        <input className={classes.hidden} accept="image/*" id="raised-button-file2" type="file"  file={this.state.file2} value={this.state.fileName2} onChange={this.handleFileChange} />
+                                        <label htmlFor="raised-button-file2">
+                                            {/* 작업 내용 */}
+                                            <Button variant="contained" color="primary" component="span" name="file">
+                                                {this.state.fileName2 ==="" ? "프로필 이미지 선택3" :this.state.fileName2}
+                                            </Button>
+                                            
+                                        </label>
+
+
+                                        {/* image4 */}
+                                        <input className={classes.hidden} accept="image/*" id="raised-button-file3" type="file"  file={this.state.file3} value={this.state.fileName3} onChange={this.handleFileChange} />
+                                        <label htmlFor="raised-button-file3">
+                                            {/* 작업 내용 */}
+                                            <Button variant="contained" color="primary" component="span" name="file">
+                                                {this.state.fileName3 ==="" ? "프로필 이미지 선택4" :this.state.fileName3}
+                                            </Button>
+                                            
+                                        </label>
+
+                                        {/* image5 */}
+                                        <input className={classes.hidden} accept="image/*" id="raised-button-file4" type="file"  file={this.state.file4} value={this.state.fileName4} onChange={this.handleFileChange} />
+                                        <label htmlFor="raised-button-file4">
+                                            {/* 작업 내용 */}
+                                            <Button variant="contained" color="primary" component="span" name="file">
+                                                {this.state.fileName4 ==="" ? "프로필 이미지 선택5" :this.state.fileName4}
+                                            </Button>
+                                            
+                                        </label>
+                                    
                                 </GridList>
                             </div>
                             {/* fooooo */}
@@ -791,11 +825,6 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="flex-end"
                                 alignItems="center">
-                                <Button
-                                    className={classes.Button_next}
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={this.foo}>콘솔</Button>
                                 <Button
                                     className={classes.Button_next}
                                     variant="contained"
