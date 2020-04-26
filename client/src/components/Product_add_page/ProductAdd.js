@@ -348,7 +348,7 @@ class CustomerAdd extends React.Component {
     // api event
 
     sendFormData() {
-        const url = "products/ask/add";
+        const url = "/products/ask/add";
         
         const formData = new FormData();
         // product img
@@ -376,7 +376,7 @@ class CustomerAdd extends React.Component {
                 'content-type': 'multipart/form-data'
             }
         };
-
+        
         axios.post(url, formData, config);
     }
     // close button event

@@ -69,9 +69,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-const multer = require('multer');
-const upload = multer({dest: './upload'});
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
