@@ -9,6 +9,10 @@
 /config
 /config.json
 
+# .env
+
+.env
+
 #upload
 /upload
 
