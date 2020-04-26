@@ -32,6 +32,10 @@ const app = express();
 sequelize.sync();
 passportConfig(passport);
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
 // logger settings
 app.use(logger('dev')); // opt [short | dev | common | combined]
 app.use(express.static(path.join(__dirname, 'public')));
