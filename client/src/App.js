@@ -11,26 +11,6 @@ import Traveler from "./components/trip/Traveler.js";
 import Travelerlist from "./components/trip/Travelerlist.js";
 import Travelerdetail from "./components/trip/Travelerdetail.js";
 
-import ProductAdd from './components/Product_add_page/ProductAdd';
-
-//상품 목록 페이지
-import ProductList from './components/Product_list_page/ProductList' 
-
-//회원가입 페이지
-import Register from './components/Register/Register'
-
-//로그인 페이지
-import Login from './components/Login/Login'
-
-//FAQ 페이지
-import FAQ from './components/FAQ/FAQ'
-
-//고객센터
-import ServiceCenter from './components/Service center/ServiceCenter'
-
-//문의작성 
-import QuestionAdd from './components/QuestionAdd/QuestionAdd'
-
 export default class App extends React.Component {
 
   render() {
@@ -46,13 +26,6 @@ export default class App extends React.Component {
             <Route exact path={"/Traveler"} component={Traveler}></Route>
             <Route exact path={"/Travelerlist"} component={Travelerlist}></Route>
             <Route exact path={"/Travelerdetail"} component={Travelerdetail}></Route>
-            <Route exact path='/product/add' component={ProductAdd} />
-            <Route exact path='/product/list' component={ProductList} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/faq' component={FAQ}/>
-            <Route exact path='/servicecenter' component={ServiceCenter}/>
-            <Route exact path='/quetionadd' component={QuestionAdd}/>
           </Switch>
           <Footer />
         </div>
