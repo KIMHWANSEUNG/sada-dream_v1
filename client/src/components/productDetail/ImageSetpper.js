@@ -53,8 +53,9 @@ class ImageSetpper extends React.Component{
        container
        justify="center"
        alignItems="center">
-	  <img className={classes.img_image}
-	  src={productImage[this.state.activeStep].imgPath}/>
+    <img className={classes.img_image}
+    // src={productImage[this.state.activeStep].imgPath}/>
+	  src={productImage[this.state.activeStep]}/>
       </Grid>
       <div>
       <MobileStepper
