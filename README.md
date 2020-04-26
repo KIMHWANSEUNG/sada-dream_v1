@@ -11,7 +11,7 @@
 git clone https://github.com/dongwooklee96/sada-dream.git
 
 # Install dependencies (server)
-npm i (or yarn instsall)
+npm i (or yarn install)
 
 # Install dependencies (client)
 yarn (or npm install)
@@ -25,7 +25,7 @@ yarn server (or npm start)
 # Start client
 yarn client 
 
-# Test start
+# Start test (jest)
 yarn test
 
 ```
