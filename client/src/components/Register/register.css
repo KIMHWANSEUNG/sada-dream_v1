@@ -1,0 +1,105 @@
+.paper{
+    margin-top: 10;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .avatar{
+      margin: 1;
+      color: skyblue;
+  }
+  
+  .form{
+      width: 100%;
+      
+  }
+
+  .div_icon{
+      display: flex;
+      flex-direction:row;
+      margin-bottom: 30px;
+      margin-top:30px;
+  }
+
+
+
+  .Select_Formcontrol{
+    minWidth:220;
+    }
+
+ .Grid_all{
+     width: 1000px;
+     margin-top:10px;
+     margin-bottom:10px;
+    
+ }
+
+ .Button_gender{
+     margin: 20px;
+     width:100px;
+     height:50px;
+ }
+
+ .appbar{
+    margin-left: 100;
+ }
+
+/* 체크박스 */
+
+input[type=checkbox] {  
+    display: none;  
+}
+
+input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 18px;
+    margin-left: 20px;
+
+    
+}
+
+input[type=checkbox]+ label:before {     
+
+    content: "";  
+    display: inline-block;  
+  
+    width: 30px;  
+    height: 25px;  
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;
+    margin-top: 2px; 
+    bottom: 0px;  
+    background-color: #ccc;  
+    border-radius: 50%; 
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 18px; 
+    font-weight:0; 
+    color: #fff;  
+    background:#2f87c1;
+    text-align: center;  
+    line-height: 25px;  
+
+} 
+
+.div_ad{
+    display: flex;
+    flex-direction: row;
+    margin-left: 55px;
+    margin-top: 5px;
+
+}
+
+
+

@@ -1,35 +1,36 @@
 import React from 'react';
-import './App.css';
-import { Route, Switch } from 'react-router-dom';
-// 상품 등록 페이지
-import ProductAdd from './Product_add_page/ProductAdd';
-
-//상품 목록 페이지
-import ProductList from './Product_list_page/ProductList' 
-
-//회원가입 페이지
-import Register from './Register/Register'
-
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './index.css';
+import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Footer from './components/view/Footer.js';
+import LinkAppBar from './components/Appbar/LinkAppbar.js.js';
+import Home from './components/view/Home.js';
+import Mypage from "./components/mypage/Mypage.js";
+import Paymentdetails from "./components/Paymentdetails.js";
+import Detail from "./components/productDetail/Detail.js";
+import Traveler from "./components/trip/Traveler.js";
+import Travelerlist from "./components/trip/Travelerlist.js";
+import Travelerdetail from "./components/trip/Travelerdetail.js";
 
+export default class App extends React.Component {
 
-function App() {
-  const theme = createMuiTheme({
-    typography: {
-      fontFamily: 'Jalnan',
-      fontSize: 22
-    },
-  });
-  return (
-    <MuiThemeProvider theme={theme}>
-      <Switch>
-        <Route exact path='/product/add' component={ProductAdd} />
-        <Route exact path='/product/list' component={ProductList} />
-        <Route exact path='/user/register' component={Register} />
-      </Switch>
-    </MuiThemeProvider>
-  );
+  render() {
+    return (  
+      <Router>
+        <div>
+          <LinkAppBar />
+          <Switch>
+            <Route exact path={"/"} component={Home}></Route>
+            <Route exact path={"/Mypage"} component={Mypage}></Route>
+            <Route exact path={"/Paymentdetails"} component={Paymentdetails}></Route>
+            <Route exact path={"/Detail"} component={Detail}></Route>
+            <Route exact path={"/Traveler"} component={Traveler}></Route>
+            <Route exact path={"/Travelerlist"} component={Travelerlist}></Route>
+            <Route exact path={"/Travelerdetail"} component={Travelerdetail}></Route>
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
