@@ -250,32 +250,31 @@ class CustomerAdd extends React.Component {
             })
     }
 
-    // input file event
-    handleFileChange = (e) => {
-        console.log(e);
-        var upload = document.querySelector('#upload1');
-        var preview = document.querySelector('#preview-image1');
-        var get_file = e.target.files;
-        var reader = new FileReader();
+ // input file event
+ handleFileChange = (e) => {
+    console.log(e);
+    var upload = document.querySelector('#upload1');
+    var preview = document.querySelector('#preview-image1');
+    var get_file = e.target.files;
+    var reader = new FileReader();
 
-        reader.onload = (function (img) {
-            return function (e) {
-                img.style.cssText = 'width:160px';
-                img.style.cssText='height:200px'
-                img.style.cssText="max-width: 100%"
-                img.src = e.target.result
-            }
-        })(preview)
-        if (get_file) {
-            reader.readAsDataURL(get_file[0]);
-            console.log(reader);
+    reader.onload = (function (img) {
+        return function (e) {
+            img.style.cssText ='width:260px';
+            img.style.cssText="max-width:125%"
+            img.src = e.target.result
         }
-        this.setState({
-            file: e
-                .target
-                .files[0]
-        })
+    })(preview)
+    if (get_file) {
+        reader.readAsDataURL(get_file[0]);
+        console.log(reader);
     }
+    this.setState({
+        file: e
+            .target
+            .files[0]
+    })
+}
 
 
     // input value event
