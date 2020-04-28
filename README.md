@@ -30,6 +30,28 @@ yarn test
 
 ```
 
+## 프로젝트를 클론하고 해야할 일
+
+```
+# 프로젝트 루트 폴더에서
+npm i 
+
+# clinet 폴더에서 
+npm i
+
+#
+mkdir config
+cd mkdir && touch config.json
+
+# .env 파일 생성
+touch .env
+
+# upload 파일 생성
+mdkir upload
+
+```
+
+
 ## 도큐먼트
 
 ### 커밋 메세지 작성 가이드
