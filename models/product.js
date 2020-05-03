@@ -8,6 +8,14 @@ module.exports = (sequelize, DataTypes) => (
       type: DataTypes.STRING(30), 
       allowNull: false,
     },
+    product_country: {
+      type: DataTypes.STRING(30), 
+      allowNull: false,
+    },
+    product_city: {
+      type: DataTypes.STRING(30), 
+      allowNull: false,
+    },
     product_main_category: {
       type: DataTypes.STRING(30), 
       allowNull: false,
