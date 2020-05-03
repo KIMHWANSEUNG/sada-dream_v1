@@ -317,7 +317,6 @@ class CustomerAdd extends React.Component {
     // 마감기한 EVENT
     handleOutDateChange = (date) => {
         this.setState({product_outdate: new Date(date)});
-        console.log(this.state.product_outdate);
     }
 
     // 상품 가격 EVENT
@@ -351,6 +350,7 @@ class CustomerAdd extends React.Component {
         const url = "/products/ask/add";
         
         const formData = new FormData();
+
         // product img
         formData.append('image1', this.state.file0)
         formData.append('image1', this.state.file1)
@@ -369,7 +369,7 @@ class CustomerAdd extends React.Component {
         formData.append('product_delivery',this.state.isDelivery);
         formData.append('product_size',this.state.product_size);
         formData.append('product_requirement',this.state.product_request);
-        formData.append('req_expired',this.state.product_outdate);
+        formData.append('req_expired', this.state.product_outdate);
         
         const config = {
             headers: {

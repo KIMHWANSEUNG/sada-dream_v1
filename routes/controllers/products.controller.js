@@ -1,12 +1,9 @@
 const fs = require('fs');
-const bodyParser = require('body-parser');
 const express = require('express');
-const passport = require('passport');
-const bcrypt = require('bcrypt');
-const multer = require('multer');
-
-const upload = multer({dest: './uploads'})
-
+const bodyParser = require('body-parser');
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const { User, Request, Product, ProductImg } = require('../../models');
 
@@ -31,6 +28,7 @@ exports.createRequest = async (req, res, next) => {
     // porduct image
     product_images
   } = req.body;
+
 
   try {
     // 요청 생성
@@ -73,6 +71,7 @@ exports.createRequest = async (req, res, next) => {
 
   } catch (err) {
     console.log('[error] createRequest:', err);
+    
   }
 
 };
