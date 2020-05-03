@@ -258,7 +258,7 @@ class ProductList extends React.Component {
 
     return(
         <Container className={classes.Container} component="main" >
-          <Appbar/>
+         
             <CssBaseline />
    
         <div className={classes.div_app}>

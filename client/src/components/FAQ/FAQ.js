@@ -173,7 +173,7 @@ class FAQ extends React.Component{
 
         return(
         <React.Fragment>
-              <Appbar/>
+          
                 <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div className={classes.paper}>

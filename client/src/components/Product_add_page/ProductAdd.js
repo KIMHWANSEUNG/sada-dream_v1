@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import "./Productadd.css"
 import {
     AppBar,
     Toolbar,
@@ -29,10 +30,11 @@ import Delivery from './post_way/Delivery';
 import Directdeal from './post_way/Directdeal';
 import photoIcon from './photo-icon.png';
 import {MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker} from '@material-ui/pickers';
-import { blue } from '@material-ui/core/colors';
-
+import {blue} from '@material-ui/core/colors';
 
 const styles = theme => ({
+
+    img_button: {},
     hidden: {
         display: 'none'
     },
@@ -79,101 +81,99 @@ const styles = theme => ({
         marginLeft: 30
     },
     TextField_name: {
-        marginLeft:40,
-        width: 230,
+        marginLeft: 40,
+        width: 230
     },
-    TextField_count:{
-        width:80,
-        marginTop:30,
-        marginBottom:30,
-        marginRight:200
+    TextField_count: {
+        width: 80,
+        marginTop: 30,
+        marginBottom: 30,
+        marginRight: 200
     },
-    TextField_explain:{
-        marginBottom:50,
-        marginTop:30
+    TextField_explain: {
+        marginBottom: 50,
+        marginTop: 30
     },
-    TextField_price:{
-        width:330,
-        textAlign:"center"
+    TextField_price: {
+        width: 330,
+        textAlign: "center"
     },
-    Select:{
-      width:220,
-      marginBottom:30,
+    Select: {
+        width: 220,
+        marginBottom: 30
     },
-    KeyboardDatePicker:{
-        width:300,
-        marginRight:100
+    KeyboardDatePicker: {
+        width: 300,
+        marginRight: 100
     },
 
-    Select_Formcontrol:{
-        minWidth :220
+    Select_Formcontrol: {
+        minWidth: 220
     },
-    Divider:{
+    Divider: {
         marginTop: theme.spacing(20),
         marginBottom: theme.spacing(10),
+        border: "1px solid"
+    },
+    Button_next: {
+        width: 120,
+        height: 60,
+        margin: 30
+    },
+
+    // 상품 이미지 속성
+    input: {
+        display: "none"
+    },
+    //이미지 아이콘 버튼
+    icon_button: {
+        width: "200px",
+        height: "150px",
+        marginLeft: theme.spacing(4),
+        marginRight: theme.spacing(4),
+        marginTop: theme.spacing(4),
+        marginButtom: theme.spacing(4),
         border: "1px solid",
+        backgroundColor: "white"
     },
-    Button_next:{
-        width:120,
-        height:60,
-        margin:30
+    div_image: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+        marginBottom: 30
     },
 
-        // 상품 이미지 속성
-        input: {
-            display: "none",
-        },
-        div_image: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            overflow: 'hidden',
-            backgroundColor: theme.palette.background.paper,
-            marginBottom:30
-        },
+    Grid_image: {
+        width: "100%",
+        height: "100%",
+        flexWrap: 'nowrap',
+        transform: 'translateZ(0)',
+        padding:20
+    },
 
-        Grid_image: {
-            width: "100%",
-            height: "100%",
-            flexWrap: 'nowrap',
-            transform: 'translateZ(0)',
+    Button_product_size: {
+        '&:focus': {
+            boxShadow: 'none',
+            backgroundColor: '#004C99',
+            borderColor: '#005cbf'
         },
-
-        icon_button: {
-            width: "150px",
-            height: "140px",
-            marginLeft: theme.spacing(4),
-            marginRight: theme.spacing(4),
-            marginTop: theme.spacing(4),
-            marginButtom: theme.spacing(4),
-            border: "1px solid",
-            backgroundColor: "white",
+        width: "100px",
+        height: "90px",
+        border: "1px solid",
+        marginRight: 15,
+        fontSize: 15
+    },
+    Button_post_way: {
+        '&:focus': {
+            boxShadow: 'none',
+            fontColor: '#060B0B',
+            borderColor: '#003399',
+            border: '2px solid'
         },
-        Button_product_size:{
-            '&:focus': {
-                boxShadow: 'none',
-                backgroundColor: '#004C99',
-                borderColor: '#005cbf',
-              },
-            width: "100px",
-            height: "90px",
-            border:"1px solid",
-           marginRight:15,
-           fontSize: 15,
-      
-        },
-        Button_post_way:{
-            '&:focus': {
-                boxShadow: 'none',
-                fontColor:'#060B0B',
-                borderColor: '#003399',
-                border: '2px solid',
-              },
-              margin:10,
-              
-
-      
-        }
+        margin: 10
+    }
 
 })
 
@@ -185,15 +185,15 @@ const tileData = [
         id: 'upload1',
         preview: 'preview-image1'
     }, {
-        number:2,
+        number: 2,
         id: 'upload2',
         preview: 'preview-image2'
     }, {
-        number:3,
+        number: 3,
         id: 'upload3',
         preview: 'preview-image3'
     }, {
-        number:4,
+        number: 4,
         id: 'upload4',
         preview: 'preview-image4'
     }
@@ -203,6 +203,9 @@ class CustomerAdd extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+
+            //상품이미지
+
             //상품 정보
             file1: null,
             file2: null,
@@ -215,7 +218,7 @@ class CustomerAdd extends React.Component {
             fileName2: '',
             fileName3: '',
             fileName4: '',
-            
+
             product_category: '',
             product_category_detail: '',
             product_country: '',
@@ -224,7 +227,7 @@ class CustomerAdd extends React.Component {
             product_count: '',
             product_outdate: Date.now(),
             product_explain: '',
-            product_size:'',
+            product_size: '',
             product_price: '',
             product_request: '',
             CategoryFlag: 0,
@@ -232,8 +235,8 @@ class CustomerAdd extends React.Component {
             PostNumber: 0,
 
             //상품크기
-            Button1:false,
-            Button2:false,
+            Button1: false,
+            Button2: false,
 
             //택배
             isDelivery: true,
@@ -245,32 +248,47 @@ class CustomerAdd extends React.Component {
             //직거래
             local_name: '',
             city_name: '',
-            meeting_place: '',
+            meeting_place: ''
         };
     }
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        
+
         this.sendFormData();
     }
-
+    // 이미지 업로드 메서드 handleFileOnChange = (e) => {     e.preventDefault();     let
+    // reader = new FileReader();     let file = e.target.files[0];
+    // reader.onloadend = () => {       this.setState({         file : file,
+    // previewURL : reader.result       })     }     reader.readAsDataURL(file);   }
     // input file event
     handleFileChange = (e) => {
-        for(let i = 0; i < 5; i++) 
-        {
-            if (e.target.id === "raised-button-file" + i)
-            {
+        let reader = new FileReader();
+        for (let i = 0; i < 5; i++) {
+            if (e.target.id === "upload" + i) {
+                var preview = document.querySelector('#preview-image'+i);
                 let nextState = {};
                 nextState["file" + i] = e.target.files[0];
                 nextState["fileName" + i] = e.target.value;
+                let file = e.target.files[0];
+                reader.onload = (function (img) {
+                    return function (e) {
+                        img.style.cssText = 'width:200px; height:150px;';
+                        
+                        img.src = e.target.result
+        
+                    }
+                })(preview)
+        
                 this.setState(nextState);
-                
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+
             }
-            
+
         }
     }
-
 
     // input value event
     handleValueChange = (e) => {
@@ -348,7 +366,7 @@ class CustomerAdd extends React.Component {
 
     sendFormData() {
         const url = "/products/ask/add";
-        
+
         const formData = new FormData();
 
         // product img
@@ -376,7 +394,7 @@ class CustomerAdd extends React.Component {
                 'content-type': 'multipart/form-data'
             }
         };
-        
+
         axios.post(url, formData, config);
     }
     // close button event
@@ -400,58 +418,98 @@ class CustomerAdd extends React.Component {
     // 자식 -> 부모 (택배) -> 받아오는 콜백 함수
     deliveryCallbackFunction = (childData) => {
         console.log(childData);
-        this.setState({
-            receive_person: childData.receive_person,
-            post_number: childData.post_number,
-            address: childData.address,
-            address_detail: childData.address_detail,
-        });
+        this.setState(
+            {receive_person: childData.receive_person, post_number: childData.post_number, address: childData.address, address_detail: childData.address_detail}
+        );
     };
-    // 자식 -> 부모 (직거래) -> 받아오는 콜백함수 
+    // 자식 -> 부모 (직거래) -> 받아오는 콜백함수
     directDealCallbackFunction = (childData) => {
         console.log(childData);
-        this.setState({
-            local_name: childData.receive_person,
-            city_name: childData.city_name,
-            meeting_place: childData.meeting_place,
-        });
+        this.setState(
+            {local_name: childData.receive_person, city_name: childData.city_name, meeting_place: childData.meeting_place}
+        );
     };
 
     //물건 크기<>
-    handleProductsizeChange1= (e) =>{
-        var button_verySmall=document.getElementById('product_size1').style.backgroundColor="#E6EBFF"
-        var button_Small=document.getElementById('product_size2').style.backgroundColor="white"
-        var button_Middle=document.getElementById('product_size3').style.backgroundColor="white"
-        var button_Large=document.getElementById('product_size4').style.backgroundColor="white"
-        this.setState({product_size:"극소(2kg미만)"})
+    handleProductsizeChange1 = (e) => {
+        var button_verySmall = document
+            .getElementById('product_size1')
+            .style
+            .backgroundColor = "#E6EBFF"
+        var button_Small = document
+            .getElementById('product_size2')
+            .style
+            .backgroundColor = "white"
+        var button_Middle = document
+            .getElementById('product_size3')
+            .style
+            .backgroundColor = "white"
+        var button_Large = document
+            .getElementById('product_size4')
+            .style
+            .backgroundColor = "white"
+        this.setState({product_size: "극소(2kg미만)"})
     };
-    handleProductsizeChange2= (e) =>{
-        var button_verySmall=document.getElementById('product_size1').style.backgroundColor="white"
-        var button_Small=document.getElementById('product_size2').style.backgroundColor="#E6EBFF"
-        var button_Middle=document.getElementById('product_size3').style.backgroundColor="white"
-        var button_Large=document.getElementById('product_size4').style.backgroundColor="white"
-        this.setState({product_size:"소(4kg미만)"})
+    handleProductsizeChange2 = (e) => {
+        var button_verySmall = document
+            .getElementById('product_size1')
+            .style
+            .backgroundColor = "white"
+        var button_Small = document
+            .getElementById('product_size2')
+            .style
+            .backgroundColor = "#E6EBFF"
+        var button_Middle = document
+            .getElementById('product_size3')
+            .style
+            .backgroundColor = "white"
+        var button_Large = document
+            .getElementById('product_size4')
+            .style
+            .backgroundColor = "white"
+        this.setState({product_size: "소(4kg미만)"})
     };
-    handleProductsizeChange3= (e) =>{
-        var button_verySmall=document.getElementById('product_size1').style.backgroundColor="white"
-        var button_Small=document.getElementById('product_size2').style.backgroundColor="white"
-        var button_Middle=document.getElementById('product_size3').style.backgroundColor="#E6EBFF"
-        var button_Large=document.getElementById('product_size4').style.backgroundColor="white"
-        this.setState({product_size:"중(10kg미만)"})
+    handleProductsizeChange3 = (e) => {
+        var button_verySmall = document
+            .getElementById('product_size1')
+            .style
+            .backgroundColor = "white"
+        var button_Small = document
+            .getElementById('product_size2')
+            .style
+            .backgroundColor = "white"
+        var button_Middle = document
+            .getElementById('product_size3')
+            .style
+            .backgroundColor = "#E6EBFF"
+        var button_Large = document
+            .getElementById('product_size4')
+            .style
+            .backgroundColor = "white"
+        this.setState({product_size: "중(10kg미만)"})
     };
-    handleProductsizeChange4= (e) =>{
-        var button_verySmall=document.getElementById('product_size1').style.backgroundColor="white"
-        var button_Small=document.getElementById('product_size2').style.backgroundColor="white"
-        var button_Middle=document.getElementById('product_size3').style.backgroundColor="white"
-        var button_Large=document.getElementById('product_size4').style.backgroundColor="#E6EBFF"
-        this.setState({product_size:"대(20kg미만)"})
+    handleProductsizeChange4 = (e) => {
+        var button_verySmall = document
+            .getElementById('product_size1')
+            .style
+            .backgroundColor = "white"
+        var button_Small = document
+            .getElementById('product_size2')
+            .style
+            .backgroundColor = "white"
+        var button_Middle = document
+            .getElementById('product_size3')
+            .style
+            .backgroundColor = "white"
+        var button_Large = document
+            .getElementById('product_size4')
+            .style
+            .backgroundColor = "#E6EBFF"
+        this.setState({product_size: "대(20kg미만)"})
     };
-
-
-
 
     render() {
-        
+
         // css REACTOR! : DB화 시켜야함 => 그래야 관리자 페이지에서 카테고리 관리 가능!!!
         const {classes} = this.props;
         const category = [
@@ -544,20 +602,18 @@ class CustomerAdd extends React.Component {
         const city_list = city[this.state.CountryFlag].map(
             (city, index) => (<MenuItem key={index} value={city}>{city}</MenuItem>)
         );
-        
+
+        //이미지 랜더링
+        let profile_preview = null;
+        if (this.state.file1 !== '') {
+            profile_preview = <img className='profile_preview' src={this.state.previewURL}></img>
+        }
 
         return (
             <div>
                 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
                 <CssBaseline/>
-                <AppBar position="absolute" color="default" className={classes.appBar}>
-                    <Toolbar>
-                        <Typography variant="h6" color="inherit" noWrap="noWrap">
-                            사다드림
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                {/* Appbar */}
+
                 <main className={classes.layout}>
                     <Grid container="container" spacing={3} className={classes.root}>
                         <Paper className={classes.paper}>
@@ -566,58 +622,30 @@ class CustomerAdd extends React.Component {
                             </Typography>
                             <div className={classes.div_image}>
                                 <GridList className={classes.Grid_image} cols={2.5}>
-                                    
-                                        {/* image1 */}
-                                        <input className={classes.input} accept="image/*" id="raised-button-file0" type="file"  file={this.state.file0} value={this.state.fileName0} onChange={this.handleFileChange} />
-                                        <label htmlFor="raised-button-file0">
-                                            {/* 작업 내용 */}
-                                            <Button variant="contained" color="primary" component="span" name="file">
-                                                {this.state.fileName0 ==="" ? "프로필 이미지 선택1" :this.state.fileName0}
-                                            </Button>
-                                            
-                                        </label>
-
-                                        {/* image2 */}
-                                        <input className={classes.hidden} accept="image/*" id="raised-button-file1" type="file"  file={this.state.file1} value={this.state.fileName1} onChange={this.handleFileChange} />
-                                        <label htmlFor="raised-button-file1">
-                                            {/* 작업 내용 */}
-                                            <Button variant="contained" color="primary" component="span" name="file">
-                                                {this.state.fileName1 ==="" ? "프로필 이미지 선택2" :this.state.fileName1}
-                                            </Button>
-                                            
-                                        </label>
-
-                                        {/* image3 */}
-                                        <input className={classes.hidden} accept="image/*" id="raised-button-file2" type="file"  file={this.state.file2} value={this.state.fileName2} onChange={this.handleFileChange} />
-                                        <label htmlFor="raised-button-file2">
-                                            {/* 작업 내용 */}
-                                            <Button variant="contained" color="primary" component="span" name="file">
-                                                {this.state.fileName2 ==="" ? "프로필 이미지 선택3" :this.state.fileName2}
-                                            </Button>
-                                            
-                                        </label>
-
-
-                                        {/* image4 */}
-                                        <input className={classes.hidden} accept="image/*" id="raised-button-file3" type="file"  file={this.state.file3} value={this.state.fileName3} onChange={this.handleFileChange} />
-                                        <label htmlFor="raised-button-file3">
-                                            {/* 작업 내용 */}
-                                            <Button variant="contained" color="primary" component="span" name="file">
-                                                {this.state.fileName3 ==="" ? "프로필 이미지 선택4" :this.state.fileName3}
-                                            </Button>
-                                            
-                                        </label>
-
-                                        {/* image5 */}
-                                        <input className={classes.hidden} accept="image/*" id="raised-button-file4" type="file"  file={this.state.file4} value={this.state.fileName4} onChange={this.handleFileChange} />
-                                        <label htmlFor="raised-button-file4">
-                                            {/* 작업 내용 */}
-                                            <Button variant="contained" color="primary" component="span" name="file">
-                                                {this.state.fileName4 ==="" ? "프로필 이미지 선택5" :this.state.fileName4}
-                                            </Button>
-                                            
-                                        </label>
-                                    
+                                    {
+                                        tileData.map(tile => (
+                                            <div>
+                                                <Input
+                                                    accept="image/*"
+                                                    className={classes.input}
+                                                    id={tile.id}
+                                                    type="file"
+                                                    file={this.state.file}
+                                                    value={this.state.fileName}
+                                                    onChange={this.handleFileChange}
+                                                    multiple="multiple"/>
+                                                <label htmlFor={tile.id}>
+                                                    <Button
+                                                        className={classes.icon_button}
+                                                        variant="contained"
+                                                        component="span"
+                                                        name="file">
+                                                        <img id={tile.preview} src={photoIcon}></img>
+                                                    </Button>
+                                                </label>
+                                            </div>
+                                        ))
+                                    }
                                 </GridList>
                             </div>
                             {/* fooooo */}
@@ -641,7 +669,7 @@ class CustomerAdd extends React.Component {
                                         {category_list}
                                     </Select>
                                 </FormControl>
-                                
+
                                 <FormControl className={classes.Select_Formcontrol}>
                                     <InputLabel id="demo-simple-select-helper-label">세부 카테고리</InputLabel>
                                     <Select
@@ -745,20 +773,37 @@ class CustomerAdd extends React.Component {
                                     rows="4"
                                     variant="outlined"
                                     value={this.state.product_explain}
-                                    onChange={this.handleValueChange}/> 
-                                    
-                            {/* 상품 크기 버튼 */}
-                           <FormControl>
-                           <Typography variant="h7" gutterBottom>
-                                물건 크기
-                            </Typography>
-                            <Grid>
-                            <Button id="product_size1" className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange1}  >극소   (2kg  　미만)</Button>
-                            <Button id="product_size2"className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange2}  >　소　　(4kg　 미만)</Button>
-                            <Button id="product_size3"className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange3}>　중　  (10kg　미만)</Button>
-                            <Button id="product_size4"className={classes.Button_product_size} variant="outlined" onClick={this.handleProductsizeChange4}>　대 　 (20kg　미만)</Button>
-                            </Grid>
-                            </FormControl>
+                                    onChange={this.handleValueChange}/> {/* 상품 크기 버튼 */}
+                                <FormControl>
+                                    <Typography variant="h7" gutterBottom="gutterBottom">
+                                        물건 크기
+                                    </Typography>
+                                    <Grid>
+                                        <Button
+                                            id="product_size1"
+                                            className={classes.Button_product_size}
+                                            variant="outlined"
+                                            onClick={this.handleProductsizeChange1}>극소 (2kg 미만)</Button>
+                                        <Button
+                                            id="product_size2"
+                                            className={classes.Button_product_size}
+                                            variant="outlined"
+                                            onClick={this.handleProductsizeChange2}>
+                                            소 (4kg 미만)</Button>
+                                        <Button
+                                            id="product_size3"
+                                            className={classes.Button_product_size}
+                                            variant="outlined"
+                                            onClick={this.handleProductsizeChange3}>
+                                            중 (10kg 미만)</Button>
+                                        <Button
+                                            id="product_size4"
+                                            className={classes.Button_product_size}
+                                            variant="outlined"
+                                            onClick={this.handleProductsizeChange4}>
+                                            대 (20kg 미만)</Button>
+                                    </Grid>
+                                </FormControl>
                             </Grid>
                             <Grid
                                 container="container"
@@ -799,15 +844,23 @@ class CustomerAdd extends React.Component {
                                 direction="row"
                                 justify="flex-start"
                                 alignItems="center">
-                                <Button className={classes.Button_post_way} onClick={this.handleDelivery} variant="outlined" color="primary">택배</Button>
-                                <Button className={classes.Button_post_way} className={classes.Button_post_way} onClick={this.handleDirectExchange} variant="outlined" color="primary">직거래</Button>
+                                <Button
+                                    className={classes.Button_post_way}
+                                    onClick={this.handleDelivery}
+                                    variant="outlined"
+                                    color="primary">택배</Button>
+                                <Button
+                                    className={classes.Button_post_way}
+                                    onClick={this.handleDirectExchange}
+                                    variant="outlined"
+                                    color="primary">직거래</Button>
                             </Grid>
 
                             {/*수령 방법*/}
 
                             {
-                                this.state.isDelivery ? 
-                                    (
+                                this.state.isDelivery
+                                    ? (
                                         <Delivery
                                             parentCallback={this.deliveryCallbackFunction}
                                             receive_person={this.state.receive_person}
@@ -815,12 +868,13 @@ class CustomerAdd extends React.Component {
                                             address={this.state.address}
                                             address_detail={this.state.address_detail}/>
                                     )
-                                    : 
-                                    (   <Directdeal    
+                                    : (
+                                        <Directdeal
                                             parentCallback={this.directDealCallbackFunction}
                                             local_name={this.state.local_name}
                                             city_name={this.state.city_name}
-                                            meeting_place={this.state.meeting_place}/>)
+                                            meeting_place={this.state.meeting_place}/>
+                                    )
                             }
 
                             <Grid

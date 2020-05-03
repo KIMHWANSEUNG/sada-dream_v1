@@ -119,7 +119,7 @@ class QuestionAdd extends React.Component{
 
         return(
         <React.Fragment>
-                <Appbar/>
+               
                 <Container component="main" >
                 <CssBaseline />
                 <div className={classes.paper}>
