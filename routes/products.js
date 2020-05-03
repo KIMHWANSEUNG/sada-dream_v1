@@ -74,5 +74,30 @@ router.post('/ask/add', upload.array('image1'), async (req, res) => {
     
 });
 
+router.get('/ask/list', async (req, res)  => {
+    
+    products = await Product.findAll({
+        include: [{
+            model: Request,
+            attributes: ['user_id'],
+        }],
+        attributes: ['product_name']
+    });
+    console.log(products);
+    console.log(products[0].dataValues.product_name);
+    console.log(products[0].dataValues.request);
+
+    return res.json({
+        "u_id": products.product_name,
+        "req_id": "result",
+        "prod_name": "",
+        "prod_discription": "result",
+        "prod_price": "10000",
+        "prod_requirement":"sdfsdfsdf",
+    })
+});
+
+
+
 
 module.exports = router;
