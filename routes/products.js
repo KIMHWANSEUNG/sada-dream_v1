@@ -43,6 +43,7 @@ router.post('/ask/add', upload.array('image1'), async (req, res) => {
         // create product
         const product = await Product.create({
             req_id: request.id,
+            user_id: req.user.id,
             product_name: product_name,
             product_num: product_num,
             product_price: product_price,
@@ -79,7 +80,7 @@ router.get('/ask/list', async (req, res)  => {
     products = await Product.findAll({
         include: [{
             model: Request,
-            attributes: ['user_id'],
+            attributes: ['user_id', 'req_status'],
             include: [{
                 model: User,
                 attributes: ['u_nation']
@@ -92,7 +93,7 @@ router.get('/ask/list', async (req, res)  => {
         attributes: ['product_name', 'product_country']
     });
     console.log("-- new --")
-    console.log(products[0])
+    console.log(products[0].dataValues)
     // 예제 데이터
     return res.json({
         "u_id": products.product_name,
