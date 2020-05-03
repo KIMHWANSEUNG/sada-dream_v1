@@ -237,7 +237,7 @@ class ProductList extends React.Component {
 
   // 데이터를 서버로부터 불러오는 함수
   callApi = async () => {
-    const response = await fetch('ask/list')
+    const response = await fetch('/products/ask/list')
     const body = await response.json();
     return body;
   }
