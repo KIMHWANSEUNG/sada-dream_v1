@@ -25,9 +25,13 @@ db.CommentReply = require('./comment_reply')(sequelize, Sequelize);
 db.User.hasMany(db.Travel, { foreignKey: 'user_id', sourceKey: 'id' });
 db.Travel.belongsTo(db.User, { foreignKey: 'user_id', sourceKey: 'id' });
 
+// user of product 1 : N
+db.User.hasMany(db.Travel, { foreignKey: 'user_id', sourceKey: 'id' });
+db.Product.belongsTo(db.User, { foreignKey: 'user_id', sourceKey: 'id' })
+
 // user of request 1 : N
 db.User.hasMany(db.Request, { foreignKey: 'user_id', sourceKey: 'id' });
-db.Travel.belongsTo(db.User, { foreignKey: 'user_id', sourceKey: 'id' });
+db.Request.belongsTo(db.User, { foreignKey: 'user_id', sourceKey: 'id' });
 
 // request of product 1 : 1
 db.Request.hasOne(db.Product, { foreignKey: 'req_id', sourceKey: 'id' });
