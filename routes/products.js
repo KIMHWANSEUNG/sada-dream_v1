@@ -80,13 +80,20 @@ router.get('/ask/list', async (req, res)  => {
         include: [{
             model: Request,
             attributes: ['user_id'],
+            include: [{
+                model: User,
+                attributes: ['u_nation']
+            }]
+        },
+        {
+            model: ProductImg,
+            attributes: ['image1', 'image2', 'image3', 'image4', 'image5'],
         }],
-        attributes: ['product_name']
+        attributes: ['product_name', 'product_country']
     });
-    console.log(products);
-    console.log(products[0].dataValues.product_name);
-    console.log(products[0].dataValues.request);
-
+    console.log("-- new --")
+    console.log(products[0])
+    // 예제 데이터
     return res.json({
         "u_id": products.product_name,
         "req_id": "result",
@@ -96,8 +103,5 @@ router.get('/ask/list', async (req, res)  => {
         "prod_requirement":"sdfsdfsdf",
     })
 });
-
-
-
 
 module.exports = router;
