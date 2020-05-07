@@ -10,53 +10,75 @@
 # Clone the repository
 git clone https://github.com/dongwooklee96/sada-dream.git
 
-# Go inside the directory
-cd sada-dream
+# Install dependencies (server)
+npm i (or yarn install)
 
-# Install dependencies
+# Install dependencies (client)
 yarn (or npm install)
 
-# Start development server
+# Start development server and client
 yarn dev (or npm run dev)
 
-# Build for production
-yarn build (or npm run build)
+# Start server
+yarn server (or npm start)
 
-# Start production server
-yarn start (or npm start)
+# Start client
+yarn client 
+
+# Start test (jest)
+yarn test
+
 ```
+
+## 프로젝트를 클론하고 해야할 일
+
+```
+# 프로젝트 루트 폴더에서
+npm i 
+
+# clinet 폴더에서 
+npm i
+
+#
+mkdir config
+cd mkdir && touch config.json
+
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
+
+# .env 파일 생성
+touch .env
+
+# upload 파일 생성
+mdkir upload
+
+```
+
 
 ## 도큐먼트
 
-### 프로젝트 구조
-
-```
-├─public
-|   └─favicon.ico
-|   └─index.html
-|
-└─src
-|   ├─client
-|   └─server
-```
-
-모든 소스 코드는 src 폴더 안에 있습니다. src 폴더 안에는 `client` 폴더와 `server` 폴더가 있습니다. 모든 프론트엔드 코드와 에셋들은 `client` 폴더안에 위치하고 백 엔드 코드들은 `server` 폴더에 있습니다.
-
-### Babel
-
-바벨은 최신의 자바 스크립트 코드를 작성하는데 도움을 줍니다. 최신의 자바스크립트 언어를 지원하는 않는 환경에서, 바벨은 최신의 자바스크립트 버전을 컴파일하여 낮은 버전의 자바스크립트로 변환시킵니다. 또한 바벨은 JSX를 자바스크립트로 변환시키는데 사용됩니다.
-
-[.babelrc file](https://babeljs.io/docs/usage/babelrc/)은 바벨에 필요한 설정을 정의하는데 사용됩니다. 밑에 있는 코드는 이 프로젝트에서 사용됩니다.
-
-```javascript
-{
-    "presets": ["env", "react"]
-}
-```
-
-바벨은 변환을 위해서 플러그인을 필요로 하며 프리셋 설정은 바벨이 정의한 플러그인들의 집합입니다. 프리셋 "presets": ["```env```", "react"]는 `babel-preset-es2015`과 `babel-preset-es2016`, `babel-preset-es2017`을 사용할 수 있으며 이들은 es5로 변환됩니다. "presets": ["env", "```react```"]는 JSX를 자바스크립트로 변환시킵니다.
-
-### 커밋 메세지 작성 요령
+### 커밋 메세지 작성 가이드
 
 ```
 - feat: 새로운 기능을 추가할 경우 
@@ -77,7 +99,7 @@ yarn start (or npm start)
 ### 기여 방법
 
 1. (<https://github.com/dongwooklee96/sada-dream.git>)을 포크합니다.
-2. (`git checkout -b feature/fooBar`) 명령어로 새 브랜치를 만드세요.
+2. (`git checkout -b [example]/f`) 명령어로 새 브랜치를 만드세요.
 3. (`git commit -am 'Add some fooBar'`) 명령어로 커밋하세요.
 4. (`git push origin feature/fooBar`) 명령어로 브랜치에 푸시하세요. 
 5. 풀리퀘스트를 보내주세요.

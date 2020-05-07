@@ -386,35 +386,7 @@ class Register extends React.Component{
             <CssBaseline />
             {/* 회원가입 완료했는지 확인하는 코드 리다이렉트 */}
             {isJoinSuccess ? <Redirect to ='/login' /> : <Redirect to ='/register'/>}
-            {/* 앱바 */}
-              <AppBar  position="sticky" color="default" elevation={0}>
-                <Toolbar className="">
-                <Grid
-                  container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="center"
-                >
-                  <Typography variant="h6" color="inherit" noWrap className="">
-                    사다드림
-                  </Typography>
-                  <nav className="appbar">
-                    <Link variant="button" color="textPrimary" href="#" className={classes.Link_appbar}>
-                      요청리스트
-                    </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.Link_appbar}>
-                      여행자리스트
-                    </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.Link_appbar}>
-                      고객센터
-                    </Link>
-                  <Button href="#" color="primary" variant="outlined" className="">
-                    로그인
-                  </Button>
-                  </nav>
-                 </Grid>
-              </Toolbar>
-            </AppBar>
+
 
             {/* 회원가입  */}
             <Container component="main" maxWidth="xs">

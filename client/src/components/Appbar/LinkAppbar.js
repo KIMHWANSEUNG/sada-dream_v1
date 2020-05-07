@@ -76,12 +76,12 @@ class LinkAppbar extends React.Component {
           </Link>
 		  </div>
       <div className={classes.div_margin}>
-      <Link className={classes.Link_menu} href="/Detail" color="inherit" underline="none">1:1구매요청리스트</Link>ㅂ
+      <Link className={classes.Link_menu} href="/product/list" color="inherit" underline="none">1:1구매요청리스트</Link>
 		  <Link className={classes.Link_menu} href="/Travelerlist" color="inherit" underline="none">여행자리스트</Link>
-		  <Link className={classes.Link_menu} color="inherit" underline="none">1:1구매요청등록</Link>
+		  <Link className={classes.Link_menu} href="/product/add"  color="inherit" underline="none">1:1구매요청등록</Link>
 		  <Link className={classes.Link_menu} href="/Traveler" color="inherit" underline="none">여행자등록</Link>
-      <Link href="/" >로그인</Link>
-      <Link href="/" > 회원가입</Link>
+      <Link href="/login" >로그인</Link>
+      <Link href="/register" > 회원가입</Link>
       {/*로그인 되었을때 
               <IconButton
                 aria-label="usericon"
