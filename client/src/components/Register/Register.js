@@ -525,9 +525,7 @@ class Register extends React.Component{
                 <Grid container justify="flex-end">
                   <Grid item>
                     <Typography variant="h7">이미 아이디가 있으신가요? </Typography>
-                    <Link href="#" variant="body2">
-                     로그인
-                    </Link>
+                    <Link href="/login" variant="body2">로그인</Link>
                   </Grid>
                 </Grid>
               </form>

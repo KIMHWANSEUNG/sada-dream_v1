@@ -162,20 +162,6 @@ class Login extends React.Component{
 
         return(
         <React.Fragment>
-            <AppBar  position="static" color="default" elevation={0}>
-                <Toolbar className="">
-                <Grid
-                  container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="center"
-                >
-                    <Typography variant="h6" color="inherit" noWrap className="">
-                        사다드림
-                    </Typography>
-                </Grid>
-                </Toolbar>
-            </AppBar>
                 <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div className={classes.paper}>
@@ -226,7 +212,7 @@ class Login extends React.Component{
 
                     <Grid container>
                         <Grid item xs>
-                        <Link href="#" variant="body2">
+                        <Link href="/register" variant="body2">
                             회원가입
                         </Link>
                         </Grid>

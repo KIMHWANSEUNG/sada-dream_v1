@@ -89,7 +89,7 @@ class ProductCard extends React.Component {
                 <Divider></Divider>
                 <Typography className={classes.Typography_product_name}>{this.props.product_name}</Typography>
                 <Typography className={classes.Typography_product_explain}>{this.props.product_discription}</Typography>
-                <Typography className={classes.Typography_product_cost}>\{this.props.product_price}원</Typography>
+                <Typography className={classes.Typography_product_cost}>&#8361; {this.props.product_price}원</Typography>
                 <Typography className={classes.Typography_after_time}>{this.props.product_time_of_enroll}</Typography>
               </CardActionArea>
             </Grid>

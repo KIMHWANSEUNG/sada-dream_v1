@@ -51,7 +51,7 @@ class Home extends Component {
 			<Button
 			color="primary" variant="contained"
 			size="large" className={classes.Button_btn}
-			component="a" href="/Traveler">
+			component="a" href="/register">
 			가입하기
 			</Button>
 			</div>
