@@ -7,7 +7,8 @@ import { AppBar, Toolbar, Link, Avatar, Grid } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
+import MessageIcon from '@material-ui/icons/Message';
+import Login from '../Login/Login'
 const styles = theme =>({
   Link_title: {
     fontSize: 30,
@@ -52,6 +53,13 @@ class LinkAppbar extends React.Component {
     this.setState({ open: false});
   }
 
+  handle_Popup(){
+    var url = "/login"
+    var name = "popup test";
+    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    window.open(url, name, option);
+  }
+
   render() {
     const {classes} = this.props;
     return(
@@ -80,6 +88,7 @@ class LinkAppbar extends React.Component {
 		  <Link className={classes.Link_menu} href="/Travelerlist" color="inherit" underline="none">여행자리스트</Link>
 		  <Link className={classes.Link_menu} href="/product/add"  color="inherit" underline="none">1:1구매요청등록</Link>
 		  <Link className={classes.Link_menu} href="/Traveler" color="inherit" underline="none">여행자등록</Link>
+		  <Link className={classes.Link_menu} onClick={this.handle_Popup} color="inherit" underline="none"><MessageIcon/></Link>
       <Link href="/login" >로그인</Link>
       <Link href="/register" > 회원가입</Link>
       {/*로그인 되었을때 

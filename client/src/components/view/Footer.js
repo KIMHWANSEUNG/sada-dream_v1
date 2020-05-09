@@ -46,7 +46,7 @@ class Footer extends React.Component{
 					<Button href="" component="a">운영정책</Button>
 					<Button href="" component="a">이용방법</Button>
 					<Button href="" component="a">공지사항</Button>
-					<Button href="" component="a">FAQ/고객센터</Button>
+					<Button href="/faq" component="a">FAQ/고객센터</Button>
       </ButtonGroup>
 	  </div>
 	  <Grid container
