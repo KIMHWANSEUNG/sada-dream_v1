@@ -91,14 +91,14 @@ class LinkAppbar extends React.Component {
 		  <Link className={classes.Link_menu} onClick={this.handle_Popup} color="inherit" underline="none"><MessageIcon/></Link>
       <Link href="/login" >로그인</Link>
       <Link href="/register" > 회원가입</Link>
-      {/*로그인 되었을때 
+      { /*로그인 되었을때 */ }
               <IconButton
                 aria-label="usericon"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={this.handleMenu}
                 color="primary">
-                <Avatar alt="박재성" src={MyImage}></Avatar>
+                <Avatar alt="박재성"></Avatar>
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -109,7 +109,7 @@ class LinkAppbar extends React.Component {
                   <div className={classes.div_center}>
                 <Typography variant="h6">{this.state.uesr}&nbsp;님</Typography>
                 </div>
-			        	<MenuItem
+                <MenuItem
                 href="/Mypage"
                 component="a"
                 onClick={this.handleClose}>나의 회원정보</MenuItem>
@@ -118,10 +118,14 @@ class LinkAppbar extends React.Component {
                 component="a"
                 onClick={this.handleClose}>1:1 구매요청 내역</MenuItem>
                 <MenuItem
+                href="/settlement"
+                component="a"
+                onClick={this.handleClose}>정산현황</MenuItem>
+                <MenuItem
                 href="/"
                 component="a"
                 onClick={this.handleClose}>로그아웃</MenuItem>
-              </Menu> */}
+              </Menu> 
               </div>
             </Grid>
       </Toolbar>

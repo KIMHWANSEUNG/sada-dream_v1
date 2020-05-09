@@ -30,7 +30,8 @@ import ServiceCenter from './components/Service center/ServiceCenter'
 
 //문의작성 
 import QuestionAdd from './components/QuestionAdd/QuestionAdd'
-
+//정산현황
+import Settlement from './components/Settlement/Settlement.js'
 export default class App extends React.Component {
 
   render() {
@@ -53,6 +54,7 @@ export default class App extends React.Component {
             <Route exact path='/faq' component={FAQ}/>
             <Route exact path='/servicecenter' component={ServiceCenter}/>
             <Route exact path='/quetionadd' component={QuestionAdd}/>
+            <Route exact path='/settlement' component={Settlement}/>
           </Switch>
           <Footer />
         </div>
