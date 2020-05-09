@@ -289,12 +289,7 @@ class CustomerAdd extends React.Component {
 
         }
     }
-    this.setState({
-        file: e
-            .target
-            .files[0]
-    })
-}
+
 
     // input value event
     handleValueChange = (e) => {
@@ -904,4 +899,4 @@ class CustomerAdd extends React.Component {
     }
 }
 
-export default withStyles(styles)(ProductAdd);
+export default withStyles(styles)(CustomerAdd);
