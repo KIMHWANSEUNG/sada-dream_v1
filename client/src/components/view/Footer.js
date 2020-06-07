@@ -40,7 +40,7 @@ class Footer extends React.Component{
 		  <div>
 		  <ButtonGroup className={classes.btn_btngroup}
 		  width="50%" variant="text" color="inherit">
-        			<Button href="" component="a">이용약관</Button>
+        			<Button href="/Terms" component="a">이용약관</Button>
         			<Button href="" component="a">개인정보취급방침</Button>
        				<Button href="" component="a">회사소개</Button>
 					<Button href="" component="a">운영정책</Button>

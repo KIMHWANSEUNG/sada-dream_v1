@@ -32,6 +32,8 @@ import ServiceCenter from './components/Service center/ServiceCenter'
 import QuestionAdd from './components/QuestionAdd/QuestionAdd'
 //정산현황
 import Settlement from './components/Settlement/Settlement.js'
+//이용약관
+import Terms from './components/Terms_of_Use/Terms.js';
 export default class App extends React.Component {
 
   render() {
@@ -55,6 +57,7 @@ export default class App extends React.Component {
             <Route exact path='/servicecenter' component={ServiceCenter}/>
             <Route exact path='/quetionadd' component={QuestionAdd}/>
             <Route exact path='/settlement' component={Settlement}/>
+            <Route exact path='/Terms' component={Terms}/>
           </Switch>
           <Footer />
         </div>
