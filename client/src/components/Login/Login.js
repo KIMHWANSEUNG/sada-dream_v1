@@ -124,7 +124,10 @@ class Login extends React.Component{
             // 로그인 버튼 클릭시 리턴 메시지에 따른 로직 구현
             if(response.data.result == "ok") {
                 window.alert(response.data.message);
+<<<<<<< bb1ae82c14c15570c59268bba35700eb1a76b1f0
                 window.location.href="/";
+=======
+>>>>>>> ADD Login : 로그인 성공 및 실패시 메시지 띄우기
             } else if(response.data.result == "fail") {
                 window.alert(response.data.message);
             } else {
