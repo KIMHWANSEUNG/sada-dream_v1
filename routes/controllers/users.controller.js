@@ -42,7 +42,7 @@ exports.userLogin = function(req, res, next) {
     }
     if (!user) {
       return res.json({ result: 'fail',
-                        message: info.message});
+                        message: '로그인 할 수 없습니다 아이디나 패스워드를 확인하세요'});
     }
     return req.login(user, (loginError) => {
       if (loginError) {

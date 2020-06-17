@@ -139,7 +139,15 @@ class Login extends React.Component{
             u_password: this.state.user_password,
         })
         .then(function (response) {
-            console.log(response.data);
+            // 로그인 버튼 클릭시 리턴 메시지에 따른 로직 구현
+            if(response.data.result == "ok") {
+                window.alert(response.data.message);
+            } else if(response.data.result == "fail") {
+                window.alert(response.data.message);
+            } else {
+
+            }
+            
         })
         .catch(function (error) {
             console.log(error);
